@@ -1,7 +1,7 @@
 import './about.scss';
 
 function About() {
-  return <div>about</div>;
+  return <div></div>;
 }
 
 export default About;

@@ -3,7 +3,7 @@ import "./menu.scss";
 function Menu() {
   return (
     <section>
-      <h2>Menu</h2>
+      <h2></h2>
     </section>
   );
 }
