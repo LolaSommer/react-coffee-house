@@ -1,10 +1,8 @@
-import './hero.scss';
-function Welcome() {
-  return (
-    <div>
-      <p>Добро пожаловать в React</p>
-    </div>
-  );
+import "./hero.scss";
+
+function Hero() {
+  return <section>Hero</section>;
 }
 
-export default Welcome;
+export default Hero;
+
