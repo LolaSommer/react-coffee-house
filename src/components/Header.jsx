@@ -18,12 +18,16 @@ function Header() {
         </ul>
       </nav>
       <div className="header__group">
-      <button type="submit" className="header__login">Log in</button>
+        <div className="header__auth">
+        <button type="submit" className="header__login">Log in</button>
+        </div>
+        <div className="header__cart-group">
       <button type="button" className="header__cart">
          <svg className="header__icon-cart">
        <use href="#cart-icon"/>
       </svg>
       </button>
+      </div>
       </div>
     </header>
   );

@@ -1,0 +1,47 @@
+@import '../styles/variables';
+.hero {
+    
+    
+&__btn-left,&__btn-right{
+   background: inherit;
+   &-text{
+    color:$color-white;
+    font-size: $fs-body;
+    
+   }
+}
+&__cristal{
+    width:170px;
+    height: auto;
+    cursor: pointer;
+}
+&__video{
+    border-radius: 30px;
+    width:550px;
+    height: auto;
+}
+&__container{
+    padding:50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+   gap:50px;
+}
+&__colls-right,&__colls-left{
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+&__title{
+    color:$color-white;
+    font-size: $fs-h1;
+}
+&__text{
+    color:$color-untertitle;
+    font-size: $fs-big;
+}
+&__img{
+    min-height: 600px;
+    width: auto;
+}
+}

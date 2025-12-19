@@ -1,14 +1,25 @@
+@import '../styles/variables';
+
 .header{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto auto;
+    background:$color-bg;
+    padding: 20px;
+    align-items: center;
+    position: sticky;
+      top:0;
+   z-index:100;
+   width: 100%;
+
     &__check{
         display: flex;
-        justify-content: space-between;
+        gap:70px;
+        justify-content: center;
     }
     &__list{
         text-decoration: none;
-        color:purple;
-        font-size: 20px;
+        color:$color-white;
+        font-size:$fs-middle;
     }
     &__link{
         list-style: none;
@@ -19,8 +30,32 @@
         height: 80px;
     }
     &__icon-cart{
-        width:40px;
-        height: 80px;
+        width:30px;
+        height: 70px;
+        color:$color-white;
     }
-
+    &__login{
+    font-size: $fs-middle;
+    background: $color-btn;
+    border-radius:30px;
+    color:$color-white;
+    padding-inline:20px;
+    padding-block: 5px;
+    margin: 40px;
+    }
+    &__icon{
+        color:$color-icon;
+    }
+    &__group{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+    &__nav{
+        padding:50px;
+    }
+   &__cart-group{
+    display: flex;
+    align-items: center;
+   }
 }
