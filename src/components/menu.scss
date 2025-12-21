@@ -1,5 +1,6 @@
 @import '../styles/variables';
 .menu{
+    padding-block: $section-gap-md;
     &__title{
         font-size: $fs-h1;
         text-align: center;
@@ -79,5 +80,89 @@
         color:$color-untertitle;
         padding:5px; 
         font-size: $fs-body;
+    }
+}
+//десерты 
+.menu__deserts{
+     max-width: 1500px;
+        padding:20px;
+        position: relative;
+        display: flex;
+    &-title{
+        font-size: $fs-h1;
+        text-align: center;
+        color:$color-white;
+    }
+    &-img{
+        height:200px;
+        object-fit: cover;
+        display: grid;
+        justify-self: center;
+    }
+    &-cards{
+        display: flex;
+        overflow: hidden;
+        scroll-behavior: smooth;
+        gap:50px;
+        margin-left: -15%;
+       padding-left: 15px;
+
+    }
+    &-card{
+    min-width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    border: 1px solid #FF69B4;
+    display: flex;
+    flex-direction: column;
+   border-radius: 30px;
+   &:hover{
+     transform: translateY(-5px);
+   }
+}
+}
+.card__deserts{
+     &-btn{
+        font-size: $fs-middle;
+        font-style: italic;
+        cursor: pointer;
+        border-radius: 30px;
+        background: $color-btn;
+        color: $color-white;
+        padding-block:8px;
+        padding-inline: 8px;
+        margin: 10px;
+    }
+    &-price,&-volume{
+        color:$color-white;
+        font-size: $fs-body;
+    }
+    &-info{
+        display: flex;
+        justify-content: space-between;
+        padding-inline:20px;
+        align-items: center;
+    }
+    &-next{
+        background: inherit;
+    }
+    &-icon{
+        color:#FF69B4;
+            
+    }
+    &-title{
+        font-size: $fs-h3;
+        text-align: center;
+        color:$color-white;
+        padding:5px;
+    }
+    &-description{
+        display: flex;
+       text-align: center;
+        color:$color-untertitle;
+        padding:5px; 
+        font-size: $fs-body;
+        line-height: $lh-normal;
+        letter-spacing: $ls-normal;
     }
 }

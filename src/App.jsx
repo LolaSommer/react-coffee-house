@@ -3,8 +3,8 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Menu from "./components/Menu";
-import Events from "./components/Events";
 import About from "./components/About";
+import Events from "./components/Events";
 import Footer from "./components/Footer";
 
 import Cart from "./components/Cart";
@@ -25,8 +25,8 @@ function App() {
 
       <Hero />
       <Menu />
-      <Events />
       <About />
+      <Events />
       <Footer />
 
       {/* скрытые компоненты */}

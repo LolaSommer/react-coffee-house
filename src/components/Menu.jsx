@@ -5,6 +5,12 @@ import lunar from '../assets/lunar.webp';
 import harmony from '../assets/harmony.webp';
 import sesonail from '../assets/sesonail.webp';
 import mystic from '../assets/mystic.webp';
+import cheescake from '../assets/cheescake.webp';
+import ckookis from '../assets/ckookis.webp';
+import eclair from '../assets/eclair.webp';
+import brot from '../assets/brot.webp';
+import torte from '../assets/torte.webp';
+import maffin from '../assets/maffin.webp';
 function Menu() {
   return (
     <section id="menu" className="menu">
@@ -127,6 +133,131 @@ function Menu() {
       </div>
       </div>
       <button className="card__next">
+         <svg className="card__icon">
+       <use href="#icon-arrow"/>
+      </svg>
+      </button>
+      </div>
+      <h1 className="menu__deserts-title">Sacral Sweets</h1>
+      <div className="menu__deserts">
+       <div className="menu__deserts-cards">
+           <div className="menu__deserts-card">
+           <picture>
+          <source srcSet={ckookis} type="image/webp" />
+          <img className="menu__deserts-img" src={ckookis} alt="Aura Brew coffee" />
+        </picture>
+
+        <div className="card__deserts-title">Spark of Creation</div>
+        <div className="card__deserts-description">Classic buttery cookie with rich chocolate chunks.</div>
+        <div className="card__deserts-info">
+        <div className="card__deserts-price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+       <meta itemProp="priceCurrency" content="USD" />
+       <span className="visually-hidden">Price: 3 dollars 20 cents, available in stock</span>
+  <data itemProp="price" value="3.20" className="card__value">$3.20</data>
+  <link itemProp="availability" href="https://schema.org/InStock"/>
+</div>
+<p className="card__deserts-volume">80 gr</p>
+</div>
+<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+      </div>
+         <div className="menu__deserts-card">
+           <picture>
+          <source srcSet={brot} type="image/webp" />
+          <img className="menu__deserts-img" src={brot} alt="Aura Brew coffee" />
+        </picture>
+
+        <div className="card__deserts-title">Grounded Cloud</div>
+        <div className="card__deserts-description">Soft vegan bun made with buckwheat flour and plant-based cheese.</div>
+        <div className="card__deserts-info">
+        <div className="card__deserts-price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+       <meta itemProp="priceCurrency" content="USD" />
+       <span className="visually-hidden">Price: 4 dollars 50 cents, available in stock</span>
+  <data itemProp="price" value="4.50" className="card__value">$4.50</data>
+  <link itemProp="availability" href="https://schema.org/InStock"/>
+</div>
+<p className="card__deserts-volume">110 gr</p>
+</div>
+<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+      </div>
+   <div className="menu__deserts-card">
+           <picture>
+          <source srcSet={maffin} type="image/webp" />
+          <img className="menu__deserts-img" src={maffin} alt="Aura Brew coffee" />
+        </picture>
+
+        <div className="card__deserts-title">Kundalini Burst</div>
+        <div className="card__deserts-description">Dark chocolate muffin with melted caramel pieces inside.</div>
+        <div className="card__deserts-info">
+        <div className="card__deserts-price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+       <meta itemProp="priceCurrency" content="USD" />
+       <span className="visually-hidden">Price: 4 dollars 20 cents, available in stock</span>
+  <data itemProp="price" value="4.20" className="card__value">$4.20</data>
+  <link itemProp="availability" href="https://schema.org/InStock"/>
+</div>
+<p className="card__deserts-volume">120 gr</p>
+</div>
+<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+      </div>
+         <div className="menu__deserts-card">
+           <picture>
+          <source srcSet={torte} type="image/webp" />
+          <img className="menu__deserts-img" src={torte} alt="Aura Brew coffee" />
+        </picture>
+
+        <div className="card__deserts-title">Dark Matter</div>
+        <div className="card__deserts-description">Moist chocolate sponge layered with rich chocolate cream.</div>
+        <div className="card__deserts-info">
+        <div className="card__deserts-price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+       <meta itemProp="priceCurrency" content="USD" />
+       <span className="visually-hidden">Price: 5 dollars 80 cents, available in stock</span>
+  <data itemProp="price" value="5.80" className="card__value">$5.80</data>
+  <link itemProp="availability" href="https://schema.org/InStock"/>
+</div>
+<p className="card__deserts-volume">150 gr</p>
+</div>
+<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+      </div>
+         <div className="menu__deserts-card">
+           <picture>
+          <source srcSet={eclair} type="image/webp" />
+          <img className="menu__deserts-img" src={eclair} alt="Aura Brew coffee" />
+        </picture>
+
+        <div className="card__deserts-title">Full Moon Aura</div>
+        <div className="card__deserts-description">Light choux pastry filled with a silky pink-turquoise cream and fresh berries.</div>
+        <div className="card__deserts-info">
+        <div className="card__deserts-price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+       <meta itemProp="priceCurrency" content="USD" />
+       <span className="visually-hidden">Price: 5 dollars 00 cents, available in stock</span>
+  <data itemProp="price" value="5.00" className="card__value">$5.00</data>
+  <link itemProp="availability" href="https://schema.org/InStock"/>
+</div>
+<p className="card__deserts-volume">120 gr</p>
+</div>
+<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+      </div>
+         <div className="menu__deserts-card">
+           <picture>
+          <source srcSet={cheescake} type="image/webp" />
+          <img className="menu__deserts-img" src={cheescake} alt="Aura Brew coffee" />
+        </picture>
+
+        <div className="card__deserts-title">Balance of Elements</div>
+        <div className="card__deserts-description">Creamy baked cheesecake with a smooth, balanced flavor.</div>
+        <div className="card__deserts-info">
+        <div className="card__deserts-price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
+       <meta itemProp="priceCurrency" content="USD" />
+       <span className="visually-hidden">Price: 5 dollars 50cents, available in stock</span>
+  <data itemProp="price" value="5.50" className="card__value">$5.50</data>
+  <link itemProp="availability" href="https://schema.org/InStock"/>
+</div>
+<p className="card__deserts-volume">140 gr</p>
+</div>
+<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+      </div>
+
+       </div>
+       <button className="card__next">
          <svg className="card__icon">
        <use href="#icon-arrow"/>
       </svg>

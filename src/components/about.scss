@@ -1,0 +1,107 @@
+@import '../styles/variables';
+.about{
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    padding-block: $section-gap-md;
+    padding-inline: 50px;
+    align-items: center;
+    &__video{
+        max-width: 400px;
+        border-radius: 30px;
+        display: block;
+        width: 100%;
+        &-group{
+            position: relative;
+            padding:30px;
+            display: inline-block;
+        }
+    }
+    &__title{
+        color: $color-white;
+        font-size: $fs-h1;
+
+    }
+    &__img{
+        min-width:auto;
+        height:730px;
+        border-radius: 30px;
+         position:relative;
+        z-index:2;
+        /*рамка над фото с мужчиной*/
+        &::after{
+          content:"";
+          position:absolute;
+          width:100%;
+          height:100%;
+          top:auto;
+           left: -60px; 
+           bottom:-35px;
+           right: auto;
+          z-index:1;
+         background: $color-btn;
+         border-radius: 30px;
+        
+        }
+    }
+    &__untertitle,&__info,&__text{
+        color:$color-untertitle;
+        font-size: $fs-body;
+        line-height: $lh-normal;
+    }
+    &__colls-left{
+        display:grid;
+        justify-self: center;
+    }
+    
+}
+     .video__btn{
+    cursor: pointer;
+   position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    border-radius:30px;
+    padding:20px;
+    background: $color-btn;
+    color:$color-white;
+    font-size: $fs-middle;
+    &::before{
+        content:"";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-left:1.25rem solid $color-btn;
+        border-bottom:0.75rem solid transparent;
+        border-top:0.75rem solid transparent;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 55%;
+        background:transparent;
+    }
+     }  
+ .video__btn-small{
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.6);
+  border: 2px solid $color-icon;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:4px;
+  z-index: 5;
+&::before,
+&::after {
+  content: "";
+  width: 2px;
+  height: 50%;
+  background: $color-btn;
+  border-radius: 2px;
+}
+
+}

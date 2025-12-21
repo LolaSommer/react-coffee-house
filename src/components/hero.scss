@@ -1,6 +1,6 @@
 @import '../styles/variables';
 .hero {
-    
+padding-bottom: $section-gap-lg;
     
 &__btn-left,&__btn-right{
    background: inherit;
@@ -14,11 +14,6 @@
     width:170px;
     height: auto;
     cursor: pointer;
-}
-&__video{
-    border-radius: 30px;
-    width:550px;
-    height: auto;
 }
 &__container{
     padding:50px;

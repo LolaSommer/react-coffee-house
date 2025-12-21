@@ -12,8 +12,8 @@ function Header() {
          <ul className="header__check">
         <li className="header__link"><a href="#hero" className="header__list">Home</a></li>
         <li className="header__link"><a href="#menu" className="header__list">Menu</a></li>
-        <li className="header__link"><a href="#events" className="header__list">Events</a></li>
-        <li className="header__link"><a href="#about" className="header__list">About</a></li>
+        <li className="header__link"><a href="#events" className="header__list">About</a></li>
+        <li className="header__link"><a href="#about" className="header__list">Events</a></li>
         <li className="header__link"><a href="#contact" className="header__list">Contact</a></li>
         </ul>
       </nav>

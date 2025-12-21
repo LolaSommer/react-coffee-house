@@ -2,15 +2,12 @@ import "./hero.scss";
 import brewvibe from '../assets/brewvibe.png';
 import brewVibeWeb from '../assets/brewvibeWeb.webp';
 import sparkl__btn from '../assets/sparkl__btn.png';
-import heroVideo from '../assets/heroVideo.mp4';
 function Hero() {
   return <section className="hero" id="hero">
     <div className="hero__container">
       <div className="hero__colls-left">
     <h1 className="hero__title">Find Your Frequency...</h1>
-<video className="hero__video" autoPlay muted loop playsInline>
-  <source src={heroVideo} type="video/mp4" />
-</video>
+
  <div className="hero__text-group">
      <p className="hero__text">Explore our coffee rituals, from grounding espresso to sacral cappuccino. Your aura is thirsty.</p>
     </div>

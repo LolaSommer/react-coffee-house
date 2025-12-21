@@ -15,7 +15,7 @@ body {
 ul, ol {
   margin: 0;
   padding: 0;
-  list-style: none;
+  
 }
 
 /* 4. Картинки и видео не вылетают за контейнер */
@@ -33,6 +33,9 @@ button, input, textarea, select {
 /* отключает любое выделение ::selection */
 ::selection {
     background: transparent;
+}
+.hidden{
+  display: none !important;
 }
 
 input:-webkit-autofill,
