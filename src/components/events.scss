@@ -60,11 +60,11 @@
         border-radius: 30px;
     }
     &-next{
-    position: absolute;
+position: absolute;
   top: 50%;
-  right: 5%;       
-  transform: translateY(-50%);
+  right: -1%;       
   background: none;
+  
     }
     &-icon{
         color:$color-icon;
@@ -72,9 +72,41 @@
 }
 
 .events{
+    &__group{
+padding-inline: 30px;
+position: relative;
+    }
+    
     &__title{
         color: $color-white;
         font-size: $fs-h1;
         text-align: start;
+        text-align: center;
+    }
+    &__cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-self: center;
+        gap:40px;
+        position: relative;
+    }
+    &__card{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 600px;
+    }
+    &__img{
+        border-radius: 30px;
+    }
+    &__btn{
+        position: absolute;
+        background: $color-btn;
+        color:$color-white;
+        border-radius: 30px;
+        padding: 10px;
+        font-size: $fs-middle;
+        cursor: pointer;
     }
 }

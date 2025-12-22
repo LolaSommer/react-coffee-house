@@ -25,6 +25,7 @@ function App() {
 
       <Hero />
       <Menu />
+      <Modal />
       <About />
       <Events />
       <Footer />

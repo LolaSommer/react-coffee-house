@@ -6,8 +6,13 @@ import team from '../assets/team.webp';
 import afrika from '../assets/afrika.webp';
 import five from '../assets/five.webp';
 import wensday from '../assets/wensday.webp';
+import alchemy from '../assets/alchemy.webp';
+import cup from '../assets/cup.webp';
+import nohandy from '../assets/nohandy.webp';
+import tasseo from '../assets/tasseo.webp';
+
 function Events() {
-  return <section className='events'>
+  return <section className='events__group'>
     <article className='events__action'>
       <h1 className='events__action-title'>Exchange of Energy</h1>
       <p className='events__action-untertitle'>Discover the flow of mutual giving. Our karmic programs and ritual rewards await.</p>
@@ -85,7 +90,36 @@ function Events() {
       </button>
     </article>
     <h1 className='events__title'>Aura Events</h1>
-
+    <div className='events__cards'>
+      <div className='events__card'>
+          <picture>
+          <source srcSet={alchemy} type="image/webp" />
+          <img className="events__img" src={alchemy} alt="Aura Brew coffee" />
+        </picture>
+        <button type="button" className='events__btn'>Secure My Spot in the Circle</button>
+      </div>
+      <div className='events__card'>
+          <picture>
+          <source srcSet={cup} type="image/webp" />
+          <img className="events__img" src={cup} alt="Aura Brew coffee" />
+        </picture>
+        <button type="button" className='events__btn'>Secure My Spot in the Circle</button>
+      </div>
+      <div className='events__card'>
+          <picture>
+          <source srcSet={tasseo} type="image/webp" />
+          <img className="events__img" src={tasseo} alt="Aura Brew coffee" />
+        </picture>
+        <button type="button" className='events__btn'>Secure My Spot in the Circle</button>
+      </div>
+      <div className='events__card'>
+          <picture>
+          <source srcSet={nohandy} type="image/webp" />
+          <img className="events__img" src={nohandy} alt="Aura Brew coffee" />
+        </picture>
+        <button type="button" className='events__btn'>Secure My Spot in the Circle</button>
+      </div>
+    </div>
   </section>
 }
 

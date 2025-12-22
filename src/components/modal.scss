@@ -1,0 +1,36 @@
+@import '../styles/variables';
+.modal{
+    &__system{
+        display: flex;
+    }
+    &__block{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap:20px;
+    }
+    &__pic{
+        max-width: 200px;
+    }
+    &__country{
+        color:$color-white;
+        font-size: $fs-body;
+        text-align:end;
+        padding:10px;
+        opacity: 0.32;
+    }
+    &__chois{
+        background: $color-bg-light;
+        border-radius: 30px;
+    }
+    &__name{
+        color:$color-white;
+        font-size: $fs-middle;
+        text-align: center;
+    }
+    &__time,&__description{
+        color:$color-untertitle;
+        font-size: $fs-body;
+        padding:10px;    
+    }
+
+}
