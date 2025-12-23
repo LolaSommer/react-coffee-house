@@ -2,7 +2,7 @@ import './footer.scss';
 
 function Footer() {
   return  <footer className="footer">
-          <div classNameName="container__footer">
+          <div className="container__footer">
             <div className="footer__container">
               <div className="footer__rows">
              <div className="footer__logo"><svg aria-hidden="true"   viewBox="0 20 400 80" focusable="false" className="footer__logo-img"><use href="#aura-brew-logo"></use></svg>

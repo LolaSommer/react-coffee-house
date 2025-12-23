@@ -100,7 +100,7 @@ function Menu() {
         </picture>
 
         <div className="card__title">Lunar Brew</div>
-        <div className="card__description">Decaffeinated coffee with your choice of add-ins.</div>
+        <div className="card__description">Decaffeinated coffee with milk.</div>
         <div className="card__info">
         <div className="card__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
        <meta itemProp="priceCurrency" content="USD" />

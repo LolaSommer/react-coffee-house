@@ -12,7 +12,7 @@ import Modal from "./components/Modal";
 import Auth from "./components/Auth";
 
 function App() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
@@ -25,7 +25,6 @@ function App() {
 
       <Hero />
       <Menu />
-      <Modal />
       <About />
       <Events />
       <Footer />
