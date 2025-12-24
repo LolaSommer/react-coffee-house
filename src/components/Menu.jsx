@@ -17,10 +17,10 @@ function Menu() {
       <h1 className="menu__title">Discover Our Blends</h1>
       <div className="menu__container">
       <div className="menu__cards">
-        <div className="menu__card">
+        <div className="menu__card" data-coffee="silken">
            <picture>
           <source srcSet={silken} type="image/webp" />
-          <img className="menu__img" src={silken} alt="Aura Brew coffee" />
+          <img className="menu__img" src={silken} alt="Silken Whisper signature coffee with milk and caramel notes" />
         </picture>
 
         <div className="card__title">Silken Whisper</div>
@@ -36,10 +36,10 @@ function Menu() {
 </div>
 <button type="button" className="card__btn">Summon the Cup</button>
       </div>
-        <div className="menu__card">
+        <div className="menu__card" data-coffee="mystic">
            <picture>
           <source srcSet={mystic} type="image/webp" />
-          <img className="menu__img" src={mystic} alt="Aura Brew coffee" />
+          <img className="menu__img" src={mystic} alt="Mystic Blend signature coffee with smoked spice and chocolate notes" />
         </picture>
 
         <div className="card__title">Mystic Blend</div>
@@ -55,10 +55,10 @@ function Menu() {
 </div>
 <button type="button" className="card__btn">Summon the Cup</button>
       </div>
-        <div className="menu__card">
+        <div className="menu__card" data-coffee="harmony">
            <picture>
           <source srcSet={harmony} type="image/webp" />
-          <img className="menu__img" src={harmony} alt="Aura Brew coffee" />
+          <img className="menu__img" src={harmony} alt="Aura Harmony chilled coffee with vanilla and alternative milk" />
         </picture>
 
         <div className="card__title">Aura Harmony</div>
@@ -74,10 +74,10 @@ function Menu() {
 </div>
 <button type="button" className="card__btn">Summon the Cup</button>
       </div>
-        <div className="menu__card">
+        <div className="menu__card" data-coffee="ephemeral">
            <picture>
           <source srcSet={sesonail} type="image/webp" />
-          <img className="menu__img" src={sesonail} alt="Aura Brew coffee" />
+          <img className="menu__img" src={sesonail} alt="Ephemeral Brew seasonal coffee, available for a limited time" />
         </picture>
 
         <div className="card__title">Ephemeral Brew</div>
@@ -93,10 +93,10 @@ function Menu() {
 </div>
 <button type="button" className="card__btn">Summon the Cup</button>
       </div>
-        <div className="menu__card">
+        <div className="menu__card" data-coffee="lunar">
            <picture>
           <source srcSet={lunar} type="image/webp" />
-          <img className="menu__img" src={lunar} alt="Aura Brew coffee" />
+          <img className="menu__img" src={lunar} alt="Lunar Brew decaffeinated coffee with milk" />
         </picture>
 
         <div className="card__title">Lunar Brew</div>
@@ -112,10 +112,10 @@ function Menu() {
 </div>
 <button type="button" className="card__btn">Summon the Cup</button>
       </div>
-        <div className="menu__card">
+        <div className="menu__card" data-coffee="fortune">
            <picture>
           <source srcSet={reading} type="image/webp" />
-          <img className="menu__img" src={reading} alt="Aura Brew coffee" />
+          <img className="menu__img" src={reading} alt="Fortune’s Choice coffee selected by the barista" />
         </picture>
 
         <div className="card__title">Fortune's Choice</div>
@@ -132,7 +132,7 @@ function Menu() {
 <button type="button" className="card__btn">Summon the Cup</button>
       </div>
       </div>
-      <button className="card__next">
+      <button type='button' className="card__next" aria-label="Show more coffee options">
          <svg className="card__icon">
        <use href="#icon-arrow"/>
       </svg>
@@ -141,10 +141,10 @@ function Menu() {
       <h1 className="menu__deserts-title">Sacral Sweets</h1>
       <div className="menu__deserts">
        <div className="menu__deserts-cards">
-           <div className="menu__deserts-card">
+           <div className="menu__deserts-card" data-desert="cookies">
            <picture>
           <source srcSet={ckookis} type="image/webp" />
-          <img className="menu__deserts-img" src={ckookis} alt="Aura Brew coffee" />
+          <img className="menu__deserts-img" src={ckookis} alt="Spark of Creation buttery cookie with chocolate chunks" />
         </picture>
 
         <div className="card__deserts-title">Spark of Creation</div>
@@ -160,10 +160,10 @@ function Menu() {
 </div>
 <button type="button" className="card__deserts-btn">Claim Your Talisman</button>
       </div>
-         <div className="menu__deserts-card">
+         <div className="menu__deserts-card" data-desert="bun">
            <picture>
           <source srcSet={brot} type="image/webp" />
-          <img className="menu__deserts-img" src={brot} alt="Aura Brew coffee" />
+          <img className="menu__deserts-img" src={brot} alt="Grounded Cloud vegan bun made with buckwheat and plant-based cheese" />
         </picture>
 
         <div className="card__deserts-title">Grounded Cloud</div>
@@ -179,10 +179,10 @@ function Menu() {
 </div>
 <button type="button" className="card__deserts-btn">Claim Your Talisman</button>
       </div>
-   <div className="menu__deserts-card">
+   <div className="menu__deserts-card" data-desert="maffin">
            <picture>
           <source srcSet={maffin} type="image/webp" />
-          <img className="menu__deserts-img" src={maffin} alt="Aura Brew coffee" />
+          <img className="menu__deserts-img" src={maffin} alt="Kundalini Burst dark chocolate muffin with caramel filling" />
         </picture>
 
         <div className="card__deserts-title">Kundalini Burst</div>
@@ -198,10 +198,10 @@ function Menu() {
 </div>
 <button type="button" className="card__deserts-btn">Claim Your Talisman</button>
       </div>
-         <div className="menu__deserts-card">
+         <div className="menu__deserts-card" data-desert="cake">
            <picture>
           <source srcSet={torte} type="image/webp" />
-          <img className="menu__deserts-img" src={torte} alt="Aura Brew coffee" />
+          <img className="menu__deserts-img" src={torte} alt="Dark Matter chocolate sponge cake with rich chocolate cream" />
         </picture>
 
         <div className="card__deserts-title">Dark Matter</div>
@@ -217,10 +217,10 @@ function Menu() {
 </div>
 <button type="button" className="card__deserts-btn">Claim Your Talisman</button>
       </div>
-         <div className="menu__deserts-card">
+         <div className="menu__deserts-card" data-desert="eclair">
            <picture>
           <source srcSet={eclair} type="image/webp" />
-          <img className="menu__deserts-img" src={eclair} alt="Aura Brew coffee" />
+          <img className="menu__deserts-img" src={eclair} alt="Full Moon Aura choux pastry with berry cream filling" />
         </picture>
 
         <div className="card__deserts-title">Full Moon Aura</div>
@@ -236,10 +236,10 @@ function Menu() {
 </div>
 <button type="button" className="card__deserts-btn">Claim Your Talisman</button>
       </div>
-         <div className="menu__deserts-card">
+         <div className="menu__deserts-card" data-desert="cheescake">
            <picture>
           <source srcSet={cheescake} type="image/webp" />
-          <img className="menu__deserts-img" src={cheescake} alt="Aura Brew coffee" />
+          <img className="menu__deserts-img" src={cheescake} alt="Balance of Elements baked cheesecake with a smooth creamy texture" />
         </picture>
 
         <div className="card__deserts-title">Balance of Elements</div>
@@ -257,7 +257,7 @@ function Menu() {
       </div>
 
        </div>
-       <button className="card__next">
+       <button type='button' className="card__next" aria-label="Scroll to next items">
          <svg className="card__icon">
        <use href="#icon-arrow"/>
       </svg>

@@ -1,5 +1,5 @@
 import './cart.scss';
-import ckookis from '../assets/ckookis.webp'
+import emptycart from '../assets/emptycart.webp';
 import pack from '../assets/pack.webp';
 import fartuk from '../assets/fartuk.webp';
 import happy from '../assets/happy.webp';
@@ -15,47 +15,48 @@ function Cart() {
           </div>
           <div className="cart__modal-empty hidden">
             <picture>
-          <source srcSet={ckookis} type="image/webp" />
-          <img className="menu__deserts-img" src={ckookis} alt="Aura Brew coffee" />
+          <source srcSet={emptycart} type="image/webp" />
+          <img className="cart__modal-img" src={emptycart} alt="Empty coffee cup waiting for your choice" />
         </picture>
-           <p className="cart__modal-sad">Your cart is empty</p> 
-           <p className="cart__modal-hungry">Looks like someone got hungry…</p>
+           <p className="cart__modal-sad">Your cup is still empty</p> 
+           <p className="cart__modal-hungry">Choose what resonates with you</p>
            </div>
           <div className="cart__modal-items">
       
           </div>
           <div className="cart__modal-extrastitle">Deepen the ritual:</div>
           <div className="cart__modal-extras">
-            <div className="cart__modal-extra cart__modal-coffee" data-extra-id="americano">
+            <div className="cart__modal-extra cart__modal-card" data-extra="card">
               <picture>
           <source srcSet={happy} type="image/webp" />
-          <img className="menu__deserts-img" src={happy} alt="Aura Brew coffee" />
+          <img className="cart__modal-img" src={happy} alt="Greeting card to add a personal note to your coffee order" />
         </picture>
               <div className="cart__modal-priceblock">
               <div className="cart__modal-text">Birthday card</div>
               <div className="cart__modal-extraprice">6<sup>$</sup></div>
               </div>
             </div>
-             <div className="cart__modal-extra cart__modal-capuchino" data-extra-id="cappuccino">
+             <div className="cart__modal-extra cart__modal-coffee" data-extra="coffee bag">
               <picture>
           <source srcSet={pack} type="image/webp" />
-          <img className="menu__deserts-img" src={pack} alt="Aura Brew coffee" />
+          <img className="cart__modal-img" src={pack} alt="Signature coffee beans for your home ritual" />
         </picture>
               <div className="cart__modal-priceblock">
               <div className="cart__modal-text">Coffee Bag</div>
               <div className="cart__modal-extraprice">23<sup>$</sup></div>
               </div>
             </div>
-             <div className="cart__modal-extra cart__modal-soda" data-extra-id="soda">
+             <div className="cart__modal-extra cart__modal-apron" data-extra="apron">
               <picture>
           <source srcSet={fartuk} type="image/webp" />
-          <img className="menu__deserts-img" src={fartuk} alt="Aura Brew coffee" />
+          <img className="cart__modal-img" src={fartuk} alt="Barista apron inspired by the Aura Brew ritual" />
         </picture>
-              <div className="cart__modal-priceblock">
+             <div className="cart__modal-priceblock">
               <div className="cart__modal-text">Barista Apron</div>
               <div className="cart__modal-extraprice">33<sup>$</sup></div>
               </div>
             </div>
+             
 
           </div>
           </div>

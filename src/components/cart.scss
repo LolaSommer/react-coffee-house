@@ -9,8 +9,8 @@
   position: fixed;
   right: 0;
   top:0;
-   /*transform: translateX(100%);
-  transition: transform .4s ease;*/
+  transform: translateX(100%);
+  transition: transform .4s ease;
    &-sad{
     display: flex;
     justify-content: center;
@@ -49,7 +49,6 @@
     background:$color-bg-light;
 color:$color-white;
 padding-inline: 30px;
-padding-left: 100px;
 z-index: 1;
 box-shadow: 0 8px 24px rgba(0,0,0,.3);
   width: 100%;
@@ -138,15 +137,18 @@ background:inherit;
 color:$color-white;
 cursor: pointer;
  }
- &-coffee,&-capuchino,&-soda{
-   width: 80px;
-   height: 80px;
+ &-card,&-coffee,&-apron{
+   
    cursor:pointer;
  }
+ &-img{
+
+ }
  &-extras{
-   display: flex;
-   gap:40px;
-   padding-block: 30px;
+  display: flex;
+
+  align-items: center;
+  padding-block: 30px;
   
    
  }

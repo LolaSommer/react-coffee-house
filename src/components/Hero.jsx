@@ -3,10 +3,10 @@ import brewvibe from '../assets/brewvibe.png';
 import brewVibeWeb from '../assets/brewvibeWeb.webp';
 import sparkl__btn from '../assets/sparkl__btn.png';
 function Hero() {
-  return <section className="hero" id="hero">
+  return <section className="hero" id="hero" aria-labelledby="hero-heading">
     <div className="hero__container">
       <div className="hero__colls-left">
-    <h1 className="hero__title">Find Your Frequency...</h1>
+    <h1 className="hero__title" id="hero-heading">Find Your Frequency...</h1>
 
  <div className="hero__text-group">
      <p className="hero__text">Explore our coffee rituals, from grounding espresso to sacral cappuccino. Your aura is thirsty.</p>
