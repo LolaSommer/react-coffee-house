@@ -13,9 +13,9 @@ import day from '../assets/day.webp';
 import sun from '../assets/sun.webp';
 import ground from '../assets/ground.webp';
 import nomilk from '../assets/nomilk.webp';
-function Modal() {
+function Modal({onClose}) {
   return <div className='modal modal--open modal-info'>
-    <div className='modal__overlay'></div>
+    <div className='modal__overlay' onClick={onClose}></div>
     <div className='modal__wrapper'>
       <div className='modal__window' role="dialog" aria-modal="true" aria-labelledby="modal__title">
      <div className='modal__img'>
@@ -26,7 +26,7 @@ function Modal() {
         <p className='modal__composition'></p>
         </div>
       <div className='modal__system'>
-       <button className='modal__back'>back</button>
+       <button className='modal__back'onClick={onClose}>back</button>
        <h2 className='modal__title'>Tune Your Brew</h2>
         <div className='modal__block'>
         <div className='modal__chois' data-blend='aura'>
@@ -59,17 +59,17 @@ function Modal() {
           <p className='modal__description'><span>Effect: </span>energy & sharpness</p>
           <p className='modal__time'><span>Best for: </span>morning · action</p> 
         </div>
-         <div className='modal__chois' data-blend='columbian'>
+         <div className='modal__chois' data-blend='colombia'>
           <div className='modal__name'>Grounded Heart</div>
           <picture>
             <source srcSet={columbian} type="image/webp" />
           <img className="modal__pic" src={columbian} alt="Colombia coffee blend with caramel and milk chocolate notes" />
           </picture>
-          <p className='modal__country'>Columbia</p>
+          <p className='modal__country'>Colombia</p>
           <p className='modal__description'><span>Effect: </span>warm calm & balance</p>
           <p className='modal__time'><span>Best for: </span>daytime · connection</p>
         </div>
-         <div className='modal__chois' data-blend='Ethiopia'>
+         <div className='modal__chois' data-blend='ethiopia'>
           <div className='modal__name'>Bright Mind</div>
           <picture>
             <source srcSet={ephiopia} type="image/webp" />
@@ -99,7 +99,7 @@ function Modal() {
           </picture>
           <p className='modal__milk-type'>Pure ritual</p>
           </div>
-        <div className='modal__milk-group' data-milk='classik'>
+        <div className='modal__milk-group' data-milk='classic'>
           <p className='modal__milk-name'>Grounded</p>
         <picture>
             <source srcSet={milk} type="image/webp" />
@@ -107,7 +107,7 @@ function Modal() {
           </picture>
           <p className='modal__milk-type'>Classic</p>
           </div>
-           <div className='modal__milk-group' data-milk='free'>
+           <div className='modal__milk-group' data-milk='lactose-free'>
           <p className='modal__milk-name'>Gently</p>
            <picture>
             <source srcSet={empty} type="image/webp" />

@@ -10,14 +10,18 @@ import alchemy from '../assets/alchemy.webp';
 import cup from '../assets/cup.webp';
 import nohandy from '../assets/nohandy.webp';
 import tasseo from '../assets/tasseo.webp';
+import { useRef } from "react";
 
 function Events() {
-  return <section className='events__group' id='events'>
+  const actionRef = useRef(null);
+  return (
+    <>
+  <section className='events__group' id='events'>
     <article className='events__action'>
       <h1 className='events__action-title'>Exchange of Energy</h1>
       <p className='events__action-untertitle'>Discover the flow of mutual giving. Our karmic programs and ritual rewards await.</p>
       <div className='events__action-viewport'>
-      <div className='events__action-cards'>
+      <div className='events__action-cards' ref={actionRef}>
         <div className='events__action-card'>
           <picture>
           <source srcSet={first} type="image/webp" />
@@ -83,7 +87,19 @@ function Events() {
         </div>
       </div>
       </div>
-      <button type='button' className="events__action-next" aria-label="Show more action options">
+      <button type='button' className="events__action-next" aria-label="Show more action options"
+      onClick={()=>{
+        const container = actionRef.current;
+        if(!container)return;
+        const cardWidth = container.firstElementChild.offsetWidth + 50;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    if (container.scrollLeft >= maxScroll) {
+      container.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      container.scrollBy({ left: cardWidth, behavior: "smooth" });
+    }
+      } 
+      }>
          <svg className="events__action-icon">
        <use href="#icon-arrow"/>
       </svg>
@@ -121,6 +137,9 @@ function Events() {
       </div>
     </div>
   </section>
+  </>
+  );
 }
+
 
 export default Events;

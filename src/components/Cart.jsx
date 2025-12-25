@@ -36,7 +36,7 @@ function Cart() {
               <div className="cart__modal-extraprice">6<sup>$</sup></div>
               </div>
             </div>
-             <div className="cart__modal-extra cart__modal-coffee" data-extra="coffee bag">
+             <div className="cart__modal-extra cart__modal-coffee" data-extra="bag">
               <picture>
           <source srcSet={pack} type="image/webp" />
           <img className="cart__modal-img" src={pack} alt="Signature coffee beans for your home ritual" />

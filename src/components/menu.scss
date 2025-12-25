@@ -1,10 +1,16 @@
 @import '../styles/variables';
 .menu{
-    padding-block: $section-gap-md;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+padding-block: $section-gap-md;
     &__title{
         font-size: $fs-h1;
         text-align: center;
         color:$color-white;
+    }
+    &__viewport{
+        overflow: hidden;
+        width:100%;
     }
     &__img{
         height:200px;
@@ -19,14 +25,17 @@
     }
     &__cards{
         display: flex;
-        overflow: hidden;
-        scroll-behavior: smooth;
-        gap:50px;
-        margin-left: -15%;
-       padding-left: 15px;
-
+       flex-wrap: nowrap;
+       flex-direction: row;
+       overflow-x: auto;
+       scrollbar-width: none;     
+       -ms-overflow-style: none;     
+        gap:32px;
+       scroll-behavior: smooth;
+      
     }
     &__card{
+    flex:0 0 300px;
     min-width: 300px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     transition: transform 0.3s;
@@ -39,6 +48,8 @@
    }
 }
 }
+
+
 .card{
      &__btn{
         font-size: $fs-middle;
@@ -84,10 +95,16 @@
 }
 //десерты 
 .menu__deserts{
+    overflow: hidden;
+  transition: max-height 0.6s ease;
      max-width: 1500px;
         padding:20px;
         position: relative;
         display: flex;
+    &-viewport{
+        overflow: hidden;
+        width:100%;
+    }
     &-title{
         font-size: $fs-h1;
         text-align: center;
@@ -101,11 +118,13 @@
     }
     &-cards{
         display: flex;
-        overflow: hidden;
-        scroll-behavior: smooth;
-        gap:50px;
-        margin-left: -15%;
-       padding-left: 15px;
+       flex-wrap: nowrap;
+       flex-direction: row;
+       overflow-x: auto;
+       scrollbar-width: none;     
+       -ms-overflow-style: none;     
+        gap:32px;
+       scroll-behavior: smooth;
 
     }
     &-card{

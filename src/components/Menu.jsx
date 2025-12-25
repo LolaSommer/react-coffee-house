@@ -11,12 +11,20 @@ import eclair from '../assets/eclair.webp';
 import brot from '../assets/brot.webp';
 import torte from '../assets/torte.webp';
 import maffin from '../assets/maffin.webp';
-function Menu() {
+import { useRef } from "react";
+
+
+function Menu({onCoffeeSelect}) {
+  const cardsRef = useRef(null);
+  const dessertsRef = useRef(null);
   return (
-    <section id="menu" className="menu">
+  <>
+    <section id="menu" className='menu'>
       <h1 className="menu__title">Discover Our Blends</h1>
       <div className="menu__container">
-      <div className="menu__cards">
+        <div className="menu__viewport">
+      <div className="menu__cards" ref={cardsRef}>
+       
         <div className="menu__card" data-coffee="silken">
            <picture>
           <source srcSet={silken} type="image/webp" />
@@ -34,7 +42,7 @@ function Menu() {
 </div>
 <p className="card__volume">330 ml</p>
 </div>
-<button type="button" className="card__btn">Summon the Cup</button>
+<button type="button" className="card__btn" onClick={()=>onCoffeeSelect('silken')}>Summon the Cup</button>
       </div>
         <div className="menu__card" data-coffee="mystic">
            <picture>
@@ -53,7 +61,7 @@ function Menu() {
 </div>
 <p className="card__volume">330 ml</p>
 </div>
-<button type="button" className="card__btn">Summon the Cup</button>
+<button type="button" className="card__btn" onClick={()=>onCoffeeSelect('mystic')}>Summon the Cup</button>
       </div>
         <div className="menu__card" data-coffee="harmony">
            <picture>
@@ -72,7 +80,7 @@ function Menu() {
 </div>
 <p className="card__volume">330 ml</p>
 </div>
-<button type="button" className="card__btn">Summon the Cup</button>
+<button type="button" className="card__btn" onClick={()=>onCoffeeSelect('harmony')}>Summon the Cup</button>
       </div>
         <div className="menu__card" data-coffee="ephemeral">
            <picture>
@@ -91,7 +99,7 @@ function Menu() {
 </div>
 <p className="card__volume">330 ml</p>
 </div>
-<button type="button" className="card__btn">Summon the Cup</button>
+<button type="button" className="card__btn" onClick={()=>onCoffeeSelect('ephemeral')}>Summon the Cup</button>
       </div>
         <div className="menu__card" data-coffee="lunar">
            <picture>
@@ -100,7 +108,7 @@ function Menu() {
         </picture>
 
         <div className="card__title">Lunar Brew</div>
-        <div className="card__description">Decaffeinated coffee with milk.</div>
+        <div className="card__description">Decaffeinated coffee with milk.Gentle, calming, and flexible.</div>
         <div className="card__info">
         <div className="card__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
        <meta itemProp="priceCurrency" content="USD" />
@@ -110,7 +118,7 @@ function Menu() {
 </div>
 <p className="card__volume">330 ml</p>
 </div>
-<button type="button" className="card__btn">Summon the Cup</button>
+<button type="button" className="card__btn" onClick={()=>onCoffeeSelect('lunar')}>Summon the Cup</button>
       </div>
         <div className="menu__card" data-coffee="fortune">
            <picture>
@@ -119,7 +127,7 @@ function Menu() {
         </picture>
 
         <div className="card__title">Fortune's Choice</div>
-        <div className="card__description">Let the barista decide.</div>
+        <div className="card__description">Let the barista decide.A personalized coffee experience.</div>
         <div className="card__info">
         <div className="card__price" itemProp="offers" itemScope itemType="https://schema.org/Offer">
        <meta itemProp="priceCurrency" content="USD" />
@@ -129,18 +137,38 @@ function Menu() {
 </div>
 <p className="card__volume">330 ml</p>
 </div>
-<button type="button" className="card__btn">Summon the Cup</button>
+<button type="button" className="card__btn" onClick={()=>onCoffeeSelect('fortune')}>Summon the Cup</button>
       </div>
       </div>
-      <button type='button' className="card__next" aria-label="Show more coffee options">
-         <svg className="card__icon">
-       <use href="#icon-arrow"/>
-      </svg>
-      </button>
+    </div>
+      <button
+  type="button"
+  className="card__next"
+  aria-label="Scroll to next items"
+  onClick={() => {
+    const container = cardsRef.current;
+    if (!container) return;
+
+    const cardWidth = container.firstElementChild.offsetWidth + 32;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+
+    if (container.scrollLeft >= maxScroll) {
+      container.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      container.scrollBy({ left: cardWidth, behavior: "smooth" });
+    }
+  }}
+>
+  <svg className="card__icon">
+    <use href="#icon-arrow"/>
+  </svg>
+</button>
+
       </div>
       <h1 className="menu__deserts-title">Sacral Sweets</h1>
       <div className="menu__deserts">
-       <div className="menu__deserts-cards">
+        <div className="menu__deserts-viewport">
+       <div className="menu__deserts-cards" ref={dessertsRef}>
            <div className="menu__deserts-card" data-desert="cookies">
            <picture>
           <source srcSet={ckookis} type="image/webp" />
@@ -257,14 +285,30 @@ function Menu() {
       </div>
 
        </div>
-       <button type='button' className="card__next" aria-label="Scroll to next items">
+       </div>
+       <button type='button' className="card__next" aria-label="Scroll to next items"
+        onClick={() => {
+    const container = dessertsRef.current;
+    if (!container) return;
+
+    const cardWidth = container.firstElementChild.offsetWidth + 32;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+
+    if (container.scrollLeft >= maxScroll) {
+      container.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      container.scrollBy({ left: cardWidth, behavior: "smooth" });
+    }
+  }}>
          <svg className="card__icon">
        <use href="#icon-arrow"/>
       </svg>
       </button>
       </div>
     </section>
+    </>
   );
+  
 }
 
 export default Menu;
