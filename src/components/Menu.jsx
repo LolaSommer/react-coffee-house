@@ -14,7 +14,7 @@ import maffin from '../assets/maffin.webp';
 import { useRef } from "react";
 
 
-function Menu({onCoffeeSelect}) {
+function Menu({onCoffeeSelect,onDessertSelect}) {
   const cardsRef = useRef(null);
   const dessertsRef = useRef(null);
   return (
@@ -169,7 +169,7 @@ function Menu({onCoffeeSelect}) {
       <div className="menu__deserts">
         <div className="menu__deserts-viewport">
        <div className="menu__deserts-cards" ref={dessertsRef}>
-           <div className="menu__deserts-card" data-desert="cookies">
+           <div className="menu__deserts-card" data-desert="ckookis">
            <picture>
           <source srcSet={ckookis} type="image/webp" />
           <img className="menu__deserts-img" src={ckookis} alt="Spark of Creation buttery cookie with chocolate chunks" />
@@ -186,7 +186,7 @@ function Menu({onCoffeeSelect}) {
 </div>
 <p className="card__deserts-volume">80 gr</p>
 </div>
-<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+<button type="button" className="card__deserts-btn" onClick={()=>onDessertSelect('ckookis')}>Claim Your Talisman</button>
       </div>
          <div className="menu__deserts-card" data-desert="bun">
            <picture>
@@ -205,7 +205,7 @@ function Menu({onCoffeeSelect}) {
 </div>
 <p className="card__deserts-volume">110 gr</p>
 </div>
-<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+<button type="button" className="card__deserts-btn" onClick={()=>onDessertSelect('bun')}>Claim Your Talisman</button>
       </div>
    <div className="menu__deserts-card" data-desert="maffin">
            <picture>
@@ -224,7 +224,7 @@ function Menu({onCoffeeSelect}) {
 </div>
 <p className="card__deserts-volume">120 gr</p>
 </div>
-<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+<button type="button" className="card__deserts-btn" onClick={()=>onDessertSelect('maffin')}>Claim Your Talisman</button>
       </div>
          <div className="menu__deserts-card" data-desert="cake">
            <picture>
@@ -243,7 +243,7 @@ function Menu({onCoffeeSelect}) {
 </div>
 <p className="card__deserts-volume">150 gr</p>
 </div>
-<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+<button type="button" className="card__deserts-btn" onClick={()=>onDessertSelect('cake')}>Claim Your Talisman</button>
       </div>
          <div className="menu__deserts-card" data-desert="eclair">
            <picture>
@@ -262,7 +262,7 @@ function Menu({onCoffeeSelect}) {
 </div>
 <p className="card__deserts-volume">120 gr</p>
 </div>
-<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+<button type="button" className="card__deserts-btn" onClick={()=>onDessertSelect('eclair')} >Claim Your Talisman</button>
       </div>
          <div className="menu__deserts-card" data-desert="cheescake">
            <picture>
@@ -281,7 +281,7 @@ function Menu({onCoffeeSelect}) {
 </div>
 <p className="card__deserts-volume">140 gr</p>
 </div>
-<button type="button" className="card__deserts-btn">Claim Your Talisman</button>
+<button type="button" className="card__deserts-btn" onClick={()=>onDessertSelect('cheescake')} >Claim Your Talisman</button>
       </div>
 
        </div>

@@ -1,3 +1,10 @@
+import caramel from '../assets/caramel.webp';
+import  shocko from '../assets/shocko.webp';
+import vanila from '../assets/vanila.webp';
+import pumpkin from '../assets/pumpkin.webp';
+import decaf from '../assets/decaf.webp';
+import barista from '../assets/barista.webp';
+import black from '../assets/black.webp';
 export const coffeeProducts ={
   silken:{
     id:'silken',
@@ -7,17 +14,17 @@ export const coffeeProducts ={
     allergens:['lactose'],
     volume:330,
     price:9.99,
-    image:'../src/assets/caramel.webp'
+    image:caramel
   },
   mystic:{
     id:'mystic',
     title: 'Mystic Blend',
-    ingredients: ['chocolate','fresh cream','coffee', 'smoked paprika'],
+    ingredients: ['chocolate ','fresh cream ' ,'coffee ' ,  'smoked paprika '],
     description: 'A bold fusion of smoked paprika, rich chocolate, and fresh cream.Deep, smoky notes meet velvety sweetness, creating an unexpected and intriguing flavor',
     allergens:['lactose','smoked paprika'],
     volume:330,
     price:9.99,
-    image:'../src/assets/shocko.webp'
+    image:shocko
   },
   harmony:{
     id:'harmony',
@@ -27,7 +34,7 @@ export const coffeeProducts ={
     allergens:['almond'],
     volume:330,
     price:9.99,
-    image:'../src/assets/vanila.webp'
+    image:vanila
   },
   ephemeral:{
     id:'ephemeral',
@@ -37,7 +44,7 @@ export const coffeeProducts ={
     allergens:['lactose','cinnamon'],
     volume:330,
     price:9.99,
-    image:'../src/assets/pumpkin.webp'
+    image:pumpkin
   },
   lunar:{
     id:'lunar',
@@ -47,7 +54,7 @@ export const coffeeProducts ={
     allergens:['lactose'],
     volume:330,
     price:9.99,
-    image:'../src/assets/decaf.webp'
+    image:decaf
   },
   fortune:{
     id:'fortune',
@@ -57,6 +64,17 @@ export const coffeeProducts ={
     allergens:['lactose','almond','cinnamon','smoked paprika'],
     volume:330,
     price:9.99,
-    image:'../src/assets/barista.webp'
-  }
+    image:barista
+  },
+  pure: {
+  id: 'pure',
+  title: 'Pure Ritual',
+  ingredients: ['coffee'],
+  description: 'No milk. No syrup. No distractions. Just pure coffee in its grounded form.',
+  allergens: [],
+  volume: 330,
+  price: 9.99,
+  image:black
+
+}
 }

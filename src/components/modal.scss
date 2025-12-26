@@ -22,7 +22,10 @@
         max-width: 200px;
     }
     &__coffe-pic{
-        max-height: 600px;
+    display:grid;
+    justify-self: center;
+    object-fit: contain;
+    max-height: 500px;
     }
     &__country{
         color:$color-white;
@@ -30,6 +33,11 @@
         text-align:end;
         padding:10px;
         opacity: 0.32;
+    }
+    &__description-group{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     &__img{
         display: grid;
@@ -144,6 +152,7 @@
         padding:20px;
         border-radius: 30px;
         margin-block:30px;
+        cursor: pointer;
 
     }
     &__window{
@@ -177,10 +186,56 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
     font-size: $fs-middle;
     text-transform: uppercase;
     max-width: 150px;
+    cursor: pointer;
   }
   &__title{
     text-align: center;
     font-size: $fs-h2;
   }
-
+  &__composition{
+    font-size: $fs-middle;
+    font-style: italic;
+    padding-inline: 40px; 
+  }
+ &__price,&__weight,&__allergens{
+    text-align: end;
+    font-size: $fs-middle;
+    padding-inline: 40px;
+ }
+&__desserts{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-self: center;
+    gap:50px;
+ }
+ &__dessert-pic{
+    max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+ }
+ &__desert{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: $color-bg-light;
+    max-width: 150px;
+    border-radius: 30px;
+    font-size: $fs-middle;
+    padding-inline: 5px;
+    
+    
+}
+&__dessert-glass,&__dessert-cup,&__dessert-time{
+    display: flex;
+    padding-inline: 10px;
+    padding-bottom: 10px;
+}
+&__dessert-media {
+  width: 120px;
+  height: 120px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
 }

@@ -8,22 +8,27 @@ import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Modal from "./components/Modal";
 import Auth from "./components/Auth";
-
+import { coffeeProducts } from './data/coffeeProducts';
+import { desserts } from  './data/desserts.js'
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
 
-  const [selectedCoffeeId, setSelectedCoffeeId] = useState(null);
-  const [selectedMilk, setSelectedMilk] = useState('pure');
-  const [selectedStrength, setSelectedStrength] = useState('medium');
-  const [selectedCountry, setSelectedCountry] = useState('aura');
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [modalType, setModalType]=useState(null);
   const [cart, setCart] = useState([]);
 
-  function handleCoffeeSelect(id) {
-    setSelectedCoffeeId(id);
-    setIsModalOpen(true);
-  }
+ function openCoffeeModal(coffeeId) {
+  setSelectedItem(coffeeProducts[coffeeId]);
+  setModalType('coffee');
+  setIsModalOpen(true);
+ }
+ function openDessertModal(dessertID){
+  setSelectedItem(desserts[dessertID]);
+ setModalType('dessert');
+ setIsModalOpen(true);
+ }
   return (
     <>
       <Header
@@ -33,14 +38,18 @@ function App() {
 
       <Hero />
 
-      <Menu onCoffeeSelect={handleCoffeeSelect}/>
+      <Menu 
+      onCoffeeSelect={openCoffeeModal}
+      onDessertSelect={openDessertModal}
+      />
 
       <About />
       <Events />
       <Footer />
 
       {isCartOpen && <Cart onClose={() => setIsCartOpen(false)} />}
-      {isModalOpen && <Modal onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && <Modal item={selectedItem} type={modalType}
+        onClose={() => setIsModalOpen(false)} />}
       {isAuthOpen && <Auth onClose={() => setIsAuthOpen(false)} />}
       
     </>

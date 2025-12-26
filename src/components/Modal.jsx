@@ -5,7 +5,6 @@ import kenia from '../assets/kenia.webp';
 import columbian from '../assets/columbian.webp';
 import ephiopia from '../assets/ephiopia.webp';
 import brazil from '../assets/brazil.webp';
-import black from '../assets/black.webp';
 import milk from '../assets/milk.webp';
 import empty from '../assets/empty.webp';
 import moon from '../assets/moon.webp';
@@ -13,21 +12,35 @@ import day from '../assets/day.webp';
 import sun from '../assets/sun.webp';
 import ground from '../assets/ground.webp';
 import nomilk from '../assets/nomilk.webp';
-function Modal({onClose}) {
+import time from '../assets/time.webp';
+import black from '../assets/black.webp';
+function Modal({type,item,onClose}) {
+  if(!item) return null;
   return <div className='modal modal--open modal-info'>
     <div className='modal__overlay' onClick={onClose}></div>
     <div className='modal__wrapper'>
       <div className='modal__window' role="dialog" aria-modal="true" aria-labelledby="modal__title">
      <div className='modal__img'>
           <picture>
-          <source srcSet={black} type="image/webp" />
-          <img className="modal__coffe-pic" src={black} alt="Clear glass cup with pure black coffee" />
+          <source srcSet={item.image} type="image/webp" />
+          <img className="modal__coffe-pic" src={item.image} alt="Clear glass cup with pure black coffee" />
         </picture>
-        <p className='modal__composition'></p>
+        <div className='modal__description-group'>
+        <h2 className='modal__coffee-title'>{item.title}</h2>
+        <p className='modal__composition'>{item.description}</p>
+        <p className='modal__ingredients'>
+          {item.ingredients.map((ingredient, index) => (
+           <span key={index}>
+           {ingredient}
+         {index < item.ingredients.length - 1 && ', '}
+        </span>))}</p>
+        </div>
         </div>
       <div className='modal__system'>
        <button className='modal__back'onClick={onClose}>back</button>
-       <h2 className='modal__title'>Tune Your Brew</h2>
+  {type === 'coffee' && (
+    <>
+   <h2 className='modal__title'>Tune Your Brew</h2>
         <div className='modal__block'>
         <div className='modal__chois' data-blend='aura'>
           <div className='modal__name'>Aura Brew</div>
@@ -165,12 +178,48 @@ function Modal({onClose}) {
           </div>
       </div>
       <button type="button" className='modal__order'>Summon the Cup</button>
+    </>
+  )}
+       {type === 'dessert' && (
+    <>
+      <p className="modal__price">Price: ${item.price}</p>
+      <p className="modal__weight">Weight: {item.weight} g</p>
+
+      <p className="modal__allergens">
+        Allergens: {item.allergens.join(', ')}
+      </p>
+      <div className='modal__desserts'>
+        <div className='modal__desert'>
+           <picture className='modal__dessert-media'>
+            <source srcSet={time} type="image/webp" />
+          <img className="modal__dessert-pic" src={time} alt="Medium roast coffee with a balanced flavor" />
+          </picture>
+          <p className='modal__dessert-time'> Best for: {item.time.join(', ')}</p>
+          </div>
+           <div className='modal__desert'>
+          <picture className='modal__dessert-media'>
+            <source srcSet={black} type="image/webp" />
+          <img className="modal__dessert-pic" src={black} alt="Medium roast coffee with a balanced flavor" />
+          </picture>
+          <p className='modal__dessert-cup'>Ideal with: {item.cup.join(', ')}</p>
+          </div>
+           <div className='modal__desert'>
+          <picture className='modal__dessert-media'>
+            <source srcSet={milk} type="image/webp" />
+          <img className="modal__dessert-pic" src={milk} alt="Medium roast coffee with a balanced flavor" />
+          </picture>
+          <p className='modal__dessert-glass'>Milk: {item.glass.join(', ')}</p>
+        </div>
+      </div>
+      <button className="modal__order">Claim Your Talisman</button>
+    </>
+  )}
       </div>
  
-
       </div>
 
     </div>
+
   </div> 
   
 }

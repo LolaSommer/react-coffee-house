@@ -1,13 +1,24 @@
+import cheescake from '../assets/cheescake.webp';
+import ckookis from '../assets/ckookis.webp';
+import eclair from '../assets/eclair.webp';
+import brot from '../assets/brot.webp';
+import torte from '../assets/torte.webp';
+import maffin from '../assets/maffin.webp';
+
 export const desserts={
-  cookies:{
-    id:'cookies',
+  ckookis:{
+    id:'ckookis',
     title:'Spark of Creation',
     ingredients:['wheat flour', 'butter', 'sugar', 'dark chocolate', 'eggs'],
     description:'The first movement of energy. A crisp, buttery cookie with an eruption of molten dark chocolate within. A simple yet sacred act of indulgence — like the first thought before a great deed. Ignites the impulse.',
     allergens:['gluten', 'dairy', 'eggs'],
     weight:80,
     price:3.20,
-    image:'../src/assets/ckookis.webp'
+    image:ckookis,
+    time:['early morning','first impulse'],
+    cup:['espresso','americano'],
+    glass:['no milk','oat milk'],
+   
   },
   bun:{
     id:'bun',
@@ -17,7 +28,10 @@ export const desserts={
     allergens:['buckwheat'],
     weight:110,
     price:4.5,
-    image:'../src/assets/brot.webp'
+    image:brot,
+    time:['slow afternoon', 'grounding pause'],
+    cup:['oat latte','flat white'],
+    glass:['oat milk'],
   },
   maffin:{
      id:'maffin',
@@ -27,7 +41,10 @@ export const desserts={
     allergens:['gluten', 'dairy', 'eggs'],
     weight:120,
     price:4.20,
-    image:'../src/assets/maffin.webp'
+    image:maffin,
+    time:['late morning','energy activation'],
+    cup:['cappuccino'],
+    glass:['almond','clasic milk'],
   },
   cake:{
      id:'cake',
@@ -37,7 +54,10 @@ export const desserts={
     allergens:['gluten', 'dairy', 'eggs'],
     weight:150,
     price:5.80,
-    image:'../src/assets/torte.webp'
+    image:torte,
+    time:['evening','deep grounding'],
+    cup:['espresso','dark roast'],
+    glass:['no milk'],
   },
   eclair:{
      id:'eclair',
@@ -47,7 +67,10 @@ export const desserts={
     allergens:['gluten', 'dairy', 'eggs'],
     weight:120,
     price:5.00,
-    image:'../src/assets/eclair.webp'
+    image:eclair,
+    time:['late afternoon','creative flow'],
+    cup:['latte','signature blend'],
+    glass:['almond molk'],
   },
   cheescake:{
      id:'cheescake',
@@ -57,6 +80,9 @@ export const desserts={
     allergens:['gluten', 'dairy', 'eggs'],
     weight:140,
     price:5.50,
-    image:'../src/assets/cheescake.webp'
+    image:cheescake,
+    time:['anytime' ,'emotional balance'],
+    cup:['cappuccino','latte'],
+    glass:['classic','lactose-free'],
   }
 }

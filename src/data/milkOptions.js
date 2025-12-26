@@ -1,9 +1,4 @@
 export const milkOptions = {
-  pure: {
-    id: 'pure',
-    title: 'Pure Ritual',
-    description: 'No milk or syrup'
-  },
   classic: {
     id: 'classic',
     title: 'Grounded',
