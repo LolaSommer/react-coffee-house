@@ -182,12 +182,7 @@ function Modal({type,item,onClose}) {
   )}
        {type === 'dessert' && (
     <>
-      <p className="modal__price">Price: ${item.price}</p>
-      <p className="modal__weight">Weight: {item.weight} g</p>
-
-      <p className="modal__allergens">
-        Allergens: {item.allergens.join(', ')}
-      </p>
+       <h2 className='modal__recomend'>When and how to deepen the experience</h2>
       <div className='modal__desserts'>
         <div className='modal__desert'>
            <picture className='modal__dessert-media'>
@@ -211,6 +206,11 @@ function Modal({type,item,onClose}) {
           <p className='modal__dessert-glass'>Milk: {item.glass.join(', ')}</p>
         </div>
       </div>
+      <p className="modal__allergens">
+        Allergens: {item.allergens.join(', ')}
+      </p>
+      <p className="modal__weight">Weight: {item.weight} g</p>
+      <p className="modal__price">Price: ${item.price}</p>
       <button className="modal__order">Claim Your Talisman</button>
     </>
   )}
