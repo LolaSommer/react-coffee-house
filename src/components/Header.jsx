@@ -1,6 +1,6 @@
 import './header.scss';
 
-function Header() {
+function Header({ onCartOpen, onAuthClick }) {
   return (
     <header className="header">
       <div className="header__logo">
@@ -22,7 +22,7 @@ function Header() {
         <button type="button" aria-label="Log in to your account" className="header__login">Log in</button>
         </div>
         <div className="header__cart-group">
-      <button type="button" className="header__cart">
+      <button type="button" className="header__cart" onClick={onCartOpen}>
          <svg className="header__icon-cart" aria-label="Open shopping cart">
        <use href="#cart-icon"/>
       </svg>
@@ -33,5 +33,7 @@ function Header() {
     </header>
   );
 }
+
+
 
 export default Header;

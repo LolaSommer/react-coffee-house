@@ -14,7 +14,8 @@ export const coffeeProducts ={
     allergens:['lactose'],
     volume:330,
     price:9.99,
-    image:caramel
+    image:caramel,
+    defaultMilk: 'classic'
   },
   mystic:{
     id:'mystic',
@@ -24,7 +25,8 @@ export const coffeeProducts ={
     allergens:['lactose','smoked paprika'],
     volume:330,
     price:9.99,
-    image:shocko
+    image:shocko,
+    defaultMilk: 'classic'
   },
   harmony:{
     id:'harmony',
@@ -34,17 +36,19 @@ export const coffeeProducts ={
     allergens:['almond'],
     volume:330,
     price:9.99,
-    image:vanila
+    image:vanila,
+    defaultMilk: 'oat'
   },
   ephemeral:{
     id:'ephemeral',
     title: 'Ephemeral Brew',
     ingredients: ['coffee','milk', 'cinnamon','pumpkin puree'],
     description: 'A coffee that changes with the seasons.  Autumn: pumpkin and warm harvest notes. Always fleeting. Always new.A taste that exists only for a moment.',
-    allergens:['lactose','cinnamon'],
+    allergens:['cinnamon'],
     volume:330,
     price:9.99,
-    image:pumpkin
+    image:pumpkin,
+    defaultMilk: 'lactose-free'
   },
   lunar:{
     id:'lunar',
@@ -54,7 +58,8 @@ export const coffeeProducts ={
     allergens:['lactose'],
     volume:330,
     price:9.99,
-    image:decaf
+    image:decaf,
+     defaultMilk: 'classic'
   },
   fortune:{
     id:'fortune',
@@ -64,7 +69,8 @@ export const coffeeProducts ={
     allergens:['lactose','almond','cinnamon','smoked paprika'],
     volume:330,
     price:9.99,
-    image:barista
+    image:barista,
+     defaultMilk: 'classic'
   },
   pure: {
   id: 'pure',
@@ -74,7 +80,7 @@ export const coffeeProducts ={
   allergens: [],
   volume: 330,
   price: 9.99,
-  image:black
+  image:black,
 
 }
 }

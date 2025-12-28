@@ -19,6 +19,8 @@ function App() {
   const [modalType, setModalType]=useState(null);
   const [cart, setCart] = useState([]);
 
+
+
  function openCoffeeModal(coffeeId) {
   setSelectedItem(coffeeProducts[coffeeId]);
   setModalType('coffee');
@@ -29,10 +31,13 @@ function App() {
  setModalType('dessert');
  setIsModalOpen(true);
  }
+ function openCart(){
+  setIsCartOpen(true);
+ }
   return (
     <>
       <Header
-        onCartClick={() => setIsCartOpen(true)}
+        onCartOpen={() => setIsCartOpen(true)}
         onAuthClick={() => setIsAuthOpen(true)}
       />
 

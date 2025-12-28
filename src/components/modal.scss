@@ -62,6 +62,13 @@
         &:hover:after{
             opacity: 1;
         }
+        &--active:after{
+            opacity:1;
+        }
+    }
+    &__pic-block{
+        display:grid;
+        justify-self: center;
     }
     &__name{
         color:$color-untertitle;
@@ -107,6 +114,19 @@
             position:relative;
         }
     }
+    &__bean{
+        cursor: pointer;
+        &-pic{
+             max-height: 200px;
+            height: auto;
+            margin-top: 18px;
+    
+        }
+        &-type{
+         font-size: $fs-middle;
+         text-align: center;
+        }
+    }
     &__strong{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -134,6 +154,9 @@
             &:hover::after{
                 opacity: 1;
             }
+        &--active:after{
+        opacity:1;
+        }
         }
         &-title{
             text-align: center;
@@ -242,4 +265,15 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
     padding:15px;
     text-align: center;
 }
+}
+.modal__milk-group--active {
+  transform: translateY(-4px);
+}
+
+.modal__milk-group--active .modal__milk-name {
+  color:#1a0033;
+}
+.modal__bean-group--active{
+    background: #6f4e37;
+    border-radius: 30px;
 }

@@ -3,11 +3,26 @@ import emptycart from '../assets/emptycart.webp';
 import pack from '../assets/pack.webp';
 import fartuk from '../assets/fartuk.webp';
 import happy from '../assets/happy.webp';
-function Cart() {
-  return <div className="modal-open cart__modal" aria-hidden="true"> 
-        <div className="cart__modal-window" role="dialog" aria-modal="true" aria-labelledby="cart__modal-title"> 
+import {useRef, useEffect} from 'react';
+function Cart({onClose}) {
+  const cartRef = useRef(null);
+  useEffect(() => {
+  function handleClickOutside(e) {
+    if (cartRef.current && !cartRef.current.contains(e.target)) {
+      onClose();
+    }
+  }
+
+  document.addEventListener('mousedown', handleClickOutside);
+
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, [onClose]);
+  return   <div className="modal-open cart__modal" aria-hidden="true"> 
+        <div className="cart__modal-window" ref={cartRef} role="dialog" aria-modal="true" aria-labelledby="cart__modal-title"> 
           <div className="cart__modal-top">
-            <button className="cart__modal-close" aria-label="close">
+            <button className="cart__modal-close" aria-label="close" onClick={onClose}>
                    <svg className="cart__modal-icon"><use href="#icon-close"></use></svg>
                   </button>  
             <div className="cart__modal-header">
