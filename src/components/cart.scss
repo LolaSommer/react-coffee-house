@@ -70,20 +70,8 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 
   &-items{
-   
    border-bottom: 1px solid $color-footer;
   
-  }
-  &-info{
-   padding-block: 10px;
-   line-height: $lh-normal;
-  }
-  &-details,&-ingredients{
-   font-size: $fs-small;
-  }
- 
-  &-pizza{
-   font-weight:900;
   }
    &-title{
       color:$color-white;
@@ -98,25 +86,6 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
    border-radius: 50px;
    border: $color-icon;
   }
-  &-wrapper{
-    display: grid;
-    grid-template-columns: 100px auto;
-    gap:50px;
-    align-items: flex-start;
-  }
-  &-counter{
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  align-items: center;
-  gap: 10px;
-  padding-block: 20px;
-  padding-inline: 20px;
-
-  }
-  &-radiogroup{
-   display: flex;
-   gap:20px;
-  }
   &-summary{
    display: flex;
    justify-content: space-between;
@@ -130,26 +99,16 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
    padding-block: 30px;
  }
 
- &-change{
-border:none;
-background:inherit;
-color:$color-white;
-cursor: pointer;
- }
+
  &-card,&-coffee,&-apron{
    
    cursor:pointer;
  }
- &-img{
 
- }
  &-extras{
   display: flex;
-
   align-items: center;
   padding-block: 30px;
-  
-   
  }
  &-extrastitle{
    padding-block: 20px;
@@ -182,4 +141,56 @@ cursor: pointer;
 .cart__modal-overlay.is-active {
   opacity: 1;
   pointer-events: auto;
+}
+.cart__item{
+  padding-block: 30px;
+  padding-inline: 10px;
+    &-wrapper{
+    display: grid;
+    grid-template-columns:100px auto;
+    gap:50px;
+    align-items: flex-start;
+  }
+  &-counter{
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 10px;
+  padding-block: 20px;
+  padding-inline: 20px;
+
+  }
+  &-radiogroup{
+   display: flex;
+   gap:20px;
+  }
+  &-change{
+    background: inherit;
+    color: $color-white;
+    cursor: pointer;
+  }
+  &-count{
+    font-size: $fs-body;
+  }
+  &-left,&-right{
+    cursor:pointer;
+  }
+  &-img{
+    display:block;
+    max-height: 80px;
+  }
+  &-pic{
+    display: flex;
+    align-items: center;
+  }
+  &-title{
+    font-weight:900;
+    padding-block: 5px;
+  }
+
+}
+.icon-trash{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }

@@ -4,7 +4,39 @@ import pack from '../assets/pack.webp';
 import fartuk from '../assets/fartuk.webp';
 import happy from '../assets/happy.webp';
 import {useRef, useEffect} from 'react';
-function Cart({onClose}) {
+function CartItem({item,onPlus, onMinus, onRemove}){
+  return( <div className='cart__item'>
+              <div className='cart__item-wrapper'>
+                <div className='cart__item-pic'>
+                   <picture>
+          <source srcSet={item.image} type="image/webp" />
+          <img className="cart__item-img" src={item.image} />
+        </picture>
+                </div>
+                <div className='cart__item-info'>
+                 <div className='cart__item-title'>{item.title}</div>
+                 <div className='cart__item-info'>{item.meta}</div>
+                </div>
+              </div>
+              <div className='cart__item-counter'>
+                <div className='cart__item-price'>{item.price}</div>
+                <div className='cart__item-radiogroup'>
+                    <button className="cart__item-change">change</button>
+      <div className="cart__item-left" onClick={onMinus}>-</div>
+      <div className="cart__item-count">{item.quantity}</div>
+      <div className="cart__item-right" onClick={onPlus}>+</div>
+      <div className="cart__item-remove" data-remove="coffee" onClick={onRemove}>
+  <svg className="icon-trash">
+    <use href="#icon-trash"></use>
+  </svg>
+      </div>
+                </div>
+              </div>
+            </div>
+  );
+} 
+
+function Cart({cart,onClose,onPlus, onMinus, onRemove,total}) {
   const cartRef = useRef(null);
   useEffect(() => {
   function handleClickOutside(e) {
@@ -37,7 +69,11 @@ function Cart({onClose}) {
            <p className="cart__modal-hungry">Choose what resonates with you</p>
            </div>
           <div className="cart__modal-items">
-      
+           {cart.map(item => (<CartItem key={item.id} item={item} 
+          onPlus={() => onPlus(item.id)}
+          onMinus={() => onMinus(item.id)}
+          onRemove={() => onRemove(item.id)}
+           />))}
           </div>
           <div className="cart__modal-extrastitle">Deepen the ritual:</div>
           <div className="cart__modal-extras">
@@ -78,7 +114,7 @@ function Cart({onClose}) {
           <div className="cart__modal-bottom">
           <div className="cart__modal-summary">
             <div className="cart__modal-number">0 items</div>
-        <div className="cart__modal-total">$0.00</div>
+        <div className="cart__modal-total">{total}$</div>
         </div>
         <div className="cart__modal-order">
        <button className="cart__modal-checkout">Checkout</button>
@@ -87,6 +123,7 @@ function Cart({onClose}) {
       
         </div>
                 </div>
+
 }
 
 export default Cart;

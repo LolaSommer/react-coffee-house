@@ -13,7 +13,24 @@ const strongOptions = Object.values(strenghtOptions);
 import {useEffect} from 'react';
 import { coffeeProducts } from '../data/coffeeProducts.js';
 
-function Modal({type,item,onClose}) {
+function Modal({type,item,onClose,onAddToCart}) {
+function handleAddToCartClick() {
+  const cartItem = {
+    id: crypto.randomUUID(),
+    title: currentItem.title,
+    image: currentItem.image,
+    price: currentItem.price,
+    quantity: 1,
+    meta: `${selectedCountry ?? '—'} · ${selectedMilk ?? '—'} · ${selectedStrength ?? '—'}`,
+    country: selectedCountry,
+    milk: selectedMilk,
+    strength: selectedStrength,
+  };
+
+  onAddToCart(cartItem);
+  onClose();
+}
+
   const [selectedCountry, setSelectedCountry] = useState(null);
 const [selectedMilk, setSelectedMilk] = useState(null);
 const [selectedStrength, setSelectedStrength] = useState(null);
@@ -144,7 +161,7 @@ setSelectedStrength(null);
                 </div>
   ))}
       </div>
-      <button type="button" className='modal__order'>Summon the Cup</button>
+      <button type="button" className='modal__order' onClick={handleAddToCartClick}>Summon the Cup</button>
     </>
   )}
        {type === 'dessert' && (
