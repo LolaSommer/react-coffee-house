@@ -30,6 +30,11 @@ const total = calculateCartTotal(cart);
   setModalType('coffee');
   setIsModalOpen(true);
  }
+ function totalItems(cartItems){
+  return cartItems.reduce((total,item)=>{
+    return total+item.quantity;
+  },0);
+ }
  function openDessertModal(dessertID){
   setSelectedItem(desserts[dessertID]);
  setModalType('dessert');
@@ -70,6 +75,7 @@ const removeFromCart = (id) => {
       <Header
         onCartOpen={() => setIsCartOpen(true)}
         onAuthClick={() => setIsAuthOpen(true)}
+        totalItems={totalItems(cart)}
       />
 
       <Hero />
@@ -83,7 +89,7 @@ const removeFromCart = (id) => {
       <Events />
       <Footer />
 
-      {isCartOpen && <Cart cart={cart} setCart={setCart} total={total} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
+      {isCartOpen && <Cart cart={cart} setCart={setCart} total={total}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
  onClose={() => setIsCartOpen(false)} />}
       {isModalOpen && <Modal item={selectedItem} onAddToCart={handleAddToCart} type={modalType}
         onClose={() => setIsModalOpen(false)} />}

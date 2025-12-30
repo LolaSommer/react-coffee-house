@@ -14,19 +14,24 @@ import {useEffect} from 'react';
 import { coffeeProducts } from '../data/coffeeProducts.js';
 
 function Modal({type,item,onClose,onAddToCart}) {
+
+
 function handleAddToCartClick() {
+  const meta = selectedCountry || selectedMilk || selectedStrength
+    ? `${selectedCountry} · ${selectedMilk} · ${selectedStrength}`
+    : undefined;
   const cartItem = {
     id: crypto.randomUUID(),
     title: currentItem.title,
     image: currentItem.image,
     price: currentItem.price,
     quantity: 1,
-    meta: `${selectedCountry ?? '—'} · ${selectedMilk ?? '—'} · ${selectedStrength ?? '—'}`,
+    meta:meta,
+    type:currentItem.type,
     country: selectedCountry,
     milk: selectedMilk,
     strength: selectedStrength,
   };
-
   onAddToCart(cartItem);
   onClose();
 }
@@ -195,7 +200,7 @@ setSelectedStrength(null);
       </p>
       <p className="modal__weight">Weight: {currentItem.weight} g</p>
       <p className="modal__price">Price: ${currentItem.price}</p>
-      <button className="modal__order">Claim Your Talisman</button>
+      <button className="modal__order" onClick={handleAddToCartClick}>Claim Your Talisman</button>
     </>
   )}
       </div>

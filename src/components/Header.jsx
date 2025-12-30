@@ -1,6 +1,6 @@
 import './header.scss';
 
-function Header({ onCartOpen, onAuthClick }) {
+function Header({ onCartOpen, onAuthClick,totalItems}) {
   return (
     <header className="header">
       <div className="header__logo">
@@ -27,7 +27,7 @@ function Header({ onCartOpen, onAuthClick }) {
        <use href="#cart-icon"/>
       </svg>
       </button>
-      <span className="header__cart-total" aria-live="polite" aria-atomic="true">0</span>
+      <span className="header__cart-total" aria-live="polite" aria-atomic="true">{totalItems}</span>
       </div>
       </div>
     </header>
