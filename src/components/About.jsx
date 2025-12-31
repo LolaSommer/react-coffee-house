@@ -1,7 +1,27 @@
 import './about.scss';
 import auracafe from '../assets/auracafe.webp';
 import heroVideo from '../assets/heroVideo.mp4';
+import {useRef} from 'react';
+import { useState } from 'react';
 function About() {
+  const [isPlay,setIsPlay]=useState(false);
+  const [hasStarted,setHasStarted]=useState(false);
+  const vidRef = useRef(null);
+  const handleBigPlayVideo=()=>{
+    vidRef.current.play();
+    setIsPlay(true);
+    setHasStarted(true);
+  }
+  const handleToggleplay=()=>{
+    if(vidRef.current.paused){
+       vidRef.current.play();
+     setIsPlay(true);
+    }else{
+     vidRef.current.pause();
+    setIsPlay(false);
+    }
+    
+  }
   return <section className='about' id='about'>
     <div className='about__colls-left'>
 <div className='about__img'>
@@ -21,11 +41,11 @@ function About() {
 </p>
 </div>
 <div className='about__video-group'>
-<video className="about__video" autoPlay muted loop playsInline aria-hidden="true">
+<video  ref={vidRef} className="about__video"  muted playsInline aria-hidden="true">
   <source src={heroVideo} type="video/mp4" />
 </video>
- <button type="button" aria-label="Play video" className='video__btn'>Magic Process</button>
- <button type="button" aria-label="play video" className='video__btn-small play hidden'></button>
+ {!hasStarted && (<button type="button" aria-label="Play video" onClick={handleBigPlayVideo} className='video__btn'>Magic Process</button>)}
+ {hasStarted &&(<button type="button" aria-label="play video"  onClick={handleToggleplay}  className={`video__btn-small ${isPlay ? 'is-playing' : 'is-paused'}`}></button>)}
  </div>
 <p className='about__untertitle'>Our philosophy is simple: coffee is not fuel; it is a conduit. From the rich, grounding "Root Chakra Espresso" that anchors you in the moment, to the ethereal "Third Eye Cappuccino" that clarifies perception.</p>
   <p className='about__untertitle'>We do not brew drinks.</p>

@@ -44,7 +44,25 @@ const total = calculateCartTotal(cart);
   setIsCartOpen(true);
  }
 function handleAddToCart(cartItem) {
-  setCart(prev => [...prev, cartItem]);
+  setCart(prev => {
+    const existingItemIndex = prev.findIndex(item => 
+      item.id === cartItem.id &&
+      item.strength === cartItem.strength &&
+      item.milk === cartItem.milk &&
+      item.country === cartItem.country
+    );
+    
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...prev];
+      updatedCart[existingItemIndex] = {
+        ...updatedCart[existingItemIndex],
+        quantity: (updatedCart[existingItemIndex].quantity || 1) + 1
+      };
+      return updatedCart;
+    } else {
+      return [...prev, { ...cartItem, quantity: 1 }];
+    }
+  });
 }
 const increaseQty = (id) => {
   setCart(prev =>
