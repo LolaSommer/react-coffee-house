@@ -48,7 +48,9 @@ export const coffeeProducts ={
     volume:330,
     price:9.99,
     image:pumpkin,
-    defaultMilk: 'lactose-free'
+    defaultMilk: 'lactose-free',
+    type: 'coffee'
+
   },
   lunar:{
     id:'lunar',
@@ -59,7 +61,9 @@ export const coffeeProducts ={
     volume:330,
     price:9.99,
     image:decaf,
-     defaultMilk: 'classic'
+     defaultMilk: 'classic',
+     type: 'coffee'
+
   },
   fortune:{
     id:'fortune',
@@ -70,7 +74,9 @@ export const coffeeProducts ={
     volume:330,
     price:9.99,
     image:barista,
-     defaultMilk: 'classic'
+     defaultMilk: 'classic',
+     type: 'coffee'
+
   },
   pure: {
   id: 'pure',
@@ -81,6 +87,8 @@ export const coffeeProducts ={
   volume: 330,
   price: 9.99,
   image:black,
+  type: 'coffee'
+
 
 }
 }

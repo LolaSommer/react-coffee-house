@@ -277,3 +277,8 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
     background: #6f4e37;
     border-radius: 30px;
 }
+.modal__order:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+

@@ -14,11 +14,15 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
-
+   const [itemToEdit,setItemToEdit]= useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType]=useState(null);
   const [cart, setCart] = useState([]);
-
+function handleChange(item){
+  setItemToEdit(item);
+  setModalType('coffee');
+   setIsModalOpen(true);
+}
 function calculateCartTotal(cartItems) {
   return cartItems.reduce((total, item) => {
     return total + (item.price * item.quantity);
@@ -43,15 +47,10 @@ const total = calculateCartTotal(cart);
  function openCart(){
   setIsCartOpen(true);
  }
+
 function handleAddToCart(cartItem) {
   setCart(prev => {
-    const existingItemIndex = prev.findIndex(item => 
-      item.id === cartItem.id &&
-      item.strength === cartItem.strength &&
-      item.milk === cartItem.milk &&
-      item.country === cartItem.country
-    );
-    
+    const existingItemIndex = prev.findIndex(item => item.cartKey === cartItem.cartKey);
     if (existingItemIndex !== -1) {
       const updatedCart = [...prev];
       updatedCart[existingItemIndex] = {
@@ -64,28 +63,28 @@ function handleAddToCart(cartItem) {
     }
   });
 }
-const increaseQty = (id) => {
+const increaseQty = (cartKey) => {
   setCart(prev =>
     prev.map(item =>
-      item.id === id
+      item.cartKey === cartKey
         ? { ...item, quantity: item.quantity + 1 }
         : item
     )
   );
 };
-const decreaseQty = (id) => {
+const decreaseQty = (cartKey) => {
   setCart(prev =>
     prev
       .map(item =>
-        item.id === id
+        item.cartKey === cartKey
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
       .filter(item => item.quantity > 0)
   );
 };
-const removeFromCart = (id) => {
-  setCart(prev => prev.filter(item => item.id !== id));
+const removeFromCart = (cartKey) => {
+  setCart(prev => prev.filter(item => item.cartKey !== cartKey));
 };
 
   return (
@@ -107,7 +106,7 @@ const removeFromCart = (id) => {
       <Events />
       <Footer />
 
-      {isCartOpen && <Cart cart={cart} setCart={setCart} total={total}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
+      {isCartOpen && <Cart cart={cart} onChange={handleChange} setCart={setCart} total={total} onAddToCart={handleAddToCart}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
  onClose={() => setIsCartOpen(false)} />}
       {isModalOpen && <Modal item={selectedItem} onAddToCart={handleAddToCart} type={modalType}
         onClose={() => setIsModalOpen(false)} />}

@@ -18,7 +18,9 @@ export const desserts={
     time:['early morning','first impulse'],
     cup:['espresso','americano'],
     glass:['no milk','oat milk'],
-    type: 'Chocolate cookie'
+    text: 'Chocolate cookie',
+    type: 'dessert'
+
    
   },
   bun:{
@@ -33,7 +35,9 @@ export const desserts={
     time:['slow afternoon', 'grounding pause'],
     cup:['oat latte','flat white'],
     glass:['oat milk'],
-    type: 'Buckwheat bun'
+    text: 'Buckwheat bun',
+    type: 'dessert'
+
 
   },
   maffin:{
@@ -48,7 +52,9 @@ export const desserts={
     time:['late morning','energy activation'],
     cup:['cappuccino'],
     glass:['almond','clasic milk'],
-    type: 'Chocolate muffin'
+    text: 'Chocolate muffin',
+    type: 'dessert'
+
 
   },
   cake:{
@@ -63,7 +69,9 @@ export const desserts={
     time:['evening','deep grounding'],
     cup:['espresso','dark roast'],
     glass:['no milk'],
-    type: 'Chocolate cake'
+    text: 'Chocolate cake',
+    type: 'dessert'
+
 
   },
   eclair:{
@@ -78,7 +86,9 @@ export const desserts={
     time:['late afternoon','creative flow'],
     cup:['latte','signature blend'],
     glass:['almond molk'],
-    type: 'Berry eclair'
+    text: 'Berry eclair',
+    type: 'dessert'
+
 
   },
   cheescake:{
@@ -93,7 +103,9 @@ export const desserts={
     time:['anytime' ,'emotional balance'],
     cup:['cappuccino','latte'],
     glass:['classic','lactose-free'],
-    type: 'Cheesecake'
+    text: 'Cheesecake',
+    type: 'dessert'
+
 
   }
 }

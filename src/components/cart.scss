@@ -104,9 +104,13 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
    
    cursor:pointer;
  }
-
+&-img{
+  max-height: 150px;
+}
  &-extras{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:50px;
   align-items: center;
   padding-block: 30px;
  }

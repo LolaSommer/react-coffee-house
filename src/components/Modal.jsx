@@ -14,24 +14,38 @@ import {useEffect} from 'react';
 import { coffeeProducts } from '../data/coffeeProducts.js';
 
 function Modal({type,item,onClose,onAddToCart}) {
-
-
 function handleAddToCartClick() {
+  let cartItem;
   const meta = selectedCountry || selectedMilk || selectedStrength
     ? `${selectedCountry} · ${selectedMilk} · ${selectedStrength}`
     : undefined;
-  const cartItem = {
-    id: crypto.randomUUID(),
+  if(type === 'coffee'){
+     cartItem = {
+    cartKey:  `${currentItem.id}_${selectedCountry}_${selectedMilk}_${selectedStrength}`,
+    id: currentItem.id,
     title: currentItem.title,
     image: currentItem.image,
     price: currentItem.price,
     quantity: 1,
     meta:meta,
-    type:currentItem.type,
+    type:'coffee',
     country: selectedCountry,
     milk: selectedMilk,
     strength: selectedStrength,
   };
+  }
+  if(type === 'dessert'){
+    cartItem = {
+    cartKey: currentItem.id,
+    id: currentItem.id,
+    title: currentItem.title,
+    image: currentItem.image,
+    price: currentItem.price,
+    quantity: 1,
+    type:'dessert',
+    text:currentItem.text,
+  };
+  }
   onAddToCart(cartItem);
   onClose();
 }
@@ -166,7 +180,8 @@ setSelectedStrength(null);
                 </div>
   ))}
       </div>
-      <button type="button" className='modal__order' onClick={handleAddToCartClick}>Summon the Cup</button>
+      <button type="button" className='modal__order' disabled={!selectedCountry || !selectedStrength}
+ onClick={handleAddToCartClick}>Summon the Cup</button>
     </>
   )}
        {type === 'dessert' && (

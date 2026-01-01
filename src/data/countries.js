@@ -12,6 +12,7 @@ export const countryOptions={
     image: aura,
     effect: 'gentle balance',
     time: 'anytime · emotional pause',
+
   },
   sumatra:{
     id:'sumatra',
@@ -20,6 +21,8 @@ export const countryOptions={
     image:sumatra,
     effect: 'depth & stillness',
     time: 'evening · slowing down',
+  
+
   },
 kenya:{
     id:'kenya',
@@ -28,6 +31,7 @@ kenya:{
      image: kenia,
     effect: 'energy & sharpness',
     time: 'morning · action',
+
 },
 colombia:{
    id:'colombia',
@@ -44,6 +48,7 @@ ethiopia:{
      image:ephiopia,
     effect: 'clarity & focus',
     time: 'morning · creativity',
+  
 },
 brazil:{
   id:'brazil',
