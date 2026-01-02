@@ -37,7 +37,7 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   );
 } 
 
-function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange}) {
+function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAuthClick}) {
   const [selectedExtra, setSelectedExtra] = useState(null);
   const cartRef = useRef(null);
   useEffect(() => {
@@ -136,7 +136,7 @@ function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange}
         <div className="cart__modal-total">{total.toFixed(2)}$</div>
         </div>
         <div className="cart__modal-order">
-       <button className="cart__modal-checkout">Checkout</button>
+       <button className="cart__modal-checkout" onClick={onAuthClick}>Checkout</button>
         </div>
         </div>
          

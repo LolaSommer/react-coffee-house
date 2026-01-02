@@ -56,6 +56,15 @@ const [selectedStrength, setSelectedStrength] = useState(null);
 const [selectedItem, setSelectedItem] = useState(null);
 useEffect(() => {
   if (!item) return;
+  if (item.type !== 'coffee') return;
+
+  setSelectedCountry(item.country ?? null);
+  setSelectedMilk(item.milk ?? null);
+  setSelectedStrength(item.strength ?? null);
+}, [item]);
+
+useEffect(() => {
+  if (!item) return;
 
   if (item.defaultMilk) {
     setSelectedMilk(item.defaultMilk);

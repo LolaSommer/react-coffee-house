@@ -1,6 +1,6 @@
 import './header.scss';
 
-function Header({ onCartOpen, onAuthClick,totalItems}) {
+function Header({onCartOpen, onAuthClick,totalItems}) {
   return (
     <header className="header">
       <div className="header__logo">
@@ -19,7 +19,7 @@ function Header({ onCartOpen, onAuthClick,totalItems}) {
       </nav>
       <div className="header__group">
         <div className="header__auth">
-        <button type="button" aria-label="Log in to your account" className="header__login">Log in</button>
+        <button type="button" onClick={onAuthClick} aria-label="Log in to your account" className="header__login">Log in</button>
         </div>
         <div className="header__cart-group">
       <button type="button" className="header__cart" onClick={onCartOpen}>

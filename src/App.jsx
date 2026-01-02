@@ -14,14 +14,27 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
-   const [itemToEdit,setItemToEdit]= useState(false);
+  const [authStep, setAuthStep] = useState('phone');
+  const [modalMode, setModalMode] = useState('add'); 
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType]=useState(null);
   const [cart, setCart] = useState([]);
 function handleChange(item){
-  setItemToEdit(item);
+ setSelectedItem(cartItem);
   setModalType('coffee');
-   setIsModalOpen(true);
+setModalMode('edit');
+setIsModalOpen(true);
+
+}
+function openAuth(){
+  setIsAuthOpen(true);
+  setAuthStep('phone');
+}
+function closeAuth(){
+  setIsAuthOpen(false);
+}
+function goToCodeStep(){
+  setAuthStep('code');
 }
 function calculateCartTotal(cartItems) {
   return cartItems.reduce((total, item) => {
@@ -106,12 +119,12 @@ const removeFromCart = (cartKey) => {
       <Events />
       <Footer />
 
-      {isCartOpen && <Cart cart={cart} onChange={handleChange} setCart={setCart} total={total} onAddToCart={handleAddToCart}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
+      {isCartOpen && <Cart cart={cart} onChange={handleChange} onAuthClick={() => setIsAuthOpen(true)} setCart={setCart} total={total} onAddToCart={handleAddToCart}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
  onClose={() => setIsCartOpen(false)} />}
-      {isModalOpen && <Modal item={selectedItem} onAddToCart={handleAddToCart} type={modalType}
+      {isModalOpen && <Modal item={selectedItem}  mode={modalMode} onAddToCart={handleAddToCart} type={modalType}
         onClose={() => setIsModalOpen(false)} />}
-      {isAuthOpen && <Auth onClose={() => setIsAuthOpen(false)} />}
-      
+{isAuthOpen && (<Auth onClose={() => setIsAuthOpen(false)} onCloseAuth={closeAuth}/>)}
+
     </>
   );
 }
