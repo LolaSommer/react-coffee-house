@@ -13,12 +13,15 @@ const strongOptions = Object.values(strenghtOptions);
 import {useEffect} from 'react';
 import { coffeeProducts } from '../data/coffeeProducts.js';
 
-function Modal({type,item,onClose,onAddToCart}) {
+function Modal({type,item,onClose,onAddToCart,openedFrom,onUpdateCartItem}) {
+
+function buildMeta(country, milk, strength) {
+  return [country, milk, strength].filter(Boolean).join(' · ');
+}
+
 function handleAddToCartClick() {
   let cartItem;
-  const meta = selectedCountry || selectedMilk || selectedStrength
-    ? `${selectedCountry} · ${selectedMilk} · ${selectedStrength}`
-    : undefined;
+ const meta = buildMeta(selectedCountry, selectedMilk, selectedStrength);
   if(type === 'coffee'){
      cartItem = {
     cartKey:  `${currentItem.id}_${selectedCountry}_${selectedMilk}_${selectedStrength}`,
@@ -49,6 +52,18 @@ function handleAddToCartClick() {
   onAddToCart(cartItem);
   onClose();
 }
+function handleSaveChanges() {
+  const meta = buildMeta(selectedCountry, selectedMilk, selectedStrength);
+  const updateItem = {
+      cartKey: item.cartKey,
+      country: selectedCountry,
+      milk: selectedMilk,
+      strength: selectedStrength,
+      meta,
+  }
+  onUpdateCartItem(updateItem);
+  onClose();
+}
 
   const [selectedCountry, setSelectedCountry] = useState(null);
 const [selectedMilk, setSelectedMilk] = useState(null);
@@ -66,12 +81,12 @@ useEffect(() => {
 useEffect(() => {
   if (!item) return;
 
-  if (item.defaultMilk) {
+  if (openedFrom === 'menu') {
     setSelectedMilk(item.defaultMilk);
-  } else {
-    setSelectedMilk(null);
+  } else if (openedFrom==='cart') {
+    setSelectedMilk(item.milk);
   }
-}, [item]);
+}, [item,openedFrom]);
 const currentItem = selectedItem || item;
 
   if(!currentItem) return null;
@@ -87,12 +102,17 @@ const currentItem = selectedItem || item;
         <div className='modal__description-group'>
         <h2 className='modal__coffee-title'>{currentItem.title}</h2>
         <p className='modal__composition'>{currentItem.description}</p>
-        <p className='modal__ingredients'>
-          {currentItem.ingredients.map((ingredient, index) => (
-           <span key={index}>
-           {ingredient}
-         {index < currentItem.ingredients.length - 1 && ', '}
-        </span>))}</p>
+       {openedFrom === 'menu' && (
+  <p className="modal__ingredients">
+    {currentItem.ingredients.map((ingredient, index) => (
+      <span key={index}>
+        {ingredient}
+        {index < currentItem.ingredients.length - 1 && ', '}
+      </span>
+    ))}
+  </p>
+)}
+
         </div>
         </div>
       <div className='modal__system'>
@@ -127,7 +147,7 @@ const currentItem = selectedItem || item;
 </div>
              <div className='modal__milk'> 
         <h3 className='modal__milk-title'></h3>
-        <div  className={`modal__bean-group ${
+       {openedFrom === 'menu' && ( <div  className={`modal__bean-group ${
     selectedMilk === null ? 'modal__bean-group--active' : ''
   }`}
   onClick={() => {
@@ -141,7 +161,7 @@ setSelectedStrength(null);
           <img className="modal__bean-pic" src={nomilk} alt="Coffee without milk or syrup" />
           </picture>
           <p className='modal__bean-type'>Pure ritual</p>
-          </div>
+          </div>)}
         <div className="modal__milk">
 {milks.map((milk) => {
   const isActive = selectedMilk === milk.id;
@@ -189,8 +209,19 @@ setSelectedStrength(null);
                 </div>
   ))}
       </div>
-      <button type="button" className='modal__order' disabled={!selectedCountry || !selectedStrength}
- onClick={handleAddToCartClick}>Summon the Cup</button>
+   <button
+  type="button"
+  className="modal__order"
+  disabled={!selectedCountry || !selectedStrength}
+  onClick={
+    openedFrom === 'cart'
+      ? handleSaveChanges
+      : handleAddToCartClick
+  }
+>
+  {openedFrom === 'cart' ? 'Save changes' : 'Summon the Cup'}
+</button>
+
     </>
   )}
        {type === 'dessert' && (
