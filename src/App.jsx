@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Modal from "./components/Modal";
 import Auth from "./components/Auth";
+import Account from "./components/Account.jsx";
 import { coffeeProducts } from './data/coffeeProducts';
 import { desserts } from  './data/desserts.js'
 function App() {
@@ -20,6 +21,18 @@ function App() {
   const [modalType, setModalType]=useState(null);
   const [cart, setCart] = useState([]);
   const [openedFrom, setOpenedFrom] = useState('menu');
+  const [isAuth, setIsAuth] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
+  const navigate = (page) => setCurrentPage(page);
+const handleLogout = () => {
+  setIsAuth(false);
+  setCurrentPage('home');
+};
+const handleNavigate = (page) => {
+    console.log('navigate to:', page);
+  setCurrentPage(page);
+};
+
 function handleChange(item){
  setSelectedItem(item);
  setModalType('coffee');
@@ -111,33 +124,47 @@ const removeFromCart = (cartKey) => {
   setCart(prev => prev.filter(item => item.cartKey !== cartKey));
 };
 
-  return (
-    <>
-      <Header
-        onCartOpen={() => setIsCartOpen(true)}
-        onAuthClick={() => setIsAuthOpen(true)}
-        totalItems={totalItems(cart)}
-      />
+ return (
+  <>
+  <Header
+          onCartOpen={() => setIsCartOpen(true)}
+          onAuthClick={() => setIsAuthOpen(true)}
+          totalItems={totalItems(cart)}
+          onOpenAccount={() => setCurrentPage('account')}
+          isAuth={isAuth}
+        />
+    {currentPage === 'home' && (
+      <>
+        
 
-      <Hero />
+        <Hero />
 
-      <Menu 
-      onCoffeeSelect={openCoffeeModal}
-      onDessertSelect={openDessertModal}
-      />
+        <Menu 
+          onCoffeeSelect={openCoffeeModal}
+          onDessertSelect={openDessertModal}
+        />
 
-      <About />
-      <Events />
-      <Footer />
-
-      {isCartOpen && <Cart cart={cart} onChange={handleChange} onAuthClick={() => setIsAuthOpen(true)} setCart={setCart} total={total} onAddToCart={handleAddToCart}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
+        <About />
+        <Events />
+       
+            {isCartOpen && <Cart cart={cart} onChange={handleChange} onAuthClick={() => setIsAuthOpen(true)} setCart={setCart} total={total} onAddToCart={handleAddToCart}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
  onClose={() => setIsCartOpen(false)} />}
       {isModalOpen && <Modal item={selectedItem} onUpdateCartItem={handleUpdateCartItem} openedFrom={openedFrom} mode={modalMode} onAddToCart={handleAddToCart} type={modalType}
         onClose={() => setIsModalOpen(false)} />}
-{isAuthOpen && (<Auth onClose={() => setIsAuthOpen(false)} onCloseAuth={closeAuth}/>)}
+{isAuthOpen && (<Auth onClose={() => setIsAuthOpen(false)} onAuthSuccess={setIsAuth} onCloseAuth={closeAuth}/>)}
+      </>
+    )}
 
-    </>
-  );
+    {currentPage === 'account' && (
+      <Account
+        onLogout={handleLogout}
+        onGoHome={() => setCurrentPage('home')}
+      />
+    )}
+     <Footer />
+  </>
+);
+
 }
 
 export default App;

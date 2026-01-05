@@ -1,6 +1,6 @@
 import './header.scss';
 
-function Header({onCartOpen, onAuthClick,totalItems}) {
+function Header({onCartOpen, onAuthClick,onOpenAccount,totalItems,isAuth}) {
   return (
     <header className="header">
       <div className="header__logo">
@@ -19,7 +19,20 @@ function Header({onCartOpen, onAuthClick,totalItems}) {
       </nav>
       <div className="header__group">
         <div className="header__auth">
-        <button type="button" onClick={onAuthClick} aria-label="Log in to your account" className="header__login">Log in</button>
+        <button
+  type="button"
+  className="header__login"
+  onClick={() => {
+    console.log('CLICK', isAuth);
+    if (isAuth) {
+      onOpenAccount();
+    } else {
+      onAuthClick();
+    }
+  }}
+>
+  {isAuth ? 'My account' : 'Log in'}
+</button>
         </div>
         <div className="header__cart-group">
       <button type="button" className="header__cart" onClick={onCartOpen}>

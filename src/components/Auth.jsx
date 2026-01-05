@@ -1,43 +1,80 @@
 import './auth.scss';
-import { useState } from 'react';
+import { useState, useRef,useEffect } from 'react';
 
-function Auth({onCloseAuth}) {
-   const [step, setStep] = useState('phone');
-  const [phone, setPhone] = useState('');
-  const [isPhoneValid,setIsPhoneValid] = useState(false);
- const [code, setCode] = useState(['', '', '', '']);
-const [isCodeComplete, setIsCodeComplete] = useState(false);
+function Auth({onCloseAuth,onAuthSuccess}) {
+const [step, setStep] = useState('phone');
+const [phone, setPhone] = useState('');
+const [isPhoneValid,setIsPhoneValid] = useState(false);
+const [code, setCode] = useState(['', '', '', '']);
+const inputsRef = useRef([]);
+const [timer, setTimer] = useState(60);
+const [canResend, setCanResend] = useState(false);
+useEffect(() => {
+  if (step !== 'code') return;
+  if (timer === 0) {
+    setCanResend(true);
+    return;
+  }
+
+  const interval = setInterval(() => {
+    setTimer(prev => prev - 1);
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, [step, timer]);
+function handleResend() {
+  setCode(['', '', '', '']);
+  setTimer(60);
+  setCanResend(false);
+}
+
 function handleClose() {
   setStep('phone');
   setPhone('');
   onCloseAuth();
 }
 function handlePhoneChange(e) {
-  const value = e.target.value;
-  setPhone(value);
-
-  const phoneRegex = /^\+?[0-9\s\-]{7,15}$/;
-  setIsPhoneValid(phoneRegex.test(value));
+  const rawValue = e.target.value;
+  // 1. оставить только цифры
+  const digitsOnly = rawValue.replace(/\D/g, '');
+  // 2. сохранить очищенный номер
+  setPhone(digitsOnly);
+  // 3. проверить длину
+  const isValid =
+    digitsOnly.length >= 10 && digitsOnly.length <= 15;
+  // 4. обновить флаг
+  setIsPhoneValid(isValid);
 }
 
 function handleCodeChange(index, value) {
-  if (!/^\d?$/.test(value)) return; 
-
-  const newCode = [...code];
-  newCode[index] = value;
-  setCode(newCode);
-
-  const isComplete = newCode.every(digit => digit !== '');
-  setIsCodeComplete(isComplete);
+ const digit = value.replace(/\D/g, '').slice(0, 1);
+ const newCode = [...code];
+ newCode[index]=digit;
+ setCode(newCode);
+ if(digit && inputsRef.current[index +1]){
+  inputsRef.current[index+1].focus();
+ }
+}
+function handleKeyDown(index, e) {
+  if (
+    e.key === 'Backspace' &&
+    !code[index] &&
+    inputsRef.current[index - 1]
+  ) {
+    inputsRef.current[index - 1].focus();
+  }
 }
 function handleVerifyClick() {
   if (!isCodeComplete) {
     setStep('phone');
+    setCode(['', '', '', '']);
   } else {
-    // здесь позже будет логин
-    onClose();
+    onAuthSuccess(true);
+    onCloseAuth();
   }
 }
+
+const isCodeComplete = code.every(d=> d !== '');
 
   return (
     <div className='auth'>
@@ -75,27 +112,46 @@ function handleVerifyClick() {
       <p className='auth__description'>We sent to {phone}</p>
       </div>
       <form className="auth__form">
-  {code.map((digit, index) => (
-    <label key={index} className="auth__num">
+  {code.map((digit, i) => (
+    <label key={i} className="auth__num">
       <input
         className="auth__code"
         type="text"
-        inputMode="numeric"
-        maxLength={1}
-        value={digit}
-        onChange={(e) => handleCodeChange(index, e.target.value)}
+         
+    ref={el => (inputsRef.current[i] = el)}
+    value={digit}
+    maxLength={1}
+    onChange={e => handleCodeChange(i, e.target.value)}
+    onKeyDown={e => handleKeyDown(i, e)}
         required
       />
     </label>
   ))}
 </form>
 
-      <div className='auth__btn-group'>
-      <p className='auth__text'>Didn’t receive the code? Request a new one in 60 seconds.</p>
-      <button className='auth__btn' onClick={handleVerifyClick}>
-   {isCodeComplete ? 'Verify' : 'Change number'}
-</button>
-      </div>
+     <div className='auth__btn-group'>
+
+  {!canResend && (
+    <p className='auth__text'>
+      Didn’t receive the code? Request a new one in {timer} seconds.
+    </p>
+  )}
+
+  {canResend && (
+    <button
+      className='auth__resend'
+      onClick={handleResend}
+    >
+      Resend code
+    </button>
+  )}
+
+  <button className='auth__btn' onClick={handleVerifyClick}>
+    {isCodeComplete ? 'Verify' : 'Change number'}
+  </button>
+
+</div>
+
     </div>
   )}
 </div>
