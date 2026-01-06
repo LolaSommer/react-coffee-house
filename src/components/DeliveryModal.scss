@@ -1,0 +1,184 @@
+@import '../styles/variables';
+.reg{
+     &__form{
+   display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+ 
+  }
+  &__header{
+    flex-shrink: 0;
+  }
+   &__window{
+  background: $color-bg-light;
+position:relative;
+color:$color-white;
+z-index: 1;
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px #371C66;
+max-height: 90vh;
+display: flex;
+flex-direction: column;
+  }
+  &__auto{
+    flex: 1;
+    overflow-y: auto;
+    max-height: calc(90vh - 200px); 
+  padding: clamp(0.938rem,4vw,1.875rem);
+  }
+  &__title{
+    text-align: center;
+    font-weight: $fw-bold;
+    font-size: $fs-h3;
+
+  }
+  &__untertitle{
+    font-size: $fs-middle;
+    text-align: center;
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__line{
+    position: relative;
+  }
+  &__close{
+   display: grid;
+   justify-self:end;
+   margin-bottom: 25px;
+  width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-icon; 
+}
+&__icon{
+    width: 20px;
+    height: 20px;
+}
+&__auto{
+  flex: 1;
+  overflow-y: auto;
+ 
+}
+&__input{
+  display: block;
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  opacity: 0.8;
+  padding-block: 20px;
+  width: 400px;
+  transition: 0.3s;
+  box-sizing: border-box;
+  padding-block: 0.75em 1em;
+  appearance: none;
+  -webkit-appearance: none;
+  &:focus{
+  outline: none;
+  border-bottom: 1px solid rgba(255,255,255,0.9);
+  opacity: 1;
+  transition: $color-icon .25s ease;
+        }
+}
+&-btn{
+    display:flex;
+    justify-self: center;
+    border-radius: 30px;
+    background: $color-btn;
+    color:$color-white;
+    padding: 10px;
+    font-size: $fs-middle;
+}
+
+}
+.pay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    &__options{
+        display: flex;
+        gap:50px;
+    }
+    &__icon{
+        width:50px;
+        height: 50px;
+    }
+    &__metod{
+        background: inherit;
+        cursor: pointer;
+    }
+}
+.card-form {
+  overflow: hidden;
+ max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.card-form--open {
+  max-height: 600px;
+  opacity: 1;
+}
+.card{
+   &__text{
+    display: flex;
+    flex-direction: column;
+   }
+    &__block{
+     max-width: 500px;
+     background: $color-bg;
+     border-radius: 30px;
+     padding: 25px;
+    }
+    &__number{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__input{
+        background:  #371C66;
+        border-radius: 15px;
+        padding: 8px;
+        margin: 5px;
+        &-num{
+        border-radius: 15px;
+        max-width: 100px;
+        background: #371C66;
+        padding: 5px;
+        margin: 5px;
+        text-align: center;
+        }
+    }
+}
+.paypal-form {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.paypal-form--open {
+  max-height: 600px;
+  opacity: 1;
+}
+.paypal{
+    &__block{
+        display: flex;
+        flex-direction: column;
+        max-width: 350px;
+    }
+    &__text{
+        text-align: center;
+    }
+}

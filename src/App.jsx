@@ -9,12 +9,14 @@ import Cart from "./components/Cart";
 import Modal from "./components/Modal";
 import Auth from "./components/Auth";
 import Account from "./components/Account.jsx";
+import DeliveryModal from "./components/DeliveryModal.jsx";
 import { coffeeProducts } from './data/coffeeProducts';
 import { desserts } from  './data/desserts.js'
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isDeliveryOpen,setIsDeliveryOpen] = useState(false);
   const [authStep, setAuthStep] = useState('phone');
   const [modalMode, setModalMode] = useState('add'); 
   const [selectedItem, setSelectedItem] = useState(null);
@@ -55,6 +57,12 @@ function openAuth(){
 }
 function closeAuth(){
   setIsAuthOpen(false);
+}
+function openDelivery(){
+  setIsDeliveryOpen(true);
+}
+function closeDelivery(){
+  setIsDeliveryOpen(false);
 }
 function goToCodeStep(){
   setAuthStep('code');
@@ -152,6 +160,8 @@ const removeFromCart = (cartKey) => {
       {isModalOpen && <Modal item={selectedItem} onUpdateCartItem={handleUpdateCartItem} openedFrom={openedFrom} mode={modalMode} onAddToCart={handleAddToCart} type={modalType}
         onClose={() => setIsModalOpen(false)} />}
 {isAuthOpen && (<Auth onClose={() => setIsAuthOpen(false)} onAuthSuccess={setIsAuth} onCloseAuth={closeAuth}/>)}
+      {isDeliveryOpen && <DeliveryModal onClose={()=>setIsDeliveryOpen(false)} />}
+
       </>
     )}
 

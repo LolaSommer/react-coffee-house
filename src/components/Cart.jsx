@@ -37,7 +37,7 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   );
 } 
 
-function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAuthClick}) {
+function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAuthClick,onAddToCart}) {
   const [selectedExtra, setSelectedExtra] = useState(null);
   const cartRef = useRef(null);
   useEffect(() => {
@@ -129,6 +129,10 @@ function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,
   ))}
           </div>
           </>)}
+          <div className='cart__modal-deliverygroup'>
+          <input className='cart__modal-input' type='checkbox' id='delivery' value='yes' name='delivery'></input>
+         <label className='cart__modal-label' for='delivery'>Delivery — free from $25</label>
+          </div>
           </div>
           <div className="cart__modal-bottom">
           <div className="cart__modal-summary">
