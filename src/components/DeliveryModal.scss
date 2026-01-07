@@ -20,14 +20,15 @@ z-index: 1;
 border-radius:30px;
 margin:0 auto;
 box-shadow: 0 8px 24px #371C66;
-max-height: 90vh;
+height: 90vh;
 display: flex;
 flex-direction: column;
   }
   &__auto{
     flex: 1;
-    overflow-y: auto;
-    max-height: calc(90vh - 200px); 
+    overflow-y:scroll;
+     scrollbar-gutter: stable;
+   
   padding: clamp(0.938rem,4vw,1.875rem);
   }
   &__title{
@@ -66,11 +67,6 @@ flex-direction: column;
     width: 20px;
     height: 20px;
 }
-&__auto{
-  flex: 1;
-  overflow-y: auto;
- 
-}
 &__input{
   display: block;
   background: inherit;
@@ -99,6 +95,7 @@ flex-direction: column;
     color:$color-white;
     padding: 10px;
     font-size: $fs-middle;
+    margin: 30px;
 }
 
 }
@@ -114,21 +111,34 @@ flex-direction: column;
     &__icon{
         width:50px;
         height: 50px;
+      cursor:pointer;
+       transition: background-color 0.3s ease;
+       &:hover{
+       filter: drop-shadow(0 0 10px $color-icon);
+      
+       }
     }
     &__metod{
         background: inherit;
         cursor: pointer;
     }
 }
+.pay__metod--active {
+ filter: drop-shadow(0 0 6px $color-icon);
+}
+
+
 .card-form {
   overflow: hidden;
+  display: none;
  max-height: 0;
   opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+  transition:opacity 0.3s ease;
 }
 
 .card-form--open {
-  max-height: 600px;
+  display: block;
+  max-height:none;
   opacity: 1;
 }
 .card{
@@ -161,22 +171,23 @@ flex-direction: column;
         }
     }
 }
-.paypal-form {
+.external-form {
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
-.paypal-form--open {
+.external-form--open {
   max-height: 600px;
   opacity: 1;
 }
-.paypal{
+.external{
     &__block{
         display: flex;
         flex-direction: column;
         max-width: 350px;
+        
     }
     &__text{
         text-align: center;

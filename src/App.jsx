@@ -155,12 +155,12 @@ const removeFromCart = (cartKey) => {
         <About />
         <Events />
        
-            {isCartOpen && <Cart cart={cart} onChange={handleChange} onAuthClick={() => setIsAuthOpen(true)} setCart={setCart} total={total} onAddToCart={handleAddToCart}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
+            {isCartOpen && <Cart cart={cart}  onCheckout={openDelivery}  onChange={handleChange} onAuthClick={() => setIsAuthOpen(true)} setCart={setCart} total={total} onAddToCart={handleAddToCart}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
  onClose={() => setIsCartOpen(false)} />}
       {isModalOpen && <Modal item={selectedItem} onUpdateCartItem={handleUpdateCartItem} openedFrom={openedFrom} mode={modalMode} onAddToCart={handleAddToCart} type={modalType}
         onClose={() => setIsModalOpen(false)} />}
 {isAuthOpen && (<Auth onClose={() => setIsAuthOpen(false)} onAuthSuccess={setIsAuth} onCloseAuth={closeAuth}/>)}
-      {isDeliveryOpen && <DeliveryModal onClose={()=>setIsDeliveryOpen(false)} />}
+        {isDeliveryOpen && <DeliveryModal onClose={closeDelivery} />}
 
       </>
     )}

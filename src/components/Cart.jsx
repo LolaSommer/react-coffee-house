@@ -37,7 +37,7 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   );
 } 
 
-function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAuthClick,onAddToCart}) {
+function Cart({onCheckout,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAuthClick,onAddToCart}) {
   const [selectedExtra, setSelectedExtra] = useState(null);
   const cartRef = useRef(null);
   useEffect(() => {
@@ -131,7 +131,7 @@ function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,
           </>)}
           <div className='cart__modal-deliverygroup'>
           <input className='cart__modal-input' type='checkbox' id='delivery' value='yes' name='delivery'></input>
-         <label className='cart__modal-label' for='delivery'>Delivery — free from $25</label>
+         <label className='cart__modal-label' htmlFor='delivery'>Delivery — free from $25</label>
           </div>
           </div>
           <div className="cart__modal-bottom">
@@ -140,7 +140,7 @@ function Cart({cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,
         <div className="cart__modal-total">{total.toFixed(2)}$</div>
         </div>
         <div className="cart__modal-order">
-       <button className="cart__modal-checkout" onClick={onAuthClick}>Checkout</button>
+       <button className="cart__modal-checkout"    onClick={onCheckout}>Checkout</button>
         </div>
         </div>
          

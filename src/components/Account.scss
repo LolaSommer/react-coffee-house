@@ -1,0 +1,141 @@
+@import '../styles/variables';
+.acc{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-inline: 100px;
+    &__auto{
+        align-items: center;
+        display:flex;
+        flex-direction: column;
+        max-width: 350px;
+    }
+    &__text{
+        display: flex;
+        flex-direction: column;
+        color: $color-white;
+       
+    }
+    &__title{
+        color: $color-white;
+    
+    }
+    &__input{
+         display: block;
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  opacity: 0.8;
+  padding-block: 20px;
+  width: 400px;
+  transition: 0.3s;
+  box-sizing: border-box;
+  padding-block: 0.75em 1em;
+  appearance: none;
+  -webkit-appearance: none;
+  &:focus{
+  outline: none;
+  border-bottom: 1px solid rgba(255,255,255,0.9);
+  opacity: 1;
+  transition: $color-icon .25s ease;
+        }
+    }
+    &__btn{
+        display:grid;
+        align-items: center;
+    }
+    &-btn{
+         margin: 20px;
+        background: $color-btn;
+        font-size: $fs-middle;
+        border-radius: 20px;
+        padding: 5px;
+        color: $color-white;
+    }
+
+}
+.back{
+    display: flex;
+    justify-content: center;
+    padding-block: 30px;
+    &__btn{
+        font-size: $fs-middle;
+        color: $color-white;
+        border-radius: 30px;
+        border: none;
+        background: $color-btn;
+        padding: 10px;
+    }
+}
+.promo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__untertitle{
+        color:$color-white;
+        text-align: end;
+    }
+    &__title{
+        color:$color-white;
+        text-align: end;
+    }
+    &__img{
+        max-height: 250px;
+    }
+}
+.history{
+    display: grid;
+     &__input{
+    margin-top: 22px;
+  margin-right: 15px;
+  appearance: none;   
+  width: 18px;
+  height: 18px;
+  border: 2px solid $color-icon;  
+  border-radius: 4px;      
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+   &::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: $color-icon;  
+    opacity: 0;
+    border-radius: 2px;
+    transition: 0.2s ease;
+  }
+
+  &:checked::after {
+    opacity: 1;
+  }
+}
+&__label{
+    color:$color-white;
+    padding-top: 17px;
+    font-size: $fs-middle;
+}
+&__subscribe{
+    display: flex;
+    align-items: center;
+}
+&__title{
+    color:$color-white;
+    font-size: $fs-middle;
+    text-align: center;
+}
+&__text{
+    background: $color-bg-light;
+    border-radius: 30px;
+    padding-block:20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    &-title{
+        color:$color-white;
+        text-align:center;
+    }
+    &-untertitle{
+        color:$color-white;
+    }
+}
+}
