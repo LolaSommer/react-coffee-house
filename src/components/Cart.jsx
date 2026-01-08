@@ -23,9 +23,9 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
                 <div className='cart__item-radiogroup'>
                     {item.type === 'coffee' && (<button onClick={() => onChange(item)}
   className="cart__item-change">change</button>)}
-      <div className="cart__item-left" onClick={onMinus}>-</div>
+      <button className="cart__item-left" onClick={onMinus}>-</button>
       <div className="cart__item-count">{item.quantity}</div>
-      <div className="cart__item-right" onClick={onPlus}>+</div>
+      <button className="cart__item-right" onClick={onPlus}>+</button>
       <div className="cart__item-remove" data-remove="coffee" onClick={onRemove}>
   <svg className="icon-trash">
     <use href="#icon-trash"></use>

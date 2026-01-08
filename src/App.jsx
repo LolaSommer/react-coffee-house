@@ -19,13 +19,13 @@ function App() {
   const modals = useModals();
   const auth = useAuth();
    const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isDeliveryOpen,setIsDeliveryOpen] = useState(false);
-  const [modalMode, setModalMode] = useState('add'); 
+  const [isDeliveryOpen,setIsDeliveryOpen] = useState(false); 
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType]=useState(null);
   const [openedFrom, setOpenedFrom] = useState('menu');
   const {cart,addToCart,increaseQty,updateCartItem,decreaseQty,removeFromCart,total,totalItems} = useCart();
   const [currentPage, setCurrentPage] = useState('home');
+const [selectedProductId, setSelectedProductId] = useState(null);
 function handleChange(item){
  setSelectedItem(item);
  setModalType('coffee');
@@ -38,18 +38,19 @@ function openDelivery(){
 function closeDelivery(){
   setIsDeliveryOpen(false);
 }
-function openCoffeeModal(coffeeId) {
-  setSelectedItem(coffeeProducts[coffeeId]);
-  setModalType('coffee');
-  setOpenedFrom('menu');
+function openCoffeeModal(id) {
   modals.openModal('product');
+  setModalType('coffee');
+  setSelectedItem(coffeeProducts[id].modal);
+  setSelectedProductId(id);
+  setOpenedFrom('menu');
 }
-
- function openDessertModal(dessertID){
-  setSelectedItem(desserts[dessertID]);
- setModalType('dessert');
- modals.openModal('product');
- }
+function openDessertModal(id) {
+  modals.openModal('product');
+  setModalType('dessert');
+  setSelectedItem(desserts[id].modal);
+  setSelectedProductId(id);
+}
  return (
   <>
   <Header
@@ -72,8 +73,18 @@ function openCoffeeModal(coffeeId) {
             {isCartOpen && <Cart cart={cart}  onCheckout={openDelivery}  onChange={handleChange} onAuthClick={auth.openAuth}
  total={total}   onAddToCart={addToCart} totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
  onClose={() => setIsCartOpen(false)} />}
-      {modals.isOpen('product') && <Modal item={selectedItem}  onUpdateCartItem={updateCartItem} openedFrom={openedFrom} mode={modalMode}  onAddToCart={addToCart} type={modalType}
-            onClose={modals.closeModal} />}
+     {modals.isOpen('product') && selectedItem && (
+  <Modal
+    type={modalType}
+    item={selectedItem}
+    productId={selectedProductId}
+    openedFrom={openedFrom}
+    onAddToCart={addToCart}
+    onUpdateCartItem={updateCartItem}
+    onClose={modals.closeModal}
+  />
+)}
+
 {auth.isAuthOpen && (<Auth  authStep={auth.authStep} onClose={auth.closeAuth} onAuthSuccess={auth.setIsAuth} onNextStep={auth.goToCodeStep}/>)}
         {isDeliveryOpen && <DeliveryModal onClose={closeDelivery} />}
 

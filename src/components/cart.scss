@@ -161,11 +161,16 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
  }
  &-left,&-right{
   cursor: pointer;
+  
  }
  &-remove{
   cursor: pointer;
  }
 
+}
+.cart__item-right,.cart__item-left{
+  color: $color-white;
+  background: inherit;
 }
 .cart__modal.is-open {
   transform: translateX(0);
