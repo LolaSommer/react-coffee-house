@@ -49,7 +49,7 @@ function DeliveryModal({onClose}) {
               <h2 className="reg__title" id="form-title">Delivery address</h2>
               <p className='reg__untertitle'>Please enter the address for delivery</p>
             </div>
-            <form className="reg__auto">
+            <form className="reg__auto" onSubmit={e => e.preventDefault()}>
               <label className="reg__text">Name
                 <input className="reg__input" type="text" name="name" placeholder="Enter your name" pattern="[A-Za-zА-Яа-я '\-]{2,}" required />
               </label>
@@ -119,7 +119,7 @@ function DeliveryModal({onClose}) {
               )}
 
               <div className="reg__btn">
-                <button type="submit" className="reg-btn">Confirm delivery</button>
+                <button type="submit"  className="reg-btn">Confirm delivery</button>
               </div>
             </form>
           </div>

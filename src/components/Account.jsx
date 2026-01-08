@@ -1,6 +1,6 @@
 import './Account.scss';
 import promo from '../assets/promo.webp';
-function Account() {
+function Account({onLogout,onGoHome}) {
   return (
     <div className='acc'>
     <div className='acc__form'>
@@ -50,7 +50,7 @@ function Account() {
         </picture>
     </div>
     <div className='back'>
-    <button className='back__btn'>Log out</button>
+    <button className='back__btn' type="button" onClick={onLogout}>Log out</button>
     </div>
     </div>
     </div>

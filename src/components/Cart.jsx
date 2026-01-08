@@ -38,7 +38,6 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
 } 
 
 function Cart({onCheckout,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAuthClick,onAddToCart}) {
-  const [selectedExtra, setSelectedExtra] = useState(null);
   const cartRef = useRef(null);
   useEffect(() => {
   function handleClickOutside(e) {
@@ -136,7 +135,7 @@ function Cart({onCheckout,cart,onClose,onPlus, onMinus, onRemove,total,totalItem
           </div>
           <div className="cart__modal-bottom">
           <div className="cart__modal-summary">
-            <div className="cart__modal-number">{totalItems(cart)} items</div>
+            <div className="cart__modal-number">{totalItems} items</div>
         <div className="cart__modal-total">{total.toFixed(2)}$</div>
         </div>
         <div className="cart__modal-order">

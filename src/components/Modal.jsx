@@ -14,7 +14,9 @@ import {useEffect} from 'react';
 import { coffeeProducts } from '../data/coffeeProducts.js';
 
 function Modal({type,item,onClose,onAddToCart,openedFrom,onUpdateCartItem}) {
-
+ useEffect(()=>{
+    setSelectedItem(null);
+  },[item]);
 function buildMeta(country, milk, strength) {
   return [country, milk, strength].filter(Boolean).join(' · ');
 }

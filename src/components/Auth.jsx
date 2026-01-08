@@ -1,7 +1,7 @@
 import './auth.scss';
 import { useState, useRef,useEffect } from 'react';
 
-function Auth({onCloseAuth,onAuthSuccess}) {
+function Auth({onClose,onAuthSuccess}) {
 const [step, setStep] = useState('phone');
 const [phone, setPhone] = useState('');
 const [isPhoneValid,setIsPhoneValid] = useState(false);
@@ -31,7 +31,7 @@ function handleResend() {
 function handleClose() {
   setStep('phone');
   setPhone('');
-  onCloseAuth();
+  onClose();
 }
 function handlePhoneChange(e) {
   const rawValue = e.target.value;
@@ -70,7 +70,7 @@ function handleVerifyClick() {
     setCode(['', '', '', '']);
   } else {
     onAuthSuccess(true);
-    onCloseAuth();
+    onClose();
   }
 }
 
@@ -78,10 +78,10 @@ const isCodeComplete = code.every(d=> d !== '');
 
   return (
     <div className='auth'>
-    <div className='auth__overlay' onClick={onCloseAuth}></div>
+    <div className='auth__overlay' onClick={onClose}></div>
     <div className='auth__wrapper'>
       <div className="auth__line">
-        <button className="auth__close" aria-label="close"onClick={onCloseAuth}>
+        <button className="auth__close" aria-label="close"onClick={onClose}>
         <svg className="auth__icon"><use href="#icon-close"></use></svg>
           </button>
           </div>

@@ -10,53 +10,27 @@ import Modal from "./components/Modal";
 import Auth from "./components/Auth";
 import Account from "./components/Account.jsx";
 import DeliveryModal from "./components/DeliveryModal.jsx";
+import { useModals } from './hooks/useModals';
+import {useCart} from './hooks/useCart.js';
+import { useAuth } from './hooks/useAuth';
 import { coffeeProducts } from './data/coffeeProducts';
 import { desserts } from  './data/desserts.js'
 function App() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const modals = useModals();
+  const auth = useAuth();
+   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isDeliveryOpen,setIsDeliveryOpen] = useState(false);
-  const [authStep, setAuthStep] = useState('phone');
   const [modalMode, setModalMode] = useState('add'); 
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType]=useState(null);
-  const [cart, setCart] = useState([]);
   const [openedFrom, setOpenedFrom] = useState('menu');
-  const [isAuth, setIsAuth] = useState(false);
+  const {cart,addToCart,increaseQty,updateCartItem,decreaseQty,removeFromCart,total,totalItems} = useCart();
   const [currentPage, setCurrentPage] = useState('home');
-  const navigate = (page) => setCurrentPage(page);
-const handleLogout = () => {
-  setIsAuth(false);
-  setCurrentPage('home');
-};
-const handleNavigate = (page) => {
-    console.log('navigate to:', page);
-  setCurrentPage(page);
-};
-
 function handleChange(item){
  setSelectedItem(item);
  setModalType('coffee');
-setIsModalOpen(true);
+modals.openModal('product');
   setOpenedFrom('cart');
-}
-function handleUpdateCartItem(updatedItem) {
-  setCart(prev =>
-    prev.map(item =>
-      item.cartKey === updatedItem.cartKey
-        ? { ...item, ...updatedItem }
-        : item
-    )
-  );
-}
-
-function openAuth(){
-  setIsAuthOpen(true);
-  setAuthStep('phone');
-}
-function closeAuth(){
-  setIsAuthOpen(false);
 }
 function openDelivery(){
   setIsDeliveryOpen(true);
@@ -64,102 +38,43 @@ function openDelivery(){
 function closeDelivery(){
   setIsDeliveryOpen(false);
 }
-function goToCodeStep(){
-  setAuthStep('code');
-}
-function calculateCartTotal(cartItems) {
-  return cartItems.reduce((total, item) => {
-    return total + (item.price * item.quantity);
-  }, 0);
-}
-const total = calculateCartTotal(cart);
- function openCoffeeModal(coffeeId) {
+function openCoffeeModal(coffeeId) {
   setSelectedItem(coffeeProducts[coffeeId]);
   setModalType('coffee');
-   setOpenedFrom('menu');
-  setIsModalOpen(true);
- }
- function totalItems(cartItems){
-  return cartItems.reduce((total,item)=>{
-    return total+item.quantity;
-  },0);
- }
+  setOpenedFrom('menu');
+  modals.openModal('product');
+}
+
  function openDessertModal(dessertID){
   setSelectedItem(desserts[dessertID]);
  setModalType('dessert');
- setIsModalOpen(true);
+ modals.openModal('product');
  }
- function openCart(){
-  setIsCartOpen(true);
- }
-
-function handleAddToCart(cartItem) {
-  setCart(prev => {
-    const existingItemIndex = prev.findIndex(item => item.cartKey === cartItem.cartKey);
-    if (existingItemIndex !== -1) {
-      const updatedCart = [...prev];
-      updatedCart[existingItemIndex] = {
-        ...updatedCart[existingItemIndex],
-        quantity: (updatedCart[existingItemIndex].quantity || 1) + 1
-      };
-      return updatedCart;
-    } else {
-      return [...prev, { ...cartItem, quantity: 1 }];
-    }
-  });
-}
-const increaseQty = (cartKey) => {
-  setCart(prev =>
-    prev.map(item =>
-      item.cartKey === cartKey
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    )
-  );
-};
-const decreaseQty = (cartKey) => {
-  setCart(prev =>
-    prev
-      .map(item =>
-        item.cartKey === cartKey
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-      .filter(item => item.quantity > 0)
-  );
-};
-const removeFromCart = (cartKey) => {
-  setCart(prev => prev.filter(item => item.cartKey !== cartKey));
-};
-
  return (
   <>
   <Header
           onCartOpen={() => setIsCartOpen(true)}
-          onAuthClick={() => setIsAuthOpen(true)}
-          totalItems={totalItems(cart)}
+          totalItems={totalItems}
           onOpenAccount={() => setCurrentPage('account')}
-          isAuth={isAuth}
+           onAuthClick={auth.openAuth}
+           isAuth={auth.isAuth}
         />
     {currentPage === 'home' && (
       <>
-        
-
         <Hero />
-
         <Menu 
           onCoffeeSelect={openCoffeeModal}
           onDessertSelect={openDessertModal}
         />
-
         <About />
         <Events />
        
-            {isCartOpen && <Cart cart={cart}  onCheckout={openDelivery}  onChange={handleChange} onAuthClick={() => setIsAuthOpen(true)} setCart={setCart} total={total} onAddToCart={handleAddToCart}  totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
+            {isCartOpen && <Cart cart={cart}  onCheckout={openDelivery}  onChange={handleChange} onAuthClick={auth.openAuth}
+ total={total}   onAddToCart={addToCart} totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
  onClose={() => setIsCartOpen(false)} />}
-      {isModalOpen && <Modal item={selectedItem} onUpdateCartItem={handleUpdateCartItem} openedFrom={openedFrom} mode={modalMode} onAddToCart={handleAddToCart} type={modalType}
-        onClose={() => setIsModalOpen(false)} />}
-{isAuthOpen && (<Auth onClose={() => setIsAuthOpen(false)} onAuthSuccess={setIsAuth} onCloseAuth={closeAuth}/>)}
+      {modals.isOpen('product') && <Modal item={selectedItem}  onUpdateCartItem={updateCartItem} openedFrom={openedFrom} mode={modalMode}  onAddToCart={addToCart} type={modalType}
+            onClose={modals.closeModal} />}
+{auth.isAuthOpen && (<Auth  authStep={auth.authStep} onClose={auth.closeAuth} onAuthSuccess={auth.setIsAuth} onNextStep={auth.goToCodeStep}/>)}
         {isDeliveryOpen && <DeliveryModal onClose={closeDelivery} />}
 
       </>
@@ -167,8 +82,11 @@ const removeFromCart = (cartKey) => {
 
     {currentPage === 'account' && (
       <Account
-        onLogout={handleLogout}
-        onGoHome={() => setCurrentPage('home')}
+      onLogout={() => {
+    auth.logout();
+    setCurrentPage('home');
+  }}
+  onGoHome={() => setCurrentPage('home')}
       />
     )}
      <Footer />

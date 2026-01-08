@@ -8,7 +8,7 @@ import black from '../assets/black.webp';
 export const coffeeProducts ={
   silken:{
     id:'silken',
-    title: 'Silken Wisper',
+    title: 'Silken Whisper',
     ingredients: ['milk','coffee','caramel'],
     description: 'A smooth and comforting blend of milk and caramel. Soft, creamy, and gently sweet — like a quiet moment wrapped in warmth.',
     allergens:['lactose'],
@@ -67,7 +67,7 @@ export const coffeeProducts ={
   },
   fortune:{
     id:'fortune',
-    title:'Fortunes Choice',
+    title: "Fortune's Choice",
     ingredients: ['coffee','fresh cream','milk'],
     description:'Let the barista decide.A personalized coffee experience where intuition leads the flavor.Trust the moment. Trust the craft.',
     allergens:['lactose','almond','cinnamon','smoked paprika'],

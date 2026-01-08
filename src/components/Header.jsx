@@ -23,7 +23,6 @@ function Header({onCartOpen, onAuthClick,onOpenAccount,totalItems,isAuth}) {
   type="button"
   className="header__login"
   onClick={() => {
-    console.log('CLICK', isAuth);
     if (isAuth) {
       onOpenAccount();
     } else {

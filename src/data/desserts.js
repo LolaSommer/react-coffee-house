@@ -51,7 +51,7 @@ export const desserts={
     image:maffin,
     time:['late morning','energy activation'],
     cup:['cappuccino'],
-    glass:['almond','clasic milk'],
+    glass:['almond','classic milk'],
     text: 'Chocolate muffin',
     type: 'dessert'
 
@@ -85,7 +85,7 @@ export const desserts={
     image:eclair,
     time:['late afternoon','creative flow'],
     cup:['latte','signature blend'],
-    glass:['almond molk'],
+    glass:['almond milk'],
     text: 'Berry eclair',
     type: 'dessert'
 
