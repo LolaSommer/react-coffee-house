@@ -1,7 +1,7 @@
 import './cart.scss';
 import emptycart from '../assets/emptycart.webp';
 import { extras } from '../data/extras';
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect,useState} from 'react';
 function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   return( <div className='cart__item'>
               <div className='cart__item-wrapper'>
@@ -36,7 +36,21 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   );
 } 
 
-function Cart({onCheckout,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAuthClick,onAddToCart}) {
+function Cart({isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart}) {
+const [isDeliveryChecked, setIsDeliveryChecked] = useState(false);
+  function handleCheckout() {
+  if (!isAuth) {
+    openModal('auth');
+    return;
+  }
+  if (!isDeliveryChecked) {
+    openModal('success'); 
+    return;
+  }
+  openModal('delivery');
+  
+}
+  const isdeliveryAvailable = total>=25;
   const cartRef = useRef(null);
   useEffect(() => {
   function handleClickOutside(e) {
@@ -132,8 +146,12 @@ function Cart({onCheckout,cart,onClose,onPlus, onMinus, onRemove,total,totalItem
 )}
 
           <div className='cart__modal-deliverygroup'>
-          <input className='cart__modal-input' type='checkbox' id='delivery' value='yes' name='delivery'></input>
-         <label className='cart__modal-label' htmlFor='delivery'>Delivery — free from $25</label>
+          <input className='cart__modal-input' type='checkbox' id='delivery' value='yes' name='delivery' 
+          disabled={!isdeliveryAvailable}
+          checked={isDeliveryChecked}
+          onChange={(e) => setIsDeliveryChecked(e.target.checked)}
+          ></input>
+         <label className='cart__modal-label' htmlFor='delivery'> Delivery — free from $25</label>
           </div>
           </div>
           <div className="cart__modal-bottom">
@@ -142,7 +160,7 @@ function Cart({onCheckout,cart,onClose,onPlus, onMinus, onRemove,total,totalItem
         <div className="cart__modal-total">{total.toFixed(2)}$</div>
         </div>
         <div className="cart__modal-order">
-       <button className="cart__modal-checkout"    onClick={onCheckout}>Checkout</button>
+       <button className="cart__modal-checkout" onClick={handleCheckout}>Checkout</button>
         </div>
         </div>
          

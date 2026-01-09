@@ -1,0 +1,65 @@
+@import '../styles/variables';
+.thankyou{
+      &__modal{
+  display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  }
+   &__window{
+  background: $color-bg-light;
+position:relative;
+color:$color-white;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+ height: auto;
+border-radius:30px;
+margin: 15px;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  
+  width: 450px;
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__close{
+   display: grid;
+   justify-self:end;
+   width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-icon; 
+}
+&__line{
+  position: relative;
+}
+&__icon{
+  width:20px;
+  height:20px;
+}
+&__button{
+   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+&__btn{
+  border:none;
+  border-radius: 20px;
+  background: $color-btn;
+  color:$color-white;
+  padding:10px;
+
+}
+&__title,&__text{
+  text-align: center;
+}
+}

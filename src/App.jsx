@@ -9,6 +9,7 @@ import Cart from "./components/Cart";
 import Modal from "./components/Modal";
 import Auth from "./components/Auth";
 import Account from "./components/Account.jsx";
+import SuccessModal from "./components/SuccessModal";
 import DeliveryModal from "./components/DeliveryModal.jsx";
 import { useModals } from './hooks/useModals';
 import {useCart} from './hooks/useCart.js';
@@ -65,7 +66,7 @@ function openDessertModal(id) {
         {modals.isOpen('cart') && (
   <Cart
     cart={cart}
-    onCheckout={() => modals.openModal('delivery')}
+    onCheckout={null} 
     onChange={handleChange}
     onAuthClick={() => modals.openModal('auth')}
     total={total}
@@ -75,8 +76,14 @@ function openDessertModal(id) {
     onMinus={decreaseQty}
     onRemove={removeFromCart}
     onClose={modals.closeModal}
+    openModal={modals.openModal}
+    isAuth={auth.isAuth}
+    setIsAuth={auth.setIsAuth}
   />
 )}
+{/*{true && (
+  <SuccessModal/>
+)}*/}
 
      {modals.isOpen('product') && selectedItem && (
   <Modal
