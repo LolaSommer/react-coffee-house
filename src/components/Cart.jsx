@@ -2,7 +2,6 @@ import './cart.scss';
 import emptycart from '../assets/emptycart.webp';
 import { extras } from '../data/extras';
 import {useRef, useEffect} from 'react';
-import { useState } from 'react';
 function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   return( <div className='cart__item'>
               <div className='cart__item-wrapper'>
@@ -92,42 +91,46 @@ function Cart({onCheckout,cart,onClose,onPlus, onMinus, onRemove,total,totalItem
             onChange={onChange}
            />))}
           </div>
-          {filteredExtras.length > 0 && (<>
-          <div className="cart__modal-extrastitle">Deepen the ritual:</div>
-          <div className="cart__modal-extras">
- 
-            {filteredExtras.map((extra) => (
-    <div
-      key={extra.id}
-      className='cart__modal-extra'
-      onClick={() => {
-  const cartKey = extra.id;
-
-  const extraItem = {
-    cartKey,
-    id: extra.id,
-    title: extra.title,
-    image: extra.image,
-    price: extra.price,
-    quantity: 1,
-  };
-
-  onAddToCart(extraItem);
-}}
-
-      >
-      <picture>
-          <source srcSet={extra.image} type="image/webp" />
-          <img className="cart__modal-img" src={extra.image} alt={extra.alt} />
-        </picture>
-              <div className="cart__modal-priceblock">
-              <div className="cart__modal-text">{extra.title}</div>
-              <div className="cart__modal-extraprice">{extra.price}<sup>$</sup></div>
-              </div>
-    </div>
-  ))}
+          {filteredExtras.length > 0 && (
+  <div className='cart__modal-wrapper'>
+    <div className="cart__modal-extrastitle">Deepen the ritual:</div>
+    <div className="cart__modal-extras">
+      {filteredExtras.map((extra) => (
+        <div
+          key={extra.id}
+          className="cart__modal-extra"
+          onClick={() => {
+            const extraItem = {
+              cartKey: extra.id,
+              id: extra.id,
+              title: extra.title,
+              image: extra.image,
+              price: extra.price,
+              quantity: 1,
+            };
+            onAddToCart(extraItem);
+          }}
+        >
+          <picture>
+            <source srcSet={extra.image} type="image/webp" />
+            <img
+              className="cart__modal-img"
+              src={extra.image}
+              alt={extra.alt}
+            />
+          </picture>
+          <div className="cart__modal-priceblock">
+            <div className="cart__modal-text">{extra.title}</div>
+            <div className="cart__modal-extraprice">
+              {extra.price}<sup>$</sup>
+            </div>
           </div>
-          </>)}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
           <div className='cart__modal-deliverygroup'>
           <input className='cart__modal-input' type='checkbox' id='delivery' value='yes' name='delivery'></input>
          <label className='cart__modal-label' htmlFor='delivery'>Delivery — free from $25</label>

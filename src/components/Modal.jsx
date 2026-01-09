@@ -41,7 +41,7 @@ function handleAddToCartClick() {
   }
   if(type === 'dessert'){
     cartItem = {
-    cartKey: currentItem.id,
+    cartKey: `dessert-${currentItem.id}`,
     id: currentItem.id,
     title: currentItem.title,
     image: currentItem.image,

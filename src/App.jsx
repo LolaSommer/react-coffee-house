@@ -18,8 +18,6 @@ import { desserts } from  './data/desserts.js'
 function App() {
   const modals = useModals();
   const auth = useAuth();
-   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isDeliveryOpen,setIsDeliveryOpen] = useState(false); 
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType]=useState(null);
   const [openedFrom, setOpenedFrom] = useState('menu');
@@ -31,12 +29,6 @@ function handleChange(item){
  setModalType('coffee');
 modals.openModal('product');
   setOpenedFrom('cart');
-}
-function openDelivery(){
-  setIsDeliveryOpen(true);
-}
-function closeDelivery(){
-  setIsDeliveryOpen(false);
 }
 function openCoffeeModal(id) {
   modals.openModal('product');
@@ -54,10 +46,10 @@ function openDessertModal(id) {
  return (
   <>
   <Header
-          onCartOpen={() => setIsCartOpen(true)}
+          onCartOpen={() => modals.openModal('cart')}
           totalItems={totalItems}
           onOpenAccount={() => setCurrentPage('account')}
-           onAuthClick={auth.openAuth}
+          onAuthClick={() => modals.openModal('auth')}
            isAuth={auth.isAuth}
         />
     {currentPage === 'home' && (
@@ -70,9 +62,22 @@ function openDessertModal(id) {
         <About />
         <Events />
        
-            {isCartOpen && <Cart cart={cart}  onCheckout={openDelivery}  onChange={handleChange} onAuthClick={auth.openAuth}
- total={total}   onAddToCart={addToCart} totalItems={totalItems} onPlus={increaseQty} onMinus={decreaseQty}  onRemove={removeFromCart}
- onClose={() => setIsCartOpen(false)} />}
+        {modals.isOpen('cart') && (
+  <Cart
+    cart={cart}
+    onCheckout={() => modals.openModal('delivery')}
+    onChange={handleChange}
+    onAuthClick={() => modals.openModal('auth')}
+    total={total}
+    onAddToCart={addToCart}
+    totalItems={totalItems}
+    onPlus={increaseQty}
+    onMinus={decreaseQty}
+    onRemove={removeFromCart}
+    onClose={modals.closeModal}
+  />
+)}
+
      {modals.isOpen('product') && selectedItem && (
   <Modal
     type={modalType}
@@ -85,8 +90,18 @@ function openDessertModal(id) {
   />
 )}
 
-{auth.isAuthOpen && (<Auth  authStep={auth.authStep} onClose={auth.closeAuth} onAuthSuccess={auth.setIsAuth} onNextStep={auth.goToCodeStep}/>)}
-        {isDeliveryOpen && <DeliveryModal onClose={closeDelivery} />}
+{modals.isOpen('auth') && (
+  <Auth
+    authStep={auth.authStep}
+    onClose={modals.closeModal}
+    onAuthSuccess={auth.setIsAuth}
+    onNextStep={auth.goToCodeStep}
+  />
+)}
+{modals.isOpen('delivery') && (
+  <DeliveryModal onClose={modals.closeModal} />
+)}
+
 
       </>
     )}
