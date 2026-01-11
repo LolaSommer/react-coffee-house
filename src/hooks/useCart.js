@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 export function useCart() {
   const [cart, setCart] = useState([]);
-
+ function clearCart(){
+  setCart([]);
+ }
   const addToCart = (cartItem) => {
     setCart(prev => {
       const existing = prev.find(i => i.cartKey === cartItem.cartKey);
@@ -56,6 +58,7 @@ const updateCartItem = (updatedItem) => {
     removeFromCart,
     updateCartItem,
     total,
-    totalItems
+    totalItems,
+    clearCart,
   };
 }

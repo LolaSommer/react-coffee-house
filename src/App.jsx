@@ -22,9 +22,21 @@ function App() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType]=useState(null);
   const [openedFrom, setOpenedFrom] = useState('menu');
-  const {cart,addToCart,increaseQty,updateCartItem,decreaseQty,removeFromCart,total,totalItems} = useCart();
+  const {cart,
+    addToCart,
+    increaseQty,
+    updateCartItem,
+    decreaseQty,
+    removeFromCart,
+    total,
+    totalItems,
+    clearCart,
+  } = useCart();
+  const [isDeliveryChecked, setIsDeliveryChecked] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
 const [selectedProductId, setSelectedProductId] = useState(null);
+const [deliveryData, setDeliveryData] = useState(null);
+
 function handleChange(item){
  setSelectedItem(item);
  setModalType('coffee');
@@ -66,6 +78,7 @@ function openDessertModal(id) {
         {modals.isOpen('cart') && (
   <Cart
     cart={cart}
+    deliveryData={deliveryData}
     onCheckout={null} 
     onChange={handleChange}
     onAuthClick={() => modals.openModal('auth')}
@@ -79,12 +92,11 @@ function openDessertModal(id) {
     openModal={modals.openModal}
     isAuth={auth.isAuth}
     setIsAuth={auth.setIsAuth}
+     isDeliveryChecked={isDeliveryChecked}
+  setIsDeliveryChecked={setIsDeliveryChecked}
   />
 )}
-{/*{true && (
-  <SuccessModal/>
-)}*/}
-
+{modals.isOpen('success')&&<SuccessModal onClose={modals.closeModal} onClearCart={clearCart}/>}
      {modals.isOpen('product') && selectedItem && (
   <Modal
     type={modalType}
@@ -106,7 +118,7 @@ function openDessertModal(id) {
   />
 )}
 {modals.isOpen('delivery') && (
-  <DeliveryModal onClose={modals.closeModal} />
+  <DeliveryModal onClose={modals.closeModal}  onSaveDelivery={setDeliveryData}/>
 )}
 
 

@@ -36,20 +36,21 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   );
 } 
 
-function Cart({isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart}) {
-const [isDeliveryChecked, setIsDeliveryChecked] = useState(false);
-  function handleCheckout() {
+function Cart({deliveryData,isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
+  setIsDeliveryChecked,}) {
+ function handleCheckout() {
   if (!isAuth) {
     openModal('auth');
     return;
   }
-  if (!isDeliveryChecked) {
-    openModal('success'); 
+
+  if (isDeliveryChecked && !deliveryData) {
+    openModal('delivery');
     return;
   }
-  openModal('delivery');
-  
+  openModal('success');
 }
+
   const isdeliveryAvailable = total>=25;
   const cartRef = useRef(null);
   useEffect(() => {
