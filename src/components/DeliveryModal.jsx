@@ -1,7 +1,7 @@
 import './DeliveryModal.scss';
 import { useState,useEffect } from 'react';
 
-function DeliveryModal({onClose,onSaveDelivery}) {
+function DeliveryModal({onClose,deliveryData, onSaveDelivery}) {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [externalType, setExternalType] = useState(null);
   const [activeMethod, setActiveMethod] = useState(null); 
@@ -17,6 +17,35 @@ function DeliveryModal({onClose,onSaveDelivery}) {
   date: '',
   CVC: '',
 });
+useEffect(() => {
+  if (deliveryData) {
+    setFormValues({
+      name: deliveryData.address.name || '',
+      ZIP: deliveryData.address.ZIP || '',
+      city: deliveryData.address.city || '',
+      street: deliveryData.address.street || '',
+      Apartment: deliveryData.address.apartment || '',
+      cardname: '',
+      card: '',
+      date: '',
+      CVC: '',
+    });
+
+    setActiveMethod(deliveryData.payment.method || null);
+    setSavePayment(deliveryData.payment.savePayment || false);
+
+    if (
+      deliveryData.payment.method === 'visa' ||
+      deliveryData.payment.method === 'mastercard'
+    ) {
+      setPaymentMethod('card');
+      setExternalType(null);
+    } else if (deliveryData.payment.method) {
+      setPaymentMethod('external');
+      setExternalType(deliveryData.payment.method);
+    }
+  }
+}, [deliveryData]);
 const handleSubmit = () => {
   const data = {
     address: {
@@ -61,10 +90,10 @@ const handleChange = (e) => {
   };
 
   const methods = [
-    { id: 'mastercard', icon: '#icon-mastercard' },
-    { id: 'visa', icon: '#icon-visa' },
-    { id: 'paypal', icon: '#icon-paypal' },
-    { id: 'applepay', icon: '#icon-applepay' },
+    { id: 'mastercard', icon: '#icon-mastercard',label:'Mastercard' },
+    { id: 'visa', icon: '#icon-visa',label:'Visa' },
+    { id: 'paypal', icon: '#icon-paypal',label:'paypal' },
+    { id: 'applepay', icon: '#icon-applepay',label:'applepay' },
   ];
 
   const handleMethodClick = (methodId) => {
@@ -85,6 +114,7 @@ useEffect(() => {
     formValues.city &&
     formValues.street
   );
+
 
   const methodSelected = Boolean(paymentMethod);
 

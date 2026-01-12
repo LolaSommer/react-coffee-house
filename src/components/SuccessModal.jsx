@@ -1,6 +1,6 @@
 import "./succesModal.scss";
 
-function SuccessModal({onClose,onClearCart}) {
+function SuccessModal({onClose,onClearCart,total, deliveryData,isDeliveryChecked}) {
 function handleOk(){
     onClearCart();
     onClose();
@@ -15,8 +15,8 @@ return (
                       </button>
                  <div className="thankyou__window">
                 <h2 className="thankyou__title">Thank you for your order ☕️</h2>
-                <p className="thankyou__text">Your order total is <span className="thankyou__price"></span></p>
-                <p className="thankyou__text">We’ve received your request and are preparing it now.</p>
+                <p className="thankyou__text">Your order total is <span className="thankyou__price">{total.toFixed(2)} $</span></p>
+                <p className="thankyou__text">    {isDeliveryChecked ? `Delivery to: ${deliveryData.address.street}`: 'Pickup in café'}</p>
                 <p className="thankyou__text">You’ll receive a confirmation via SMS shortly.</p>
                 <div className="thankyou__button">
                 <button className="thankyou__btn" onClick={handleOk}>OK</button>

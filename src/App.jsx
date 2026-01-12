@@ -94,9 +94,19 @@ function openDessertModal(id) {
     setIsAuth={auth.setIsAuth}
      isDeliveryChecked={isDeliveryChecked}
   setIsDeliveryChecked={setIsDeliveryChecked}
+
   />
 )}
-{modals.isOpen('success')&&<SuccessModal onClose={modals.closeModal} onClearCart={clearCart}/>}
+{modals.isOpen('success')&&<SuccessModal onClose={modals.closeModal}
+   onClearCart={() => {
+    clearCart();
+    setIsDeliveryChecked(false);
+  }}
+  total={total}
+  deliveryData={deliveryData}
+   isDeliveryChecked={isDeliveryChecked}
+  setIsDeliveryChecked={setIsDeliveryChecked}
+ />}
      {modals.isOpen('product') && selectedItem && (
   <Modal
     type={modalType}
@@ -118,7 +128,7 @@ function openDessertModal(id) {
   />
 )}
 {modals.isOpen('delivery') && (
-  <DeliveryModal onClose={modals.closeModal}  onSaveDelivery={setDeliveryData}/>
+  <DeliveryModal onClose={modals.closeModal}  onSaveDelivery={setDeliveryData}  deliveryData={deliveryData}/>
 )}
 
 
@@ -132,6 +142,7 @@ function openDessertModal(id) {
     setCurrentPage('home');
   }}
   onGoHome={() => setCurrentPage('home')}
+  deliveryData={deliveryData}
       />
     )}
      <Footer />

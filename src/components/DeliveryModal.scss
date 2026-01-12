@@ -80,6 +80,7 @@ flex-direction: column;
   padding-block: 0.75em 1em;
   appearance: none;
   -webkit-appearance: none;
+  color:$color-white;
   &:focus{
   outline: none;
   border-bottom: 1px solid rgba(255,255,255,0.9);
@@ -161,6 +162,7 @@ flex-direction: column;
         border-radius: 15px;
         padding: 8px;
         margin: 5px;
+        color: $color-white;
         &-num{
         border-radius: 15px;
         max-width: 100px;
@@ -168,6 +170,7 @@ flex-direction: column;
         padding: 5px;
         margin: 5px;
         text-align: center;
+        color: $color-white;
         }
     }
 }

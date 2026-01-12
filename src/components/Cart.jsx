@@ -154,6 +154,20 @@ function Cart({deliveryData,isAuth,openModal,cart,onClose,onPlus, onMinus, onRem
           ></input>
          <label className='cart__modal-label' htmlFor='delivery'> Delivery — free from $25</label>
           </div>
+          {isDeliveryChecked && deliveryData && (  
+           <div className="cart__delivery-summary">
+            <div className="cart__delivery-address">
+             Deliver to: {deliveryData.address.street}
+            </div>
+    <button
+      type="button"
+      className="cart__delivery-change"
+      onClick={() => openModal('delivery')}
+    >
+      change
+    </button>
+  </div>
+)}
           </div>
           <div className="cart__modal-bottom">
           <div className="cart__modal-summary">
