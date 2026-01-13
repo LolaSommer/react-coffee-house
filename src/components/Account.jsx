@@ -1,7 +1,40 @@
 import './Account.scss';
 import promo from '../assets/promo.webp';
 import { useState } from 'react';
+import { useForm } from '../hooks/useForm';
+import { profileSchema } from '../validation/profileSchema';
+import { addressSchema } from '../validation/addressSchema';
 function Account({ onLogout, onGoHome, deliveryData }) {
+const addressInitialValues = {
+  ZIP: '',
+  city: '',
+  street: '',
+  Apartment: '',
+};
+const {
+  values: addressValues,
+  handleChange: handleAddressChange,
+  validateForm: validateAddress,
+} = useForm(addressInitialValues, addressSchema);
+  const profileInitialValues = {
+  name: '',
+  email: '',
+  tel: '',
+  birth: '',
+};
+
+const {
+  values: profileValues,
+  handleChange: handleProfileChange,
+  validateForm: validateProfile,
+} = useForm(profileInitialValues, profileSchema);
+const handleProfileSave = () => {
+  if (validateProfile()) {
+    console.log('Profile data:', profileValues);
+    // позже: сохранить / отправить / положить в state
+  }
+};
+
     const paymentMethods = [
   { id: 'visa', label: 'Visa', icon: '#icon-visa' },
   { id: 'mastercard', label: 'Mastercard', icon: '#icon-mastercard' },
@@ -16,19 +49,23 @@ const [selectedPayment, setSelectedPayment] = useState(deliveryData?.payment?.me
         <form className="acc__auto">
           <h2 className='acc__title'>Your account details</h2>
           <label className="acc__text">Name
-            <input className="acc__input" type="text" name="name" placeholder="Enter your name" pattern="[A-Za-zА-Яа-я '\-]{2,}" />
+            <input className="acc__input" type="text" name="name" placeholder="Enter your name"   value={profileValues.name}
+  onChange={handleProfileChange}/>
           </label>
           <label className="acc__text">Email
-            <input className="acc__input" type="email" name="email" placeholder="Enter your email address" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+            <input className="acc__input" type="email" name="email" placeholder="Enter your email address"    value={profileValues.email}
+  onChange={handleProfileChange}/>
           </label>
           <label className="acc__text">Phone number
-            <input className="acc__input" type="tel" name="tel" placeholder="Enter your phone number" pattern="^\+?[0-9\s\-]{7,15}$" />
+            <input className="acc__input" type="tel" name="tel" placeholder="Enter your phone number"   value={profileValues.tel}
+  onChange={handleProfileChange} />
           </label>
           <label className="acc__text">Date of birth
-            <input className="acc__input" name="text" type="birth" placeholder="Enter your birthday" />
+            <input className="acc__input" name="birth"  value={profileValues.birth}
+  onChange={handleProfileChange} type="text" placeholder="Enter your birthday" />
           </label>
           <div className="acc__btn">
-            <button type="button" className="acc-btn">Save change</button>
+            <button type="button" onClick={handleProfileSave} className="acc-btn">Save change</button>
           </div>
         </form>
       </div>
@@ -66,19 +103,33 @@ const [selectedPayment, setSelectedPayment] = useState(deliveryData?.payment?.me
         <form className="adress__auto">
           <h2 className='adress__title'>Saved delivery address</h2>
           <label className="adress__text">ZIP code
-            <input className="adress__input" type="text" name="ZIP" placeholder="Enter your ZIP code" required />
+            <input className="adress__input" type="text"value={addressValues.ZIP}
+  onChange={handleAddressChange} name="ZIP" placeholder="Enter your ZIP code" required />
           </label>
           <label className="adress__text">City
-            <input className="adress__input" type="text" name="city" placeholder="Enter your city" required />
+            <input className="adress__input" type="text" name="city" value={addressValues.city}
+  onChange={handleAddressChange}  placeholder="Enter your city" required />
           </label>
           <label className="adress__text">Street
-            <input className="adress__input" name="street" type="text" placeholder="Enter your street" required />
+            <input className="adress__input" name="street" value={addressValues.street}
+  onChange={handleAddressChange} type="text" placeholder="Enter your street" required />
           </label>
           <label className="adress__text">Apartment (optional)
-            <input className="adress__input" type="text" name="Apartment" placeholder="Enter your apartment" />
+            <input className="adress__input" type="text"   value={addressValues.Apartment}
+  onChange={handleAddressChange} name="Apartment" placeholder="Enter your apartment" />
           </label>
           <div className="adress__btn">
-            <button type="submit" className="adress-btn">Save adress</button>
+           <button
+  type="button"
+  onClick={() => {
+    if (validateAddress()) {
+      console.log('Saved address:', addressValues);
+    }
+  }}
+>
+  Save address
+</button>
+
           </div>
         </form>
       </div>

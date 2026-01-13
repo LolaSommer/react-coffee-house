@@ -1,78 +1,41 @@
 import './DeliveryModal.scss';
 import { useState,useEffect } from 'react';
-
-function DeliveryModal({onClose,deliveryData, onSaveDelivery}) {
+import { useForm } from '../hooks/useForm';
+import { addressSchema } from '../validation/addressSchema';
+import {paymentSchema} from '../validation/paymentSchema';
+function DeliveryModal({onClose,onSaveDelivery,deliveryData}) {
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [externalType, setExternalType] = useState(null);
   const [activeMethod, setActiveMethod] = useState(null); 
   const [savePayment,setSavePayment]= useState(false);
-  const [formValues, setFormValues] = useState({
+  const initialValues = {
   name: '',
   ZIP: '',
   city: '',
   street: '',
+  Apartment: '',
+};
+const paymentInitialValues = {
   cardname: '',
-  Apartment:'',
   card: '',
   date: '',
   CVC: '',
-});
-useEffect(() => {
-  if (deliveryData) {
-    setFormValues({
-      name: deliveryData.address.name || '',
-      ZIP: deliveryData.address.ZIP || '',
-      city: deliveryData.address.city || '',
-      street: deliveryData.address.street || '',
-      Apartment: deliveryData.address.apartment || '',
-      cardname: '',
-      card: '',
-      date: '',
-      CVC: '',
-    });
-
-    setActiveMethod(deliveryData.payment.method || null);
-    setSavePayment(deliveryData.payment.savePayment || false);
-
-    if (
-      deliveryData.payment.method === 'visa' ||
-      deliveryData.payment.method === 'mastercard'
-    ) {
-      setPaymentMethod('card');
-      setExternalType(null);
-    } else if (deliveryData.payment.method) {
-      setPaymentMethod('external');
-      setExternalType(deliveryData.payment.method);
-    }
-  }
-}, [deliveryData]);
-const handleSubmit = () => {
-  const data = {
-    address: {
-      name: formValues.name,
-      ZIP: formValues.ZIP,
-      city: formValues.city,
-      street: formValues.street,
-      apartment: formValues.Apartment,
-    },
-    payment: {
-      method: activeMethod,
-      savePayment,
-    },
-  };
-
-  onSaveDelivery(data);
-  onClose();
 };
-const [isFormValid, setIsFormValid] = useState(false);
-const handleChange = (e) => {
-  const { name, value } = e.target;
+const paymentForm = useForm(paymentInitialValues, paymentSchema);
+const addressForm = useForm(initialValues, addressSchema);
+const {
+  values: addressValues,
+  isValid: isAddressValid,
+  handleChange: handleAddressChange,
+  validateForm: validateAddress,
+} = addressForm;
 
-  setFormValues(prev => ({
-    ...prev,
-    [name]: value,
-  }));
-};
+const {
+  values: paymentValues,
+  isValid: isPaymentValid,
+  handleChange: handlePaymentChange,
+  validateForm: validatePayment,
+} = paymentForm;
 
   const savePaymentText={
   visa: 'Save card on file',
@@ -107,36 +70,39 @@ const handleChange = (e) => {
       setExternalType(methodId);
     }
   };
-useEffect(() => {
-  const addressValid = Boolean(
-    formValues.name &&
-    formValues.ZIP &&
-    formValues.city &&
-    formValues.street
-  );
+function handleSubmit(addressValues, paymentValues) {
+  const data = {
+    address: {
+      name: addressValues.name,
+      ZIP: addressValues.ZIP,
+      city: addressValues.city,
+      street: addressValues.street,
+      apartment: addressValues.Apartment,
+    },
+    payment: {
+      method: activeMethod,
+      savePayment,
+      ...(paymentMethod === 'card' && {
+        card: paymentValues,
+      }),
+    },
+  };
 
+  onSaveDelivery(data);
+  onClose();
+}
+const handleConfirm = () => {
+  const isAddressOk = validateAddress();
 
-  const methodSelected = Boolean(paymentMethod);
-
-  let paymentValid = false;
-
+  let isPaymentOk = true;
   if (paymentMethod === 'card') {
-    paymentValid = Boolean(
-      formValues.cardname &&
-      formValues.card &&
-      formValues.date &&
-      formValues.CVC
-    );
+    isPaymentOk = validatePayment();
   }
 
-  if (paymentMethod === 'external') {
-    paymentValid = true;
+  if (isAddressOk && isPaymentOk) {
+    handleSubmit(addressValues, paymentValues);
   }
-
-  setIsFormValid(addressValid && methodSelected && paymentValid);
-}, [formValues, paymentMethod]);
-
-
+};
 
   return (
     <>
@@ -155,25 +121,26 @@ useEffect(() => {
             </div>
             <form className="reg__auto" onSubmit={e => e.preventDefault()}>
               <label className="reg__text">Name
-                <input className="reg__input" type="text" name="name"  value={formValues.name}
-                  onChange={handleChange} placeholder="Enter your name" pattern="[A-Za-zА-Яа-я '\-]{2,}" required />
+                <input className="reg__input" type="text" name="name"  
+                  onChange={handleAddressChange}   value={addressValues.name} placeholder="Enter your name" required />
               </label>
               <label className="reg__text">ZIP code
-                <input className="reg__input" type="text" name="ZIP" value={formValues.ZIP}
-                  onChange={handleChange} placeholder="Enter your ZIP code" required />
+                <input className="reg__input" type="text" name="ZIP" 
+                  onChange={handleAddressChange}   value={addressValues.ZIP} placeholder="Enter your ZIP code" required />
               </label>
               <label className="reg__text">City
-                <input className="reg__input" type="text" name="city"  value={formValues.city}
-                  onChange={handleChange} placeholder="Enter your city" required />
+                <input className="reg__input" type="text" name="city"  
+                  onChange={handleAddressChange}   value={addressValues.city}  placeholder="Enter your city" required />
               </label>
               <label className="reg__text">Street
-                <input className="reg__input" name="street"  value={formValues.street}
-                  onChange={handleChange} type="text" placeholder="Enter your street" required />
+                <input className="reg__input" name="street" 
+                  onChange={handleAddressChange} type="text"   value={addressValues.street} placeholder="Enter your street" required />
               </label>
               <label className="reg__text">Apartment (optional)
                 <input className="reg__input" type="text" name="Apartment"
-                    value={formValues.Apartment}
-                   onChange={handleChange}
+                 
+                   onChange={handleAddressChange}
+                     value={addressValues.Apartment}
                  placeholder="Enter your apartment" />
               </label>
               
@@ -203,8 +170,8 @@ useEffect(() => {
                     <input
                    className="card__input"
                     name="cardname"
-                     value={formValues.cardname}
-                  onChange={handleChange}
+                  value={paymentValues.cardname}
+                  onChange={handlePaymentChange}
                     type="text"
                       placeholder="Enter your name"
                    required
@@ -214,8 +181,8 @@ useEffect(() => {
                     <input className="card__input"
                      type="text"
                       name="card" 
-                       value={formValues.card}
-                  onChange={handleChange}
+                        value={paymentValues.card}
+                  onChange={handlePaymentChange}
                       placeholder="Enter your card number"
                        required />
                   </label>
@@ -224,15 +191,15 @@ useEffect(() => {
                       <input className="card__input-num" 
                       type="text" 
                       name="date" 
-                       value={formValues.date}
-                  onChange={handleChange}
+            value={paymentValues.date}
+                  onChange={handlePaymentChange}
                       placeholder="MM / YY" required />
                     </label>
                     <label className="card__text">CVC
                       <input className="card__input-num" 
                       type="text" name="CVC"
-                       value={formValues.CVC}
-                  onChange={handleChange}
+                      value={paymentValues.CVC}
+                  onChange={handlePaymentChange}
                        placeholder="3-digit code"
                         required />
                     </label>
@@ -262,7 +229,13 @@ useEffect(() => {
               )}
                 
               <div className="reg__btn">
-                <button type="submit"  className="reg-btn" onClick={handleSubmit} disabled={!isFormValid} >Confirm delivery</button>
+                <button
+  type="button"
+  className="reg-btn"
+  onClick={handleConfirm}>
+  Confirm delivery
+</button>
+
               </div>
             </form>
           </div>
