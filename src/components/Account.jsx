@@ -4,7 +4,19 @@ import { useState } from 'react';
 import { useForm } from '../hooks/useForm';
 import { profileSchema } from '../validation/profileSchema';
 import { addressSchema } from '../validation/addressSchema';
+import { paymentSchema } from '../validation/paymentSchema';
+import {phoneSchema} from '../validation/phoneSchema';
 function Account({ onLogout, onGoHome, deliveryData }) {
+const phoneInitialValues = {
+  tel: '',
+};
+
+const {
+  values: phoneValues,
+  handleChange: handlePhoneChange,
+  validateForm: validatePhone,
+} = useForm(phoneInitialValues, phoneSchema);
+
 const addressInitialValues = {
   ZIP: '',
   city: '',
@@ -16,18 +28,35 @@ const {
   handleChange: handleAddressChange,
   validateForm: validateAddress,
 } = useForm(addressInitialValues, addressSchema);
+
   const profileInitialValues = {
   name: '',
   email: '',
   tel: '',
   birth: '',
 };
+const paymentInitialValues = {
+  cardname: '',
+  card: '',
+  date: '',
+  CVC: '',
+};
+const paymentForm = useForm(paymentInitialValues, paymentSchema);
+const {
+  values: paymentValues,
+  isValid: isPaymentValid,
+  handleChange: handlePaymentChange,
+  validateForm: validatePayment,
+} = paymentForm;
+
+
 
 const {
   values: profileValues,
   handleChange: handleProfileChange,
   validateForm: validateProfile,
 } = useForm(profileInitialValues, profileSchema);
+
 const handleProfileSave = () => {
   if (validateProfile()) {
     console.log('Profile data:', profileValues);
@@ -57,8 +86,8 @@ const [selectedPayment, setSelectedPayment] = useState(deliveryData?.payment?.me
   onChange={handleProfileChange}/>
           </label>
           <label className="acc__text">Phone number
-            <input className="acc__input" type="tel" name="tel" placeholder="Enter your phone number"   value={profileValues.tel}
-  onChange={handleProfileChange} />
+            <input className="acc__input" type="tel" name="tel" placeholder="Enter your phone number"   value={phoneValues.tel}
+  onChange={handlePhoneChange} />
           </label>
           <label className="acc__text">Date of birth
             <input className="acc__input" name="birth"  value={profileValues.birth}
@@ -120,6 +149,7 @@ const [selectedPayment, setSelectedPayment] = useState(deliveryData?.payment?.me
           </label>
           <div className="adress__btn">
            <button
+           className='adress-btn'
   type="button"
   onClick={() => {
     if (validateAddress()) {
@@ -166,12 +196,39 @@ const [selectedPayment, setSelectedPayment] = useState(deliveryData?.payment?.me
                   </div>
                 ) : (
                   <div className="card-fields">
-                    <input className="card__input" type="text" placeholder="Card number" />
-                    <input className="card__input" type="text" placeholder="MM/YY" />
-                    <input className="card__input" type="text" placeholder="CVC" />
-                    <input className="card__input" type='text' placeholder='Card name'/>
+                    <input className="card__input"
+                     name='card' 
+                     value={paymentValues.card}
+                  onChange={handlePaymentChange} 
+                   type="text" 
+                   placeholder="Card number"/>
+                    <input className="card__input" 
+                    name='date'
+                    value={paymentValues.data}
+                  onChange={handlePaymentChange}
+                  type="text" placeholder="MM/YY"/>
+                    <input className="card__input"
+                    name='CVC'
+                       value={paymentValues.CVC}
+                  onChange={handlePaymentChange}
+                  type="text" placeholder="CVC" />
+                    <input className="card__input" name='cardname'  value={paymentValues.cardname}
+                  onChange={handlePaymentChange}type='text' placeholder='Card name'/>
                   </div>
                 )}
+                      {(selectedPayment === 'visa' || selectedPayment === 'mastercard') && (
+  <button
+    type="button"
+    className='payment__btn'
+    onClick={() => {
+      if (validatePayment()) {
+        console.log('Saved payment:', paymentValues);
+      }
+    }}
+  >
+    Save payment method
+  </button>
+)}
               </div>
             </label>
           </div>

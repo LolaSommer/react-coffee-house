@@ -58,13 +58,16 @@ function openDessertModal(id) {
 }
  return (
   <>
-  <Header
-          onCartOpen={() => modals.openModal('cart')}
-          totalItems={totalItems}
-          onOpenAccount={() => setCurrentPage('account')}
-          onAuthClick={() => modals.openModal('auth')}
-           isAuth={auth.isAuth}
-        />
+<Header
+  onCartOpen={() => modals.openModal('cart')}
+  totalItems={totalItems}
+  onOpenAccount={() => setCurrentPage('account')}
+  onGoHome={() => setCurrentPage('home')}
+  onAuthClick={() => modals.openModal('auth')}
+  isAuth={auth.isAuth}
+  currentPage={currentPage}
+/>
+
     {currentPage === 'home' && (
       <>
         <Hero />

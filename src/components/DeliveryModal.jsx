@@ -1,5 +1,5 @@
 import './DeliveryModal.scss';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from '../hooks/useForm';
 import { addressSchema } from '../validation/addressSchema';
 import {paymentSchema} from '../validation/paymentSchema';
@@ -32,10 +32,10 @@ const {
 
 const {
   values: paymentValues,
-  isValid: isPaymentValid,
   handleChange: handlePaymentChange,
   validateForm: validatePayment,
 } = paymentForm;
+
 
   const savePaymentText={
   visa: 'Save card on file',
@@ -97,12 +97,23 @@ const handleConfirm = () => {
   let isPaymentOk = true;
   if (paymentMethod === 'card') {
     isPaymentOk = validatePayment();
+   
   }
+
+  console.log('paymentMethod:', paymentMethod);
 
   if (isAddressOk && isPaymentOk) {
     handleSubmit(addressValues, paymentValues);
   }
 };
+ const isCardReady =
+  paymentValues.card.replace(/\D/g, '').length === 16 &&
+  paymentValues.CVC.length === 3 &&
+  paymentValues.date.length >= 4 &&
+  paymentValues.cardname.length >= 2;
+
+  const isCardButtonDisabled =
+  paymentMethod === 'card' && !isCardReady;
 
   return (
     <>
@@ -229,12 +240,18 @@ const handleConfirm = () => {
               )}
                 
               <div className="reg__btn">
-                <button
+              <button className='reg-btn'
   type="button"
-  className="reg-btn"
-  onClick={handleConfirm}>
-  Confirm delivery
+   disabled={isCardButtonDisabled}
+  onClick={() => {
+    if (paymentMethod !== 'card' || validatePayment()) {
+      handleConfirm();
+    }
+  }}
+>
+Confirm delivery
 </button>
+
 
               </div>
             </form>

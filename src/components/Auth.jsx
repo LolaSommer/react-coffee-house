@@ -1,14 +1,22 @@
 import './auth.scss';
 import { useState, useRef,useEffect } from 'react';
-
+import {phoneSchema} from '../validation/phoneSchema';
+import { useForm } from '../hooks/useForm';
 function Auth({onClose,onAuthSuccess}) {
 const [step, setStep] = useState('phone');
-const [phone, setPhone] = useState('');
 const [isPhoneValid,setIsPhoneValid] = useState(false);
 const [code, setCode] = useState(['', '', '', '']);
 const inputsRef = useRef([]);
 const [timer, setTimer] = useState(60);
 const [canResend, setCanResend] = useState(false);
+const phoneInitialValues = {
+  tel: '',
+};
+const {
+  values: phoneValues,
+  handleChange: handlePhoneChange,
+  validateForm: validatePhone,
+} = useForm(phoneInitialValues, phoneSchema);
 useEffect(() => {
   if (step !== 'code') return;
   if (timer === 0) {
@@ -30,21 +38,9 @@ function handleResend() {
 
 function handleClose() {
   setStep('phone');
-  setPhone('');
   onClose();
 }
-function handlePhoneChange(e) {
-  const rawValue = e.target.value;
-  // 1. оставить только цифры
-  const digitsOnly = rawValue.replace(/\D/g, '');
-  // 2. сохранить очищенный номер
-  setPhone(digitsOnly);
-  // 3. проверить длину
-  const isValid =
-    digitsOnly.length >= 10 && digitsOnly.length <= 15;
-  // 4. обновить флаг
-  setIsPhoneValid(isValid);
-}
+
 
 function handleCodeChange(index, value) {
  const digit = value.replace(/\D/g, '').slice(0, 1);
@@ -73,6 +69,9 @@ function handleVerifyClick() {
     onClose();
   }
 }
+const isPhoneReady =
+  phoneValues.tel.length >= 10 &&
+  phoneValues.tel.length <= 15;
 
 const isCodeComplete = code.every(d=> d !== '');
 
@@ -92,13 +91,20 @@ const isCodeComplete = code.every(d=> d !== '');
       </div>
       <form>
         <label className="auth__tel">
-        <input className="auth__input" value={phone} onChange={handlePhoneChange} type="tel" name="tel" placeholder="+49  ___ ___ ___" required></input>
+        <input className="auth__input" value={phoneValues.tel}
+  onChange={handlePhoneChange} type="tel" name="tel" placeholder="+49  ___ ___ ___" required></input>
          </label>
       </form>
       <p className='auth__sms'>We’ll send you a one-time code to verify your number.</p>
       <div className='auth__btn-group'>
       <p className='auth__text'>By continuing, you agree to our <a className='auth__link' href="#">Terms</a> and <a  className='auth__link' href="#">Privacy Policy</a></p>
-      <button  type="button" className='auth__btn' disabled={!isPhoneValid} onClick={() => setStep('code')}>
+      <button  type="button" className='auth__btn'   
+  disabled={!isPhoneReady}
+  onClick={() => {
+    if (validatePhone()) {
+      setStep('code');
+    }
+  }}>
   Continue
 </button>
 
@@ -109,7 +115,7 @@ const isCodeComplete = code.every(d=> d !== '');
     <div className='auth__window'>
       <div className='auth__group'>
       <h2 className='auth__title'>Enter the SMS code</h2>
-      <p className='auth__description'>We sent to {phone}</p>
+      <p className='auth__description'>We sent to {phoneValues.tel}</p>
       </div>
       <form className="auth__form">
   {code.map((digit, i) => (

@@ -1,6 +1,19 @@
 import './header.scss';
 
-function Header({onCartOpen, onAuthClick,onOpenAccount,totalItems,isAuth}) {
+function Header({onCartOpen, onAuthClick,onOpenAccount,totalItems,isAuth,onGoHome,currentPage}) {
+let buttonText = 'Log in';
+let handleClick = onAuthClick;
+
+if (isAuth && currentPage === 'home') {
+  buttonText = 'My account';
+  handleClick = onOpenAccount;
+}
+
+if (isAuth && currentPage === 'account') {
+  buttonText = 'Back to home';
+  handleClick = onGoHome;
+}
+
   return (
     <header className="header">
       <div className="header__logo">
@@ -19,18 +32,12 @@ function Header({onCartOpen, onAuthClick,onOpenAccount,totalItems,isAuth}) {
       </nav>
       <div className="header__group">
         <div className="header__auth">
-        <button
+    <button
   type="button"
   className="header__login"
-  onClick={() => {
-    if (isAuth) {
-      onOpenAccount();
-    } else {
-      onAuthClick();
-    }
-  }}
+  onClick={handleClick}
 >
-  {isAuth ? 'My account' : 'Log in'}
+  {buttonText}
 </button>
         </div>
         <div className="header__cart-group">

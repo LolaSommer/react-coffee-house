@@ -199,6 +199,15 @@
     margin: 20px 0;
     min-width: 500px;
   }
+  &__btn{
+    display: grid;
+    justify-self: center;
+    border-radius: 30px;
+    color:$color-white;
+    background: $color-btn;
+    padding: 5px;
+    margin: 5px;
+  }
 
   &-option {
     margin-bottom: 10px;
@@ -358,6 +367,4 @@
    display:flex;
     justify-content: space-around;
     padding-inline: 100px;
-  
-    
 }

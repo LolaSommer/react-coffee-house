@@ -1,4 +1,4 @@
-import { onlyLetters, validLength,onlyDigits,isEmail } from '../utils/validators';
+import { onlyLetters, validLength,onlyDigits,isEmail,sanitizeBirth,isValidBirth} from '../utils/validators';
 
 export const profileSchema = {
   name: {
@@ -19,9 +19,10 @@ export const profileSchema = {
     validate: (value) => validLength(value, 2, 40),
   },
 
-  birthday: {
-    sanitize: null,
+   birth: {
+    sanitize: sanitizeBirth,
     required: false,
+    validate: isValidBirth,
   },
 };
 
