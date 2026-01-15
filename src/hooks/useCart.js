@@ -1,9 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 
 export function useCart() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+  const saved = localStorage.getItem('cart');
+  return saved ? JSON.parse(saved) : [];
+});
+useEffect(() => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}, [cart]);
+
  function clearCart(){
   setCart([]);
+  localStorage.removeItem('cart');
+
  }
   const addToCart = (cartItem) => {
     setCart(prev => {

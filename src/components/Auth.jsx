@@ -2,15 +2,17 @@ import './auth.scss';
 import { useState, useRef,useEffect } from 'react';
 import {phoneSchema} from '../validation/phoneSchema';
 import { useForm } from '../hooks/useForm';
-function Auth({onClose,onAuthSuccess}) {
+function Auth({onClose,onAuthSuccess,initialPhone}) {
 const [step, setStep] = useState('phone');
 const [code, setCode] = useState(['', '', '', '']);
 const inputsRef = useRef([]);
 const [timer, setTimer] = useState(60);
 const [canResend, setCanResend] = useState(false);
+
 const phoneInitialValues = {
-  tel: '',
+  tel: initialPhone || '',
 };
+
 const {
   values: phoneValues,
   handleChange: handlePhoneChange,

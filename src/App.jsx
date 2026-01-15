@@ -22,17 +22,15 @@ function App() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType]=useState(null);
   const [openedFrom, setOpenedFrom] = useState('menu');
-  const {cart,
-    addToCart,
-    increaseQty,
-    updateCartItem,
-    decreaseQty,
-    removeFromCart,
-    total,
+  const {cart, addToCart,increaseQty, updateCartItem,decreaseQty, removeFromCart,total,
     totalItems,
     clearCart,
   } = useCart();
-  const [isDeliveryChecked, setIsDeliveryChecked] = useState(false);
+  const [isDeliveryChecked, setIsDeliveryChecked] = useState(() => {
+  const saved = localStorage.getItem('isDeliveryChecked');
+  return saved ? JSON.parse(saved) : false;
+});
+
   const [currentPage, setCurrentPage] = useState('home');
 const [selectedProductId, setSelectedProductId] = useState(null);
 const [deliveryData, setDeliveryData] = useState(null);
@@ -47,6 +45,13 @@ const [userData, setUserData] = useState(() => {
         payment: null,
       };
 });
+useEffect(() => {
+  localStorage.setItem(
+    'isDeliveryChecked',
+    JSON.stringify(isDeliveryChecked)
+  );
+}, [isDeliveryChecked]);
+
 useEffect(() => {
   localStorage.setItem('userData', JSON.stringify(userData));
 }, [userData]);
@@ -159,14 +164,15 @@ const handleSaveDelivery = (data) => {
   <Auth
     authStep={auth.authStep}
     onClose={modals.closeModal}
-    onAuthSuccess={handleAuthSuccess}
+     onAuthSuccess={handleAuthSuccess}
+  initialPhone={userData.phone}
     onNextStep={auth.goToCodeStep}
   />
 )}
 {modals.isOpen('delivery') && (
   <DeliveryModal onClose={modals.closeModal}  
   onSaveDelivery={handleSaveDelivery}
-  deliveryData={userData}/>
+  userData={userData}/>
 )}
 
 
@@ -179,8 +185,10 @@ const handleSaveDelivery = (data) => {
     auth.logout();
     setCurrentPage('home');
   }}
-  onGoHome={() => setCurrentPage('home')}
+  userData={userData}
   deliveryData={deliveryData}
+  setUserData={setUserData}
+  onOpenDelivery={() => modals.openModal('delivery')}
       />
     )}
      <Footer />

@@ -1,7 +1,7 @@
 import './cart.scss';
 import emptycart from '../assets/emptycart.webp';
 import { extras } from '../data/extras';
-import {useRef, useEffect,useState} from 'react';
+import {useRef, useEffect} from 'react';
 function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   return( <div className='cart__item'>
               <div className='cart__item-wrapper'>

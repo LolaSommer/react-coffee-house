@@ -52,5 +52,6 @@ export function useForm(initialValues, schema) {
     isValid,
     handleChange,
     validateForm,
+    setValues
   };
 }

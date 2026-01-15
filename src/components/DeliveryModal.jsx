@@ -1,28 +1,48 @@
 import './DeliveryModal.scss';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useForm } from '../hooks/useForm';
 import { addressSchema } from '../validation/addressSchema';
 import {paymentSchema} from '../validation/paymentSchema';
-function DeliveryModal({onClose,onSaveDelivery,deliveryData}) {
-  const [paymentMethod, setPaymentMethod] = useState(null);
-  const [externalType, setExternalType] = useState(null);
-  const [activeMethod, setActiveMethod] = useState(null); 
+function DeliveryModal({onClose,onSaveDelivery,userData}) {
+  const [externalType, setExternalType] = useState(null); 
   const [savePayment,setSavePayment]= useState(false);
-  const initialValues = {
-  name: '',
-  ZIP: '',
-  city: '',
-  street: '',
-  Apartment: '',
+ const initialAddressValues = {
+  name: userData?.address?.name || '',
+  ZIP: userData?.address?.ZIP || '',
+  city: userData?.address?.city || '',
+  street: userData?.address?.street || '',
+  Apartment: userData?.address?.apartment || '',
 };
-const paymentInitialValues = {
-  cardname: '',
-  card: '',
-  date: '',
-  CVC: '',
-};
-const paymentForm = useForm(paymentInitialValues, paymentSchema);
-const addressForm = useForm(initialValues, addressSchema);
+const addressForm = useForm(initialAddressValues, addressSchema);
+const initialPaymentValues = userData?.payment?.card
+  ? {
+      cardname: userData.payment.card.cardname || '',
+      card: userData.payment.card.card || '',
+      date: userData.payment.card.date || '',
+      CVC: userData.payment.card.CVC || '',
+    }
+  : {
+      cardname: '',
+      card: '',
+      date: '',
+      CVC: '',
+    };
+
+const paymentForm = useForm(initialPaymentValues, paymentSchema);
+const [activeMethod, setActiveMethod] = useState(
+  userData?.payment?.method || null
+);
+
+const [paymentMethod, setPaymentMethod] = useState(
+  userData?.payment?.method === 'visa' ||
+  userData?.payment?.method === 'mastercard'
+    ? 'card'
+    : userData?.payment?.method
+    ? 'external'
+    : null
+);
+
+
 const {
   values: addressValues,
   isValid: isAddressValid,
@@ -51,6 +71,26 @@ const {
       text: 'After clicking "Pay with Apple Pay", you will be redirected to Apple Pay to securely complete your purchase.',
     }
   };
+useEffect(() => {
+  if (userData?.address) {
+    addressForm.setValues({
+      name: userData.address.name || '',
+      ZIP: userData.address.ZIP || '',
+      city: userData.address.city || '',
+      street: userData.address.street || '',
+      Apartment: userData.address.apartment || '',
+    });
+  }
+
+  if (userData?.payment?.card) {
+    paymentForm.setValues({
+      cardname: userData.payment.card.cardname || '',
+      card: userData.payment.card.card || '',
+      date: userData.payment.card.date || '',
+      CVC: userData.payment.card.CVC || '',
+    });
+  }
+}, [userData]);
 
   const methods = [
     { id: 'mastercard', icon: '#icon-mastercard',label:'Mastercard' },
@@ -99,9 +139,6 @@ const handleConfirm = () => {
     isPaymentOk = validatePayment();
    
   }
-
-  console.log('paymentMethod:', paymentMethod);
-
   if (isAddressOk && isPaymentOk) {
     handleSubmit(addressValues, paymentValues);
   }
