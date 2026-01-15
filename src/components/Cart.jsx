@@ -36,21 +36,21 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   );
 } 
 
-function Cart({deliveryData,isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
+function Cart({userData,isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
   setIsDeliveryChecked,}) {
- function handleCheckout() {
+function handleCheckout() {
   if (!isAuth) {
     openModal('auth');
     return;
   }
 
-  if (isDeliveryChecked && !deliveryData) {
+  if (isDeliveryChecked && !userData?.address) {
     openModal('delivery');
     return;
   }
+
   openModal('success');
 }
-
   const isdeliveryAvailable = total>=25;
   const cartRef = useRef(null);
   useEffect(() => {
@@ -154,10 +154,10 @@ function Cart({deliveryData,isAuth,openModal,cart,onClose,onPlus, onMinus, onRem
           ></input>
          <label className='cart__modal-label' htmlFor='delivery'> Delivery — free from $25</label>
           </div>
-          {isDeliveryChecked && deliveryData && (  
+          {isDeliveryChecked && userData?.address && ( 
            <div className="cart__delivery-summary">
             <div className="cart__delivery-address">
-             Deliver to: {deliveryData.address.street}
+             Deliver to: {userData.address.street}
             </div>
     <button
       type="button"

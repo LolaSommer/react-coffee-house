@@ -4,7 +4,6 @@ import {phoneSchema} from '../validation/phoneSchema';
 import { useForm } from '../hooks/useForm';
 function Auth({onClose,onAuthSuccess}) {
 const [step, setStep] = useState('phone');
-const [isPhoneValid,setIsPhoneValid] = useState(false);
 const [code, setCode] = useState(['', '', '', '']);
 const inputsRef = useRef([]);
 const [timer, setTimer] = useState(60);
@@ -65,7 +64,7 @@ function handleVerifyClick() {
     setStep('phone');
     setCode(['', '', '', '']);
   } else {
-    onAuthSuccess(true);
+    onAuthSuccess(phoneValues.tel);
     onClose();
   }
 }

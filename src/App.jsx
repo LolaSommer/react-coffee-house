@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Menu from "./components/Menu";
@@ -36,6 +36,28 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home');
 const [selectedProductId, setSelectedProductId] = useState(null);
 const [deliveryData, setDeliveryData] = useState(null);
+const [userData, setUserData] = useState(() => {
+  const saved = localStorage.getItem('userData');
+  return saved
+    ? JSON.parse(saved)
+    : {
+        phone: null,
+        profile: {},
+        address: null,
+        payment: null,
+      };
+});
+useEffect(() => {
+  localStorage.setItem('userData', JSON.stringify(userData));
+}, [userData]);
+
+const handleAuthSuccess = (phone) => {
+  setUserData(prev => ({
+    ...prev,
+    phone,
+  }));
+  auth.setIsAuth(true);
+};
 
 function handleChange(item){
  setSelectedItem(item);
@@ -56,6 +78,16 @@ function openDessertModal(id) {
   setSelectedItem(desserts[id].modal);
   setSelectedProductId(id);
 }
+const handleSaveDelivery = (data) => {
+  setUserData(prev => ({
+    ...prev,
+    address: data.address,
+    payment: data.payment,
+  }));
+};
+
+
+
  return (
   <>
 <Header
@@ -81,7 +113,7 @@ function openDessertModal(id) {
         {modals.isOpen('cart') && (
   <Cart
     cart={cart}
-    deliveryData={deliveryData}
+    userData={userData}
     onCheckout={null} 
     onChange={handleChange}
     onAuthClick={() => modals.openModal('auth')}
@@ -100,13 +132,14 @@ function openDessertModal(id) {
 
   />
 )}
-{modals.isOpen('success')&&<SuccessModal onClose={modals.closeModal}
+{modals.isOpen('success')&&<SuccessModal
+ onClose={modals.closeModal}
    onClearCart={() => {
     clearCart();
     setIsDeliveryChecked(false);
   }}
+  userData={userData}
   total={total}
-  deliveryData={deliveryData}
    isDeliveryChecked={isDeliveryChecked}
   setIsDeliveryChecked={setIsDeliveryChecked}
  />}
@@ -126,12 +159,14 @@ function openDessertModal(id) {
   <Auth
     authStep={auth.authStep}
     onClose={modals.closeModal}
-    onAuthSuccess={auth.setIsAuth}
+    onAuthSuccess={handleAuthSuccess}
     onNextStep={auth.goToCodeStep}
   />
 )}
 {modals.isOpen('delivery') && (
-  <DeliveryModal onClose={modals.closeModal}  onSaveDelivery={setDeliveryData}  deliveryData={deliveryData}/>
+  <DeliveryModal onClose={modals.closeModal}  
+  onSaveDelivery={handleSaveDelivery}
+  deliveryData={userData}/>
 )}
 
 
