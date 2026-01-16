@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react';
 import { useForm } from '../hooks/useForm';
 import { addressSchema } from '../validation/addressSchema';
 import {paymentSchema} from '../validation/paymentSchema';
-function DeliveryModal({onClose,onSaveDelivery,userData}) {
+function DeliveryModal({onClose,onSaveDelivery,userData,mode}) {
   const [externalType, setExternalType] = useState(null); 
   const [savePayment,setSavePayment]= useState(false);
  const initialAddressValues = {
@@ -55,6 +55,11 @@ const {
   handleChange: handlePaymentChange,
   validateForm: validatePayment,
 } = paymentForm;
+const isEditMode = mode === 'edit';
+
+const buttonText = isEditMode
+  ? 'Save changes'
+  : 'Confirm delivery';
 
 
   const savePaymentText={
@@ -137,7 +142,6 @@ const handleConfirm = () => {
   let isPaymentOk = true;
   if (paymentMethod === 'card') {
     isPaymentOk = validatePayment();
-   
   }
   if (isAddressOk && isPaymentOk) {
     handleSubmit(addressValues, paymentValues);
@@ -277,18 +281,14 @@ const handleConfirm = () => {
               )}
                 
               <div className="reg__btn">
-              <button className='reg-btn'
+           <button
   type="button"
-   disabled={isCardButtonDisabled}
-  onClick={() => {
-    if (paymentMethod !== 'card' || validatePayment()) {
-      handleConfirm();
-    }
-  }}
+  className="reg-btn"
+  disabled={isCardButtonDisabled}
+  onClick={handleConfirm}
 >
-Confirm delivery
+  {mode === 'edit' ? 'Save changes' : 'Confirm delivery'}
 </button>
-
 
               </div>
             </form>

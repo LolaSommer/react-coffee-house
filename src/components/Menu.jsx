@@ -6,8 +6,6 @@ function Menu({onCoffeeSelect,onDessertSelect}) {
   const menuItems = Object.values(coffeeProducts).filter(
   item => item.menu
 );
-
-
   const cardsRef = useRef(null);
   const dessertsRef = useRef(null);
 return (

@@ -1,7 +1,7 @@
 import './Account.scss';
 import promo from '../assets/promo.webp';
 import { useState } from 'react';
-function Account({ onLogout,userData,setUserData,onOpenDelivery }) {
+function Account({ onLogout,userData,setUserData,onOpenDeliveryModal}) {
 const [isEditingProfile, setIsEditingProfile] = useState(false);
 const [isEditingAddress, setIsEditingAddress] = useState(false);
 const [isEditingPayment, setIsEditingPayment] = useState(false);
@@ -71,7 +71,20 @@ const [isEditingPayment, setIsEditingPayment] = useState(false);
   type="text" placeholder="Enter your birthday" />
           </label>
           <div className="acc__btn">
-            <button type="button" className="acc-btn">Save change</button>
+           <button
+  type="button"
+  className="acc-btn"
+  onClick={() => {
+    if (isEditingProfile) {
+      setIsEditingProfile(false);
+    } else {
+      setIsEditingProfile(true);
+    }
+  }}
+>
+  {isEditingProfile ? 'Save changes' : 'Edit profile'}
+</button>
+
           </div>
         </form>
       </div>
@@ -108,28 +121,56 @@ const [isEditingPayment, setIsEditingPayment] = useState(false);
       </div>
       </div>
        <section className='info'>
-      <div className='adress'>
-        <form className="adress__auto">
-          <h2 className='adress__title'>Saved delivery address</h2>
-        <p>{userData.address?.street}</p>
-      <button onClick={onOpenDelivery}>
-      Change address
-         </button>
-        </form>
+      <div className="adress">
+  <h2 className="adress__title">Saved delivery address</h2>
+
+  {!userData.address ? (
+    <p className="adress__empty">
+      No delivery address saved yet
+    </p>
+  ) : (
+    <>
+      <p className="adress__text"> 
+        {userData.address.street}, {userData.address.city}
+      </p>
+      <div className='adress-btn'>
+      <button
+        type="button"
+        className="adress__btn"
+         onClick={() => onOpenDeliveryModal('edit')}
+      >
+        Change address
+      </button>
       </div>
-      <div className="payment-methods">
-          <div className="payment-option">
+      </>
+  )}
+</div>
+     <div className="payment-methods">
+  <h2 className="payment__title">Payment method</h2>
+
+  {!userData.payment?.card ? (
+    <p className="payment__empty">
+      No payment method saved yet
+    </p>
+  ) : (
+    <>
       <input
-  value={
-    userData.payment?.card
-      ? `**** **** **** ${userData.payment.card.card.slice(-4)}`
-      : ''
-  }
-  disabled
-/>
-<button>Change payment</button>
-              </div>
-          </div>
+        className="payment__input"
+        value={`**** **** **** ${userData.payment.card.card.slice(-4)}`}
+        disabled
+      />
+      <div className='payment-btn'>
+      <button
+        type="button"
+        className="payment__btn"
+        onClick={onOpenDeliveryModal}
+      >
+        Change payment
+      </button>
+      </div>
+    </>
+  )}
+</div>
           </section>
       </div>
   );

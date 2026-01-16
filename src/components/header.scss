@@ -18,12 +18,39 @@
     }
     &__list{
         text-decoration: none;
+        padding-inline: 10px;
         color:$color-white;
+        position:relative;
         font-size:$fs-middle;
+          transition: color 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom:-0.3rem;
+    width: 0%;
+    height: 15px;
+    background-color: $color-icon;
+    transition: width 0.3s ease;
+    opacity: 0.75;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  &--active::after {
+    width: 100%;
+  }
     }
     &__link{
-        list-style: none;
-    }
+       padding-inline: 10px;
+       list-style: none;
+  text-decoration: none;
+  color: $color-white;
+  transition: color 0.3s ease;
+}
     &__cart{
         position: relative;
         background: inherit;

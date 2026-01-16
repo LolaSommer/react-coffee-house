@@ -37,7 +37,7 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
 } 
 
 function Cart({userData,isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
-  setIsDeliveryChecked,}) {
+  setIsDeliveryChecked,onOpenDeliveryModal}) {
 function handleCheckout() {
   if (!isAuth) {
     openModal('auth');
@@ -159,13 +159,14 @@ function handleCheckout() {
             <div className="cart__delivery-address">
              Deliver to: {userData.address.street}
             </div>
-    <button
-      type="button"
-      className="cart__delivery-change"
-      onClick={() => openModal('delivery')}
-    >
-      change
-    </button>
+ <button
+  type="button"
+  className="cart__delivery-change"
+  onClick={() => onOpenDeliveryModal('edit')}
+>
+  change
+</button>
+
   </div>
 )}
           </div>

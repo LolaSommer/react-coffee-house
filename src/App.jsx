@@ -45,6 +45,40 @@ const [userData, setUserData] = useState(() => {
         payment: null,
       };
 });
+
+
+const [activeSection, setActiveSection] = useState('hero');
+useEffect(() => {
+  if (currentPage !== 'home') return;
+
+  const ids = ['hero', 'menu', 'about', 'events', 'contact'];
+  const sections = ids
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveSection(entry.target.id);
+      });
+    },
+    {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0,
+    }
+  );
+
+  sections.forEach((el) => observer.observe(el));
+
+  return () => observer.disconnect();
+}, [currentPage]);
+
+
+<div style={{ position: 'fixed', bottom: 10, left: 10, zIndex: 9999 }}>
+  active: {activeSection}
+</div>
+
 useEffect(() => {
   localStorage.setItem(
     'isDeliveryChecked',
@@ -90,9 +124,12 @@ const handleSaveDelivery = (data) => {
     payment: data.payment,
   }));
 };
+const [deliveryMode, setDeliveryMode] = useState('confirm');
 
-
-
+const openDeliveryModal = (mode = 'confirm') => {
+  setDeliveryMode(mode);
+  modals.openModal('delivery');
+};
  return (
   <>
 <Header
@@ -103,6 +140,8 @@ const handleSaveDelivery = (data) => {
   onAuthClick={() => modals.openModal('auth')}
   isAuth={auth.isAuth}
   currentPage={currentPage}
+  activeSection={activeSection}
+
 />
 
     {currentPage === 'home' && (
@@ -114,8 +153,9 @@ const handleSaveDelivery = (data) => {
         />
         <About />
         <Events />
-       
-        {modals.isOpen('cart') && (
+      </>
+    )}
+          {modals.isOpen('cart') && (
   <Cart
     cart={cart}
     userData={userData}
@@ -134,6 +174,7 @@ const handleSaveDelivery = (data) => {
     setIsAuth={auth.setIsAuth}
      isDeliveryChecked={isDeliveryChecked}
   setIsDeliveryChecked={setIsDeliveryChecked}
+  onOpenDeliveryModal={() => openDeliveryModal('edit')}
 
   />
 )}
@@ -172,12 +213,9 @@ const handleSaveDelivery = (data) => {
 {modals.isOpen('delivery') && (
   <DeliveryModal onClose={modals.closeModal}  
   onSaveDelivery={handleSaveDelivery}
-  userData={userData}/>
+  userData={userData}
+   mode={deliveryMode}/>
 )}
-
-
-      </>
-    )}
 
     {currentPage === 'account' && (
       <Account
@@ -188,7 +226,7 @@ const handleSaveDelivery = (data) => {
   userData={userData}
   deliveryData={deliveryData}
   setUserData={setUserData}
-  onOpenDelivery={() => modals.openModal('delivery')}
+ onOpenDeliveryModal={() => openDeliveryModal('edit')}
       />
     )}
      <Footer />

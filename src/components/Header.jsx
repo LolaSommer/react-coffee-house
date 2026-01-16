@@ -1,6 +1,6 @@
 import './header.scss';
 
-function Header({onCartOpen, onAuthClick,onOpenAccount,totalItems,isAuth,onGoHome,currentPage}) {
+function Header({activeSection,onCartOpen, onAuthClick,onOpenAccount,totalItems,isAuth,onGoHome,currentPage}) {
 let buttonText = 'Log in';
 let handleClick = onAuthClick;
 
@@ -22,14 +22,29 @@ if (isAuth && currentPage === 'account') {
       </svg>
       </div>
       <nav className="header__nav" aria-label="Main navigation">
-         <ul className="header__check">
-        <li className="header__link"><a href="#hero" className="header__list">Home</a></li>
-        <li className="header__link"><a href="#menu" className="header__list">Menu</a></li>
-        <li className="header__link"><a href="#about" className="header__list">About</a></li>
-        <li className="header__link"><a href="#events" className="header__list">Events</a></li>
-        <li className="header__link"><a href="#contact" className="header__list">Contact</a></li>
-        </ul>
-      </nav>
+  <ul className="header__check">
+    <li className='header__link'>
+      <a href="#hero" className={`header__list ${activeSection === 'hero' ? 'header__list--active' : ''}`}>Home</a>
+    </li>
+
+    <li className='header__link'>
+      <a href="#menu" className={`header__list ${activeSection === 'menu' ? 'header__list--active' : ''}`}>Menu</a>
+    </li>
+
+    <li className='header__link'>
+      <a href="#about" className={`header__list ${activeSection === 'about' ? 'header__list--active' : ''}`}>About</a>
+    </li>
+
+    <li className='header__link'>
+      <a href="#events" className={`header__list ${activeSection === 'events' ? 'header__list--active' : ''}`}>Events</a>
+    </li>
+
+    <li className='header__link'>
+      <a href="#contact" className={`header__list ${activeSection === 'contact' ? 'header__list--active' : ''}`}>Contact</a>
+    </li>
+  </ul>
+</nav>
+
       <div className="header__group">
         <div className="header__auth">
     <button
