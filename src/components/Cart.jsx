@@ -22,7 +22,7 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
                 <div className='cart__item-radiogroup'>
                     {item.type === 'coffee' && (<button onClick={() => onChange(item)}
   className="cart__item-change">change</button>)}
-      <button className="cart__item-left" onClick={onMinus}>-</button>
+    <button className="cart__item-left" onClick={onMinus}>-</button>
       <div className="cart__item-count">{item.quantity}</div>
       <button className="cart__item-right" onClick={onPlus}>+</button>
       <div className="cart__item-remove" data-remove="coffee" onClick={onRemove}>
@@ -32,6 +32,12 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
       </div>
                 </div>
               </div>
+                 {item.type === 'card' && (
+  <div className="cart__item-message">
+    <h3 className='message__title'>✍️Inscribe your intention</h3>
+    <textarea className='message__area' rows='2'cols='40' maxLength='150' placeholder='Happy Birthday! Thinking of you and wishing you warmth today.'></textarea>
+  </div>
+)}
             </div>
   );
 } 
@@ -122,6 +128,8 @@ function handleCheckout() {
               image: extra.image,
               price: extra.price,
               quantity: 1,
+              type:extra.type,
+                ...(extra.type === 'card' && { message: '' }),
             };
             onAddToCart(extraItem);
           }}

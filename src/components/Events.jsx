@@ -2,7 +2,7 @@ import './events.scss';
 import { actions } from '../data/actions';
 import {events} from '../data/events';
 import { useRef } from "react";
-function Events() {
+function Events({onPromoClick,}) {
   const actionRef = useRef(null);
   return (
     <>
@@ -13,21 +13,22 @@ function Events() {
       <div className='events__action-viewport'>
       <div className='events__action-cards' ref={actionRef}>
        {actions.map(action => (
-  <div className="events__action-card" key={action.id}>
+  <div className="events__action-card" key={action.id} data={action.cardData} onClick={() => onPromoClick(action.id)}>
     <picture>
-      <source srcSet={action.image} type="image/webp" />
+      <source srcSet={action.image} type="image/webp"/>
       <img
         className="events__action-img"
-        src={action.image}
-        alt={`${action.title}`}
+        src={action.cardData.image}
+        alt={`${action.cardData.title}`}
       />
     </picture>
 
     <div className='events__action-cardtitle'>{action.title}</div>
-    <div className="events__action-description">{action.description}</div>
+    <div className="events__action-description">{action.cardData.description}</div>
     <button
       type="button"
-      className="events__action-btn">
+      className="events__action-btn" onClick={onPromoClick}
+>
       Activate Resonance
     </button>
   </div>

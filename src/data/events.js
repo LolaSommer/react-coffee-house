@@ -2,7 +2,7 @@ import alchemy from '../assets/alchemy.webp';
 import cup from '../assets/cup.webp';
 import nohandy from '../assets/nohandy.webp';
 import tasseo from '../assets/tasseo.webp';
-export const actions=[
+export const events=[
   {
   id: 'alchemy',
   image:alchemy,

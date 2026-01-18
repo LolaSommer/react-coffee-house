@@ -8,7 +8,7 @@ export const extras = [
     price: 6,
     image: happy,
     alt: 'Greeting card to add a personal note to your coffee order',
-    type: 'extra'
+    type: 'card'
 
   },
   {

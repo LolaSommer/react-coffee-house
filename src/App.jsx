@@ -11,17 +11,20 @@ import Auth from "./components/Auth";
 import Account from "./components/Account.jsx";
 import SuccessModal from "./components/SuccessModal";
 import DeliveryModal from "./components/DeliveryModal.jsx";
+import ActionModal from "./components/ActionModal.jsx";
 import { useModals } from './hooks/useModals';
 import {useCart} from './hooks/useCart.js';
 import { useAuth } from './hooks/useAuth';
 import { coffeeProducts } from './data/coffeeProducts';
-import { desserts } from  './data/desserts.js'
+import { desserts } from  './data/desserts.js';
+import { actions } from "./data/actions.js";
 function App() {
   const modals = useModals();
   const auth = useAuth();
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType]=useState(null);
   const [openedFrom, setOpenedFrom] = useState('menu');
+  const [selectedAction, setSelectedAction] = useState(null);
   const {cart, addToCart,increaseQty, updateCartItem,decreaseQty, removeFromCart,total,
     totalItems,
     clearCart,
@@ -45,8 +48,11 @@ const [userData, setUserData] = useState(() => {
         payment: null,
       };
 });
-
-
+const handleActionClick = (actionId) => {
+  const action = actions.find(a => a.id === actionId);
+  setSelectedAction(action);
+  modals.openModal('action');
+};
 const [activeSection, setActiveSection] = useState('hero');
 useEffect(() => {
   if (currentPage !== 'home') return;
@@ -152,7 +158,9 @@ const openDeliveryModal = (mode = 'confirm') => {
           onDessertSelect={openDessertModal}
         />
         <About />
-        <Events />
+        <Events 
+        onPromoClick={handleActionClick}
+          />
       </>
     )}
           {modals.isOpen('cart') && (
@@ -215,6 +223,12 @@ const openDeliveryModal = (mode = 'confirm') => {
   onSaveDelivery={handleSaveDelivery}
   userData={userData}
    mode={deliveryMode}/>
+)}
+{modals.isOpen('action')&& selectedAction&&(<ActionModal 
+action={selectedAction}
+onClose={modals.closeModal}
+  data={selectedAction.modalData}
+/>
 )}
 
     {currentPage === 'account' && (
