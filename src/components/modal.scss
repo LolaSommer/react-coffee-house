@@ -11,27 +11,29 @@
   flex-direction: column;
   overflow-y:auto;
   overscroll-behavior: contain;
+      flex: 1;
+    min-height: 0; 
         
     }
     &__block{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap:20px;
+        gap:1.25rem;
     }
     &__pic{
-        max-width: 200px;
+        max-width:12.5rem;
     }
     &__coffe-pic{
     display:grid;
     justify-self: center;
     object-fit: contain;
-    max-height: 500px;
+    max-height:31.25rem;
     }
     &__country{
         color:$color-white;
         font-size: $fs-body;
         text-align:end;
-        padding:10px;
+        padding:0.625rem;
         opacity: 0.32;
     }
     &__description-group{
@@ -46,8 +48,8 @@
     }
     &__chois{
         background: $color-bg-light;
-        border-radius: 30px;
-        max-width: 250px;
+        border-radius:1.875rem;
+        max-width:15.625rem;
         position: relative;
         &:after{
              content: "";
@@ -78,18 +80,18 @@
     &__time,&__description{
         color:$color-untertitle;
         font-size: $fs-body;
-        padding:10px;    
+        padding:0.625rem;    
     }
     &__milk{
         display:flex;
         justify-content: space-between;
-        padding-block: 20px;
+        padding-block:1.25rem;
         cursor: pointer;
         &-type{
             font-size: $fs-middle;
         }
         &-pic{
-            max-height: 200px;
+            max-height:12.5rem;
             grid-area:1/1;
             height: auto;
          
@@ -117,9 +119,9 @@
     &__bean{
         cursor: pointer;
         &-pic{
-             max-height: 200px;
+             max-height:12.5rem;
             height: auto;
-            margin-top: 18px;
+            margin-top:1.125rem;
     
         }
         &-type{
@@ -137,7 +139,7 @@
         }
         &-group{
             position: relative;
-            border-radius: 30px;
+            border-radius:1.875rem;
             background: $color-bg-light;
               transform-origin: center;
             &::after{
@@ -162,7 +164,7 @@
             text-align: center;
         }
         &-type{
-            padding:10px;
+            padding:0.625rem;
         }
     }
     &__order{
@@ -171,10 +173,10 @@
         color:$color-white;
         font-size: $fs-middle;
         background: $color-btn;
-        max-width: 200px;
-        padding:20px;
-        border-radius: 30px;
-        margin-block:30px;
+        max-width:12.5rem;
+        padding:1.25rem;
+        border-radius:1.875rem;
+        margin-block:clamp(0.938rem,4vw,1.875rem);
         cursor: pointer;
 
     }
@@ -188,10 +190,10 @@ z-index: 1;
 padding:clamp(0.938rem,4vw,1.875rem);
  max-height: 90vh;
  height: 90vh;
-border-radius:30px;
+border-radius:1.875rem;
 margin:0 auto;
-box-shadow: 0 8px 24px rgba(0,0,0,.3);
-  max-width: 1800px; 
+box-shadow: 0 8px 1.5rem rgba(0,0,0,.3);
+  max-width: 112.5rem; 
   width: 100%;
     }
 &__overlay{
@@ -204,11 +206,11 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   &__back{
     color:$color-white;
     background: $color-btn;
-    padding: 20px;
-    border-radius: 10px;
+    padding:1.25rem;
+    border-radius:0.625rem;
     font-size: $fs-middle;
     text-transform: uppercase;
-    max-width: 150px;
+    max-width:9.375rem;
     cursor: pointer;
   }
   &__title{
@@ -218,18 +220,18 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   &__composition{
     font-size: $fs-middle;
     font-style: italic;
-    padding-inline: 40px; 
+    padding-inline:clamp(0.938rem,4vw,2.5rem);
   }
  &__price,&__weight,&__allergens{
     text-align: end;
     font-size: $fs-middle;
-    padding-inline: 40px;
+    padding-inline:clamp(0.938rem,4vw,2.5rem);
  }
 &__desserts{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-self: center;
-    gap:50px;
+    gap:clamp(1.5rem,2vw,3.125rem);
  }
  &__dessert-pic{
     max-width: 100%;
@@ -242,27 +244,27 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
     flex-direction: column;
     align-items: center;
     background:inherit;
-    max-width: 150px;
-    border-radius: 30px;
+    max-width:9.375rem;
+    border-radius:1.875rem;
     font-size: $fs-middle;
-    padding-inline: 5px;
+    padding-inline:0.313rem;
     
     
 }
 &__dessert-glass,&__dessert-cup,&__dessert-time{
     display: flex;
-    padding-inline: 10px;
-    padding-bottom: 10px;
+    padding-inline:0.625rem;
+    padding-bottom: 0.625rem;
 }
 &__dessert-media {
-  width: 120px;
-  height: 120px;
+  width:7.5rem;
+  height:7.5rem;
   display:flex;
   align-items: center;
   justify-content: center;
 }
 &__recomend{
-    padding:15px;
+    padding:0.938rem;
     text-align: center;
 }
 }
@@ -275,10 +277,78 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 .modal__bean-group--active{
     background: #6f4e37;
-    border-radius: 30px;
+    border-radius:1.875rem;
 }
 .modal__order:disabled {
   opacity: 0.4;
   pointer-events: none;
 }
+@media (max-width: 768px) {
+  .modal {
+    display: block;
+  }
+
+  .modal__window {
+    display: flex;
+    flex-direction: column;
+    height: 90dvh;
+    overflow: hidden;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .modal__img {
+    flex: 0 0 auto;
+  }
+
+  .modal__coffe-pic {
+   display: none;
+  }
+
+  .modal__system {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+.modal__chois{
+    margin:0 auto;
+    min-width: 250px;
+}
+.modal__strong{
+    grid-template-columns: 1fr 1fr;
+    gap:1rem;
+}
+.modal__milk{
+    flex-direction: column;
+    align-items: center;
+}
+.modal__strong-group{
+    margin-bottom:1.25rem;
+    max-width: 200px;
+}
+.modal__desserts{
+    grid-template-columns: 1fr 1fr;
+}
+.modal__composition,.modal__ingredients,.modal__price,.modal__weight,.modal__allergens{
+    padding:1.25rem;
+    margin: 5px;;
+    font-size: $fs-body;
+}}
+@media (max-width: 480px) {
+  .modal__block {
+   display: flex;
+   flex-direction: column;
+    align-items: center;
+    gap:1rem;
+  }
+
+  .modal__bean-pic,
+  .modal__milk-pic {
+    max-height: 10rem;
+  }
+
+}
+
+
 

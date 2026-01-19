@@ -15,10 +15,10 @@
    padding:clamp(0.938rem,4vw,1.875rem);
    max-height: 45vh;
    height: 45vh;
-   border-radius:30px;
+   border-radius:1.875rem;
    margin:0 auto;
     box-shadow: 0 8px 24px rgba(0,0,0,.3);
-    max-width: 500px; 
+    max-width:31.25rem; 
     width: 100%;
   }
   &__overlay{
@@ -35,41 +35,41 @@
    display: grid;
    position:absolute;
    justify-self:end;
-   margin-bottom: 25px;
+   margin-bottom:1.563rem;
   border:none;
-  top:-15px;
-  right:-50px;
+  top:-0.938rem;
+  right:-3.125rem;
   background:transparent;
   cursor:pointer;
   padding: 0.5rem;
   color:$color-icon;
   }
   &__icon{
-  width:25px;
-  height:25px;
+  width:1.563rem;
+  height:1.563rem;
   fill:currentColor;
 }
 &__title{
-    font-size:30px;
+    font-size:$fs-h3;
     text-align: center;
 }
 &__description{
     font-size: $fs-middle;
     text-align: start;
-    padding-inline: 20px;
+    padding-inline:1.25rem;
 }
 &__input{
     background: $color-bg;
     font-size: $fs-big;
-    padding: 10px;
-    border-radius: 10px;
+    padding:0.625rem;
+    border-radius:0.625rem;
     color:$color-white;
     
 }
 &__tel{
     display: grid;
     justify-self:start;
-    padding: 15px;
+    padding:0.938rem;
 }
 &__btn{
     &-group{
@@ -77,14 +77,14 @@
         flex-direction: column;
         align-items: center;
     }
-    margin: 20px;
+    margin:1.25rem;
     background: $color-btn;
-    border-radius: 30px;
+    border-radius:1.875rem;
     font-size: $fs-middle;
     color: $color-white;
-    padding-inline: 20px;
-    padding-block: 10px;
-    min-width: 300px;
+    padding-inline: 1.25rem;
+    padding-block:0.625rem;
+    min-width:18.75rem;
 
 }
 &__text{
@@ -97,21 +97,21 @@ opacity: 0.7;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:10px;
+  gap:0.625rem;
 }
 &__code{
    background: $color-bg;
     font-size: $fs-big;
-    border-radius: 10px;
+    border-radius:0.625rem;
     color:$color-white;
-    max-width: 60px;
-    min-height: 60px;
+    max-width:3.75rem;
+    min-height:3.75rem;
     text-align: center;
 
 }
 &__resend{
-  margin-block: 15px;
-  border-radius: 30px;
+  margin-block:0.938rem;
+  border-radius:1.875rem;
   font-size: $fs-body;
   color:$color-white;
   background: inherit;
@@ -121,4 +121,22 @@ opacity: 0.7;
 .auth__btn:disabled {
   opacity: 0.4;
   pointer-events: none;
+}
+@media (max-width: 400px){
+  .auth{
+    &__window{
+      padding:clamp(0.625rem,4vw,1.25rem);
+      height: auto;
+      max-height: none;
+      margin:1.25rem;
+      max-width:90vw;
+    }
+    &__input{
+      font-size: $fs-middle;
+    }
+    &__close{
+      right:-1.875rem;
+    }
+  }
+
 }

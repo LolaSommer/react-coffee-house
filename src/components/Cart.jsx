@@ -57,7 +57,7 @@ function handleCheckout() {
 
   openModal('success');
 }
-  const isdeliveryAvailable = total>=25;
+  const canUseDelivery = isDeliveryChecked && total >= 25;
   const cartRef = useRef(null);
   useEffect(() => {
   function handleClickOutside(e) {
@@ -156,7 +156,7 @@ function handleCheckout() {
 
           <div className='cart__modal-deliverygroup'>
           <input className='cart__modal-input' type='checkbox' id='delivery' value='yes' name='delivery' 
-          disabled={!isdeliveryAvailable}
+          disabled={total<25}
           checked={isDeliveryChecked}
           onChange={(e) => setIsDeliveryChecked(e.target.checked)}
           ></input>

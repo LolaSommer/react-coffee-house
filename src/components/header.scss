@@ -4,7 +4,7 @@
     display:grid;
     grid-template-columns: auto auto auto;
     background:$color-bg;
-    padding: 20px;
+    padding:1.25rem;
     align-items: center;
     position: sticky;
       top:0;
@@ -13,12 +13,12 @@
 
     &__check{
         display: flex;
-        gap:70px;
+        gap:clamp(2.5rem,4vw,4.375rem);
         justify-content: center;
     }
     &__list{
         text-decoration: none;
-        padding-inline: 10px;
+        padding-inline: 0.625rem;
         color:$color-white;
         position:relative;
         font-size:$fs-middle;
@@ -30,7 +30,7 @@
     left: 0;
     bottom:-0.3rem;
     width: 0%;
-    height: 15px;
+    height:0.938rem;
     background-color: $color-icon;
     transition: width 0.3s ease;
     opacity: 0.75;
@@ -45,7 +45,7 @@
   }
     }
     &__link{
-       padding-inline: 10px;
+       padding-inline:0.625rem;
        list-style: none;
   text-decoration: none;
   color: $color-white;
@@ -54,22 +54,22 @@
     &__cart{
         position: relative;
         background: inherit;
-        width: 40px;
-        height: 80px;
+        width:2.5rem;
+        height:5rem;
     }
     &__icon-cart{
-        width:30px;
-        height: 70px;
+        width:1.875rem;
+        height:4.375rem;
         color:$color-white;
     }
     &__login{
     font-size: $fs-middle;
     background: $color-btn;
-    border-radius:30px;
+    border-radius:1.875rem;
     color:$color-white;
-    padding-inline:20px;
-    padding-block: 5px;
-    margin: 40px;
+    padding-inline:1.25rem;
+    padding-block:0.313rem;
+    margin:clamp(1.5rem,3vw,2.5rem);
     }
     &__icon{
         color:$color-icon;
@@ -80,7 +80,7 @@
         align-items: center;
     }
     &__nav{
-        padding:50px;
+        padding:clamp(1.5rem,2vw,3.125rem);
     }
    &__cart-group{
     display: flex;
@@ -91,7 +91,7 @@
 .header__cart-total{
   position: absolute;
   top: -1px;
-  right: 220px;
+  right:13.75rem;
   background:$color-btn;
   color: #fff;
   font-size:$fs-body;
@@ -101,4 +101,36 @@
   min-width:1.3rem;
   text-align: center;
   line-height: 1;
+}
+@media screen and (max-width: 768px) {
+    .header{
+        grid-template-columns: auto auto;
+        padding:0.625rem;
+    }
+    .header__nav{
+        display: none;
+    }
+  
+}
+@media screen and (max-width: 480px) {
+    .header{
+       position: static;
+    }
+    .header__group{
+        grid-template-columns: 1fr;
+        gap:0.625rem;
+    }
+    .header__cart-total{
+      right:10.625rem;
+    }
+    .header__login{
+        margin:clamp(0.5rem,2vw,1.25rem);
+    }
+    .header__cart-total{
+      left:-20px;
+    }
+    .header__icon{
+      width:10rem;
+      height:10rem;
+    }
 }

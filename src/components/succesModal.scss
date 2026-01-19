@@ -15,11 +15,11 @@ color:$color-white;
 z-index: 1;
 padding:clamp(0.938rem,4vw,1.875rem);
  height: auto;
-border-radius:30px;
-margin: 15px;
+border-radius:1.875rem;
+margin:0.938rem;
 box-shadow: 0 8px 24px rgba(0,0,0,.3);
   
-  width: 450px;
+  width:28.125rem;
   }
     &__overlay{
     position:absolute;
@@ -31,8 +31,8 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   &__close{
    display: grid;
    justify-self:end;
-   width:20px;
-  height:20px;
+   width:1.25rem;
+  height:1.25rem;
   border:none;
   background: transparent;
   cursor:pointer;
@@ -43,8 +43,8 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   position: relative;
 }
 &__icon{
-  width:20px;
-  height:20px;
+  width:1.25rem;
+  height:1.25rem;
 }
 &__button{
    display: flex;
@@ -53,13 +53,34 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 &__btn{
   border:none;
-  border-radius: 20px;
+  border-radius:1.25rem;
   background: $color-btn;
   color:$color-white;
-  padding:10px;
+  padding:0.625rem;
 
 }
 &__title,&__text{
   text-align: center;
 }
+}
+@media (max-width:768px){
+  .thankyou{
+    &__icon{
+      width:1.875rem;
+      height:1.875rem;
+    }
+    &__btn{
+      padding:0.875rem 1.25rem;
+    }
+    &__icon{
+      width:1rem;
+      height:1rem;
+    }
+  }
+  .thankyou__window{
+    width:100%;
+    padding:5px;
+    font-size:16px;
+  }
+
 }

@@ -4,7 +4,7 @@
     background:$color-bg;
     min-height:clamp(15rem,20vw,27.25rem);
     padding-top: $section-gap-lg;
-    padding-inline: 50px;
+    padding-inline: clamp(1.5rem,2vw,3.125rem);
     
     &__container{
     display: flex;            
@@ -64,7 +64,7 @@
 }
 &__logo-img{
     display: block;
-    max-width: 170px;
+    max-width:10.625rem;
   height: auto;
    
     
@@ -100,5 +100,10 @@
   margin: 0;
 }
 
-
+@media (max-width: 768px) {
+  .footer__rows {
+    grid-template-columns: 1fr 1fr;
+  }
+ 
+}
 

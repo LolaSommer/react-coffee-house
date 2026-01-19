@@ -94,7 +94,7 @@ const currentItem = selectedItem || item;
   if(!currentItem) return null;
   return <div className='modal modal--open modal-info'>
     <div className='modal__overlay' onClick={onClose}></div>
-    <div className='modal__wrapper'>
+   
       <div className='modal__window' role="dialog" aria-modal="true" aria-labelledby="modal__title">
      <div className='modal__img'>
           <picture>
@@ -264,7 +264,7 @@ setSelectedStrength(null);
  
       </div>
 
-    </div>
+    
 
   </div> 
   

@@ -79,6 +79,11 @@ useEffect(() => {
 
   return () => observer.disconnect();
 }, [currentPage]);
+useEffect(() => {
+  if (total < 25 && isDeliveryChecked) {
+    setIsDeliveryChecked(false);
+  }
+}, [total, isDeliveryChecked]);
 
 
 <div style={{ position: 'fixed', bottom: 10, left: 10, zIndex: 9999 }}>
