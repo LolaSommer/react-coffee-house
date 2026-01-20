@@ -1,6 +1,7 @@
 @import '../styles/variables';
 .hero {
 padding-bottom: $section-gap-lg;
+
     
 &__btn-left,&__btn-right{
    background: inherit;
@@ -38,6 +39,13 @@ align-items: center;
 &__img{
     min-height: 37.5rem;
     width: auto;
+      transform-style: preserve-3d;
+        transform-style: preserve-3d;
+  backface-visibility: hidden;
+  display: block;
+}
+&__cup-wrap{
+      perspective: 1000px;
 }
 }
 @media (max-width:480px){

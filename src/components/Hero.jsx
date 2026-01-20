@@ -2,7 +2,26 @@ import "./hero.scss";
 import brewvibe from '../assets/brewvibe.png';
 import brewVibeWeb from '../assets/brewvibeWeb.webp';
 import sparkl__btn from '../assets/sparkl__btn.png';
+import { useRef,useEffect } from 'react';
+import gsap from 'gsap';
 function Hero() {
+  const cupRef = useRef(null);
+useEffect(() => {
+  if (!cupRef.current) return;
+
+ gsap.to(cupRef.current, {
+  y: -10,
+  rotateZ: 1.5,
+  rotateY: 10,
+  scale: 1.02,
+  duration: 4,
+  repeat: -1,
+  yoyo: true,
+  ease: 'sine.inOut',
+});
+}, []);
+
+
   return <section className="hero" id="hero" aria-labelledby="hero-heading">
     <div className="hero__container">
       <div className="hero__colls-left">
@@ -13,10 +32,10 @@ function Hero() {
     </div>
 </div>
 <div className="hero__colls-right">
- <div >
+ <div className="hero__cup-wrap">
    <picture>
           <source srcSet={brewVibeWeb} type="image/webp" />
-          <img className="hero__img" src={brewvibe} alt="Aura Brew coffee" />
+          <img ref={cupRef} className="hero__img" src={brewvibe} alt="Aura Brew coffee" />
         </picture>
  </div>
  <div className="hero__btn-group">
