@@ -12,12 +12,14 @@ import Account from "./components/Account.jsx";
 import SuccessModal from "./components/SuccessModal";
 import DeliveryModal from "./components/DeliveryModal.jsx";
 import ActionModal from "./components/ActionModal.jsx";
+import SocialModal from "./components/SocialModal.jsx";
 import { useModals } from './hooks/useModals';
 import {useCart} from './hooks/useCart.js';
 import { useAuth } from './hooks/useAuth';
 import { coffeeProducts } from './data/coffeeProducts';
 import { desserts } from  './data/desserts.js';
 import { actions } from "./data/actions.js";
+import { social } from "./data/social.js";
 function App() {
   const modals = useModals();
   const auth = useAuth();
@@ -25,6 +27,7 @@ function App() {
   const [modalType, setModalType]=useState(null);
   const [openedFrom, setOpenedFrom] = useState('menu');
   const [selectedAction, setSelectedAction] = useState(null);
+  const [selectedSocial,setSelectedSocial] = useState(null);
   const {cart, addToCart,increaseQty, updateCartItem,decreaseQty, removeFromCart,total,
     totalItems,
     clearCart,
@@ -53,6 +56,12 @@ const handleActionClick = (actionId) => {
   setSelectedAction(action);
   modals.openModal('action');
 };
+const handleSocialClick =(socialId) =>{
+  const soc = social.find(a=>a.id === socialId);
+  setSelectedSocial(soc);
+  modals.openModal('social');
+}
+
 const [activeSection, setActiveSection] = useState('hero');
 useEffect(() => {
   if (currentPage !== 'home') return;
@@ -235,6 +244,9 @@ onClose={modals.closeModal}
   data={selectedAction.modalData}
 />
 )}
+{modals.isOpen('social')&&(<SocialModal
+onClose={modals.closeModal}
+/>)}
 
     {currentPage === 'account' && (
       <Account
@@ -248,7 +260,7 @@ onClose={modals.closeModal}
  onOpenDeliveryModal={() => openDeliveryModal('edit')}
       />
     )}
-     <Footer />
+     <Footer onSocialClick={handleSocialClick}/>
   </>
 );
 

@@ -136,6 +136,7 @@ function handleSubmit(addressValues, paymentValues) {
   onSaveDelivery(data);
   onClose();
 }
+const [formError, setFormError] = useState('');
 const handleConfirm = () => {
   const isAddressOk = validateAddress();
 
@@ -143,18 +144,23 @@ const handleConfirm = () => {
   if (paymentMethod === 'card') {
     isPaymentOk = validatePayment();
   }
-  if (isAddressOk && isPaymentOk) {
-    handleSubmit(addressValues, paymentValues);
-  }
-};
- const isCardReady =
-  paymentValues.card.replace(/\D/g, '').length === 16 &&
-  paymentValues.CVC.length === 3 &&
-  paymentValues.date.length >= 4 &&
-  paymentValues.cardname.length >= 2;
 
-  const isCardButtonDisabled =
-  paymentMethod === 'card' && !isCardReady;
+  if (!isPaymentOk) {
+    setFormError('Please check your card details.');
+    return;
+  }
+
+  if (!isAddressOk) {
+    setFormError('Please check your address details.');
+    return;
+  }
+
+  handleSubmit(addressValues, paymentValues);
+};
+
+useEffect(() => {
+  setFormError('');
+}, [paymentValues, addressValues]);
 
   return (
     <>
@@ -284,11 +290,13 @@ const handleConfirm = () => {
            <button
   type="button"
   className="reg-btn"
-  disabled={isCardButtonDisabled}
+  
   onClick={handleConfirm}
 >
   {mode === 'edit' ? 'Save changes' : 'Confirm delivery'}
 </button>
+{formError && <p className="form-error">{formError}</p>}
+
 
               </div>
             </form>
