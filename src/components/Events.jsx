@@ -2,7 +2,7 @@ import './events.scss';
 import { actions } from '../data/actions';
 import {events} from '../data/events';
 import { useRef } from "react";
-function Events({onPromoClick,}) {
+function Events({onPromoClick,onOpenEvents}) {
   const actionRef = useRef(null);
   return (
     <>
@@ -66,7 +66,9 @@ function Events({onPromoClick,}) {
     </picture>
     <button
       type="button"
-      className="events__btn">
+      className="events__btn"
+      onClick={onOpenEvents}
+      >
       Secure My Spot in the Circle
     </button>
   </div>

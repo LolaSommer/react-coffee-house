@@ -3,8 +3,6 @@ import promo from '../assets/promo.webp';
 import { useState } from 'react';
 function Account({ onLogout,userData,setUserData,onOpenDeliveryModal}) {
 const [isEditingProfile, setIsEditingProfile] = useState(false);
-const [isEditingAddress, setIsEditingAddress] = useState(false);
-const [isEditingPayment, setIsEditingPayment] = useState(false);
   return (
     <div className='acc'>
       <div className='acc__group'>

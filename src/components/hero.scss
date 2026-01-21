@@ -40,12 +40,33 @@ align-items: center;
     min-height: 37.5rem;
     width: auto;
       transform-style: preserve-3d;
-        transform-style: preserve-3d;
   backface-visibility: hidden;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 &__cup-wrap{
       perspective: 1000px;
+      position:relative;
+}
+&__cup-glow{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width: 120%;
+    height: 120%;
+      background: radial-gradient(
+    circle at center,
+   rgba(255, 255, 224, 1) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  opacity: 0.25;
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: -1; 
+  backface-visibility: hidden;
 }
 }
 @media (max-width:480px){

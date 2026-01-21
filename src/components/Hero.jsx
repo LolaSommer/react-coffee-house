@@ -1,27 +1,12 @@
 import "./hero.scss";
 import brewvibe from '../assets/brewvibe.png';
 import brewVibeWeb from '../assets/brewvibeWeb.webp';
-import sparkl__btn from '../assets/sparkl__btn.png';
-import { useRef,useEffect } from 'react';
-import gsap from 'gsap';
+  import { useRef} from 'react';
+import { heroAnimation } from "../animations/heroAnimations";
 function Hero() {
-  const cupRef = useRef(null);
-useEffect(() => {
-  if (!cupRef.current) return;
-
- gsap.to(cupRef.current, {
-  y: -10,
-  rotateZ: 1.5,
-  rotateY: 10,
-  scale: 1.02,
-  duration: 4,
-  repeat: -1,
-  yoyo: true,
-  ease: 'sine.inOut',
-});
-}, []);
-
-
+   const cupRef = useRef(null);
+   const glowRef = useRef(null);
+   heroAnimation(cupRef, glowRef);
   return <section className="hero" id="hero" aria-labelledby="hero-heading">
     <div className="hero__container">
       <div className="hero__colls-left">
@@ -33,18 +18,11 @@ useEffect(() => {
 </div>
 <div className="hero__colls-right">
  <div className="hero__cup-wrap">
+    <div className="hero__cup-glow" ref={glowRef}></div>
    <picture>
           <source srcSet={brewVibeWeb} type="image/webp" />
           <img ref={cupRef} className="hero__img" src={brewvibe} alt="Aura Brew coffee" />
         </picture>
- </div>
- <div className="hero__btn-group">
- <button className="hero__btn-left">
-<img className="hero__cristal" src={sparkl__btn} alt="cristal"/>
- </button>
- <button className="hero__btn-right">
-<img className="hero__cristal" src={sparkl__btn} alt="cristal"/>
- </button>
  </div>
  </div>
  </div>

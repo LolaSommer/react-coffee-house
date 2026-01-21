@@ -9,6 +9,7 @@ import Cart from "./components/Cart";
 import Modal from "./components/Modal";
 import Auth from "./components/Auth";
 import Account from "./components/Account.jsx";
+import EventsBlog from "./components/EventsBlog.jsx";
 import SuccessModal from "./components/SuccessModal";
 import DeliveryModal from "./components/DeliveryModal.jsx";
 import ActionModal from "./components/ActionModal.jsx";
@@ -150,6 +151,7 @@ const openDeliveryModal = (mode = 'confirm') => {
   setDeliveryMode(mode);
   modals.openModal('delivery');
 };
+
  return (
   <>
 <Header
@@ -174,6 +176,7 @@ const openDeliveryModal = (mode = 'confirm') => {
         <About />
         <Events 
         onPromoClick={handleActionClick}
+        onOpenEvents={() => setCurrentPage('events')}
           />
       </>
     )}
@@ -260,6 +263,11 @@ onClose={modals.closeModal}
  onOpenDeliveryModal={() => openDeliveryModal('edit')}
       />
     )}
+    
+     {currentPage === 'events' && (
+  <EventsBlog onBack={() => setCurrentPage('home')} />
+)}
+    
      <Footer onSocialClick={handleSocialClick}/>
   </>
 );

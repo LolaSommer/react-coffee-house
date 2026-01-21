@@ -1,16 +1,19 @@
 import "./menu.scss";
 import { coffeeProducts } from '../data/coffeeProducts';
 import {desserts} from '../data/desserts';
-import { useRef } from "react";
+import { useRef} from "react";
+import { useSectionReveal } from "../animations/useSectionReveal";
 function Menu({onCoffeeSelect,onDessertSelect}) {
   const menuItems = Object.values(coffeeProducts).filter(
   item => item.menu
 );
   const cardsRef = useRef(null);
   const dessertsRef = useRef(null);
+  const menuRef = useRef(null);
+  useSectionReveal(menuRef);
 return (
   <>
-    <section id="menu" className="menu">
+    <section id="menu" className="menu" ref={menuRef}>
       <h1 className="menu__title">Discover Our Blends</h1>
 
       <div className="menu__container">
