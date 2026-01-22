@@ -1,7 +1,6 @@
 @import '../styles/variables';
 .hero {
 padding-bottom: $section-gap-lg;
-
     
 &__btn-left,&__btn-right{
    background: inherit;
@@ -51,9 +50,7 @@ align-items: center;
 }
 &__cup-glow{
     position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+    aspect-ratio: 1/1;
     width: 120%;
     height: 120%;
       background: radial-gradient(
