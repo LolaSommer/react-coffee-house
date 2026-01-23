@@ -4,7 +4,8 @@ import buch from '../assets/buch.webp';
 import handy from '../assets/handy.webp';
 import papier from '../assets/papier.webp'
 import bean from '../assets/bean.webp';
-import beanback from '../assets/beanback.webp'
+import beanback from '../assets/beanback.webp';
+import meditation from '../assets/meditation.webp';
 import './EventsBlog.scss';
 export default function EventsBlog() {
   return (
@@ -117,12 +118,86 @@ export default function EventsBlog() {
                     alt=''
                   />
                 </picture>
+                   <picture>
+                <source srcSet={bean} type="image/webp" />
+                  <img
+                    className="roast__img5"
+                    src={bean}
+                    alt=''
+                  />
+                </picture>
+                 <picture>
+                <source srcSet={beanback} type="image/webp" />
+                  <img
+                    className="roast__img6"
+                    src={beanback}
+                    alt=''
+                  />
+                </picture>
+                <picture>
+                <source srcSet={bean} type="image/webp" />
+                  <img
+                    className="roast__img7"
+                    src={bean}
+                    alt=''
+                  />
+                </picture>
         </div>
         <div className='roast__text'>
           <h2 className='roast__title'>The Alchemist's Roast</h2>
           <p className='roast__untertitle'>Transform green beans into your personal blend under the guidance of our master roaster. Witness the alchemy of heat, smell the first crack, and take home a bag of your creation, stamped with a personal «Aura Alchemist» certificate. A ritual of fire, aroma, and pure craft.</p>
         </div>
       </section>
+      <section className='sound'>
+        <div className='sound__text'>
+          <h2 className='sound__title'>Sound Bath & Grounding Brew</h2>
+          <p className='sound__untertitle'>Immerse in vibrations of singing bowls, letting sound waves wash over you. Then, gently return to the present moment through a shared, mindful coffee tasting. A complete cycle: release through sound, arrival through taste.</p>
+        </div>
+        <div className='sound__group'>
+           <picture>
+                  <source srcSet={meditation} type="image/webp" />
+                  <img
+                    className="sound__pic"
+                    src={meditation}
+                    alt=''
+                  />
+                </picture>
+        </div>
+      </section>
+<section className='form-events'>
+    <h2 className="form-events__title">Book Your Ritual</h2>
+    <p className='form-events__untertitle'>Find your resonance. We'll find the perfect time</p>
+    
+    <label className='form-events__select' htmlFor='form-events__select'>Which ritual calls to you?</label>
+    <select id='form-events__select'>
+        <option  value="">Select a gathering...</option>
+        <option  value="nook">The Unplugged Nook</option>
+        <option  value="sound">Sound Bath & Grounding Brew</option>
+        <option  value="tasseo">Tasseography: Stories in the Leaves</option>
+    </select>
+    
+    <label className="visually-hidden" htmlFor="name">Name</label>
+    <input className="form-events__input" id="name" type="text" name="name" placeholder="Your Full Name" required/>
+    
+    <label className="visually-hidden" htmlFor="email">Email</label>
+    <input className="form-events__input" id="email" type="email" name="email" placeholder="Email Address" required/>
+    
+    <label className="visually-hidden" htmlFor="tel">Phone number</label>
+    <input className="form-events__input" id="tel" type="tel" name="tel" placeholder="Phone number" required/>
+    
+    <div className='form-events__radiogroup'>
+        <h3 className='form-events__radiotitle'>Best way to reach you?</h3>
+        <input className='form-events__checked' type='radio' id='yesemail' name='contact' value='email'/>
+        <label className='form-events__radio' htmlFor='yesemail'>A thoughtful email</label>
+        
+        <input className='form-events__checked' type='radio' id='yestel' name='contact' value='tel'/>
+        <label  className='form-events__radio' htmlFor='yestel'>A quiet call</label>
+    </div>
+    
+    <div className='form-events__btn'>
+        <button className='form-events__submit'>Order</button>
+    </div>
+</section>
       </div>
   );
 }
