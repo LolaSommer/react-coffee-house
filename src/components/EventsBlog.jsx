@@ -6,6 +6,10 @@ import papier from '../assets/papier.webp'
 import bean from '../assets/bean.webp';
 import beanback from '../assets/beanback.webp';
 import meditation from '../assets/meditation.webp';
+import drink from '../assets/drink.webp';
+import smoke from '../assets/smoke.png';
+import {EventsBlogAnimation} from '../animations/EventsBlogAnimation';
+import { useEffect } from 'react';
 import './EventsBlog.scss';
 export default function EventsBlog() {
   return (
@@ -20,14 +24,43 @@ export default function EventsBlog() {
     </section>
      <section className='blog__tasseo'>
       <div className='blog__tasse-container'>
-         <picture>
-                  <source srcSet={tasse} type="image/webp" />
+          <div className='blog__img'></div>
+                <div className='blog__wrapper'>
+                <picture>
+                  <source srcSet={drink} type="image/webp" />
                   <img
-                    className="blog__img"
-                    src={tasse}
+                    className="blog__drink"
+                    src={drink}
                     alt=''
                   />
                 </picture>
+                <div className='steam'>
+              <picture>
+                  <source srcSet={smoke} type="image/webp" />
+                  <img
+                    className="blog__smoke smoke-1"
+                    src={smoke}
+                    alt=''
+                  />
+                </picture>
+                 <picture>
+                  <source srcSet={smoke} type="image/webp" />
+                  <img
+                    className="blog__smoke smoke-2"
+                    src={smoke}
+                    alt=''
+                  />
+                </picture>
+                 <picture>
+                  <source srcSet={smoke} type="image/webp" />
+                  <img
+                    className="blog__smoke smoke-3"
+                    src={smoke}
+                    alt=''
+                  />
+                </picture>
+                  </div>
+                </div>
                 </div>
                 <div className='text'>
                   <h2 className='text__title'>Tasseography: Stories in the Leaves</h2>
