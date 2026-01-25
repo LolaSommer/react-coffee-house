@@ -60,55 +60,98 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 &__drink{
-  position:absolute;
-  min-width: 900px;
-  width: 100%;
-left:-20%;
-top:10%;
+   width: 100%; 
+  height: auto;
+  position: relative;
+  left: 0; 
+  top: 0;
 
 }
 &__wrapper{
  position:relative;
  height: auto;
 }
-&__smoke{ 
+&__smoke {
   position: absolute;
-   top:25%; 
-   left:40%;
-    width: 120px;
-     opacity:0.35; 
-     filter: blur(2px);
-      mix-blend-mode: screen; 
-    }
+  transform: translateX(-50%);
+  width: 160px;
+  opacity:0.45; 
+     filter: blur(4px);
+      mix-blend-mode: screen;
+}
 }
 .smoke-1 {
-  animation: steamFloat 6s infinite ease-in-out;
+  animation: steamFloat 7s infinite ease-in-out;
+  animation-duration: 5s;
+  left:38%;
+  bottom:53%;
 }
 
 .smoke-2 {
-  animation: steamFloat 7s infinite ease-in-out;
-  left: 50%;
-  animation-delay: 2s;
+  animation: steamFloat 9s infinite ease-in-out;
+  left: 48%;
+  bottom:62%;
+  animation-delay: 2.5s;
+  animation-duration: 7s;
 }
 
 .smoke-3 {
-  animation: steamFloat 8s infinite ease-in-out;
+  animation: steamFloat 11s infinite ease-in-out;
   left: 40%;
-  animation-delay: 4s;
+  animation-delay: 5s;
+  bottom:58%;
+  animation-duration: 9s;
 }
+
+.drink-with-steam {
+  position: relative;
+  width: 900px; 
+  height: auto;
+  left: -20%; 
+  top: 10%;
+}
+.steam { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%;
+   height: 100%;
+    pointer-events: none; 
+  }
 @keyframes steamFloat {
   0% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(0.95);
     opacity: 0;
+    filter: blur(6px);
   }
+
   20% {
-    opacity: 0.4;
+    opacity: 0.9;
+    filter: blur(5px);
   }
+
+  40% {
+    opacity: 0.7;
+    filter: blur(6px);
+  }
+
+  60% {
+    opacity: 0.4;
+    filter: blur(3px);
+  }
+
+  80% {
+    opacity: 0.2;
+    filter: blur(4px);
+  }
+
   100% {
-    transform: translateY(-80px) scale(1.2);
+    transform: translateY(-90px) scale(1.15);
     opacity: 0;
+    filter: blur(1px);
   }
 }
+
 
 .text{
    padding-block: $section-gap-lg;
@@ -349,12 +392,5 @@ select {
 option{
   background:#220044;
 }
-.steam { 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%;
-   height: 100%;
-    pointer-events: none; 
-  }
+
 

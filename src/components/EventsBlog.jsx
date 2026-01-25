@@ -1,4 +1,3 @@
-import tasse from '../assets/tasse.webp';
 import lampe from '../assets/lampe.webp';
 import buch from '../assets/buch.webp';
 import handy from '../assets/handy.webp';
@@ -8,8 +7,6 @@ import beanback from '../assets/beanback.webp';
 import meditation from '../assets/meditation.webp';
 import drink from '../assets/drink.webp';
 import smoke from '../assets/smoke.png';
-import {EventsBlogAnimation} from '../animations/EventsBlogAnimation';
-import { useEffect } from 'react';
 import './EventsBlog.scss';
 export default function EventsBlog() {
   return (
@@ -26,6 +23,7 @@ export default function EventsBlog() {
       <div className='blog__tasse-container'>
           <div className='blog__img'></div>
                 <div className='blog__wrapper'>
+                  <div className='drink-with-steam'>
                 <picture>
                   <source srcSet={drink} type="image/webp" />
                   <img
@@ -35,7 +33,7 @@ export default function EventsBlog() {
                   />
                 </picture>
                 <div className='steam'>
-              <picture>
+    <picture>
                   <source srcSet={smoke} type="image/webp" />
                   <img
                     className="blog__smoke smoke-1"
@@ -59,6 +57,7 @@ export default function EventsBlog() {
                     alt=''
                   />
                 </picture>
+                </div>
                   </div>
                 </div>
                 </div>
