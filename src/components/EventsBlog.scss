@@ -178,8 +178,9 @@
 }
 .light{
    padding-block: $section-gap-lg;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+   position: relative;
+   overflow: hidden;
+
   &__title{
     font-size: $fs-h2;
     color:$color-white;
@@ -211,7 +212,30 @@
   min-height: 500px;
   opacity: 0.9;
 }
+&__content{
+    position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
 }
+&__mask{
+  position: relative;
+  overflow: hidden;
+}
+&__darkness{
+  position: absolute;
+  inset: 0;
+  background:rgba(0,0,0,0.9);
+  z-index:10;
+  pointer-events: none;
+  opacity:1;
+}
+
+}
+
+
+
 .roast{
   padding-block: $section-gap-lg;
   display: grid;

@@ -7,8 +7,13 @@ import beanback from '../assets/beanback.webp';
 import meditation from '../assets/meditation.webp';
 import drink from '../assets/drink.webp';
 import smoke from '../assets/smoke.png';
+import { EventsBlogAnimation } from '../animations/EventsBlogAnimation';
+import {useRef } from 'react';
 import './EventsBlog.scss';
 export default function EventsBlog() {
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  EventsBlogAnimation(sectionRef,titleRef);
   return (
     <div className='blog__page'>
     <section className="blog">
@@ -76,7 +81,8 @@ export default function EventsBlog() {
                 </picture>
                 </div>
       </section>
-      <section className='light'>
+      <section className='light' ref={sectionRef} >
+          <div className='light__content'>
           <div className='light__img'>
                   <picture>
                   <source srcSet={lampe} type="image/webp" />
@@ -88,8 +94,9 @@ export default function EventsBlog() {
                 </picture>
                 </div>
                 <div className='light__group'>
+                
                   <div className='light__text'>
-                  <h2 className='light__title'>The Unplugged Nook</h2>
+                  <h2 className='light__title' ref={titleRef}>The Unplugged Nook</h2>
                   <p className='light__untertitle'>A candlelit sanctuary within our space. This is our permanent offer of silence. </p>
                
                  <p className='light__untertitle'>Here, phones and laptops rest at the door.</p>
@@ -106,7 +113,10 @@ export default function EventsBlog() {
                   />
                 </picture>
                 </div>
-                </div>   
+                </div>  
+                 </div>
+                 <div className='light__darkness'></div>
+                
       </section>
       <section className='roast'>
         <div className='roast__group-img'>

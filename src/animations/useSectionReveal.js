@@ -25,7 +25,6 @@ export function useSectionReveal(menuRef) {
           start: 'top 80%',
           end: 'top 20%',
           toggleActions: 'play none none reverse',
-          // markers: true // ← Раскомментируй для проверки (появятся маркеры на странице)
         },
       }
     );
