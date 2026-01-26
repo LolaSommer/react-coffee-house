@@ -13,7 +13,20 @@ import './EventsBlog.scss';
 export default function EventsBlog() {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
-  EventsBlogAnimation(sectionRef,titleRef);
+  const bagRef = useRef(null);
+  const roastRef = useRef(null);
+  const beanRefs = useRef([]);
+  const shadowRef = useRef(null);
+  EventsBlogAnimation(sectionRef,titleRef,bagRef,roastRef,shadowRef,beanRefs);
+  const beans = [
+    {src:bean,type:'img'},
+    { src: beanback, type: 'img2' },
+    { src: beanback, type: 'img3' },
+    { src: bean, type: 'img4' },
+    { src: bean, type: 'img5' },
+    { src: beanback, type: 'img6' },
+    { src: bean, type: 'img7' }
+  ]
   return (
     <div className='blog__page'>
     <section className="blog">
@@ -81,7 +94,7 @@ export default function EventsBlog() {
                 </picture>
                 </div>
       </section>
-      <section className='light' ref={sectionRef} >
+      <section className='light' ref={sectionRef}>
           <div className='light__content'>
           <div className='light__img'>
                   <picture>
@@ -126,67 +139,28 @@ export default function EventsBlog() {
                     className="roast__pic"
                     src={papier}
                     alt=''
+                    ref={bagRef}
                   />
                 </picture>
-                <picture>
-                <source srcSet={bean} type="image/webp" />
-                  <img
-                    className="roast__img"
-                    src={bean}
-                    alt=''
-                  />
-                </picture>
-                 <picture>
-                <source srcSet={beanback} type="image/webp" />
-                  <img
-                    className="roast__img2"
-                    src={beanback}
-                    alt=''
-                  />
-                </picture>
-                  <picture>
-                <source srcSet={beanback} type="image/webp" />
-                  <img
-                    className="roast__img3"
-                    src={beanback}
-                    alt=''
-                  />
-                </picture>
-                 <picture>
-                <source srcSet={bean} type="image/webp" />
-                  <img
-                    className="roast__img4"
-                    src={bean}
-                    alt=''
-                  />
-                </picture>
-                   <picture>
-                <source srcSet={bean} type="image/webp" />
-                  <img
-                    className="roast__img5"
-                    src={bean}
-                    alt=''
-                  />
-                </picture>
-                 <picture>
-                <source srcSet={beanback} type="image/webp" />
-                  <img
-                    className="roast__img6"
-                    src={beanback}
-                    alt=''
-                  />
-                </picture>
-                <picture>
-                <source srcSet={bean} type="image/webp" />
-                  <img
-                    className="roast__img7"
-                    src={bean}
-                    alt=''
-                  />
-                </picture>
+                  <div 
+      className="roast__shadow"
+      ref={shadowRef}
+    ></div>
+          {beans.map((bean,index)=>(
+            <picture key={index}>
+              <source srcSet={bean.src} type='image/webp'/>
+              <img className={`roast__${bean.type}`}
+              src={bean.src}
+              alt=''
+              ref={el=>beanRefs.current[index]=el}/>
+            </picture>
+          ))}
+               <div 
+      className="beans__shadow"
+    ></div>
         </div>
         <div className='roast__text'>
-          <h2 className='roast__title'>The Alchemist's Roast</h2>
+          <h2 className='roast__title' ref={roastRef}>The Alchemist's Roast</h2>
           <p className='roast__untertitle'>Transform green beans into your personal blend under the guidance of our master roaster. Witness the alchemy of heat, smell the first crack, and take home a bag of your creation, stamped with a personal «Aura Alchemist» certificate. A ritual of fire, aroma, and pure craft.</p>
         </div>
       </section>
