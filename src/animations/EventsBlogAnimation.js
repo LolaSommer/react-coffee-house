@@ -79,8 +79,7 @@ export function EventsBlogAnimation(sectionRef, titleRef, bagRef, roastRef, bean
 };
 
   }, [bagRef, roastRef, beanRefs]); 
+
 }
-
-
 
 
