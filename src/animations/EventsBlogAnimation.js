@@ -3,7 +3,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-export function EventsBlogAnimation(sectionRef, titleRef, bagRef, roastRef, shadowRef, beanRefs) {
+export function EventsBlogAnimation(sectionRef, titleRef, bagRef, roastRef, beanRefs) {
   useEffect(() => {
     const section = sectionRef.current;
     const title = titleRef.current;
@@ -26,8 +26,7 @@ export function EventsBlogAnimation(sectionRef, titleRef, bagRef, roastRef, shad
     const bag = bagRef.current;
     const beans = beanRefs.current;
     const roast = roastRef.current;
-    const shadow = shadowRef.current;
-    if (!bag || !beans || !beans.length || !roast || !shadow) return; 
+    if (!bag || !beans || !beans.length || !roast) return; 
   
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -53,19 +52,6 @@ export function EventsBlogAnimation(sectionRef, titleRef, bagRef, roastRef, shad
     });
   });
 });
-
-    tl.fromTo(shadow, {
-      opacity: 0,
-      scale: 0.3,
-      y: -100,
-    }, {
-      opacity: 0.7,
-      scale: 1,
-      y: 0,
-      duration: 0.7,
-      ease: "power2.out"
-    });
-    
     tl.fromTo(bag, {
       x: -500,
       rotation: -90,
@@ -92,7 +78,7 @@ export function EventsBlogAnimation(sectionRef, titleRef, bagRef, roastRef, shad
   tl.kill();
 };
 
-  }, [bagRef, roastRef, shadowRef, beanRefs]); 
+  }, [bagRef, roastRef, beanRefs]); 
 }
 
 

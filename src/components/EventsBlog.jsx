@@ -16,8 +16,7 @@ export default function EventsBlog() {
   const bagRef = useRef(null);
   const roastRef = useRef(null);
   const beanRefs = useRef([]);
-  const shadowRef = useRef(null);
-  EventsBlogAnimation(sectionRef,titleRef,bagRef,roastRef,shadowRef,beanRefs);
+  EventsBlogAnimation(sectionRef,titleRef,bagRef,roastRef,beanRefs);
   const beans = [
     {src:bean,type:'img'},
     { src: beanback, type: 'img2' },
@@ -142,10 +141,6 @@ export default function EventsBlog() {
                     ref={bagRef}
                   />
                 </picture>
-                  <div 
-      className="roast__shadow"
-      ref={shadowRef}
-    ></div>
           {beans.map((bean,index)=>(
             <picture key={index}>
               <source srcSet={bean.src} type='image/webp'/>
@@ -155,9 +150,6 @@ export default function EventsBlog() {
               ref={el=>beanRefs.current[index]=el}/>
             </picture>
           ))}
-               <div 
-      className="beans__shadow"
-    ></div>
         </div>
         <div className='roast__text'>
           <h2 className='roast__title' ref={roastRef}>The Alchemist's Roast</h2>
