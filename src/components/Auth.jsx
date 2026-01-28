@@ -77,7 +77,8 @@ const isPhoneReady =
 const isCodeComplete = code.every(d=> d !== '');
 
   return (
-    <div className='auth'>
+    <div className='auth'  role="dialog"
+  aria-modal="true">
     <div className='auth__overlay' onClick={onClose}></div>
     <div className='auth__wrapper'>
       <div className="auth__line">

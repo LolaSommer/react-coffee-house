@@ -391,9 +391,6 @@
  &__radio{
   color:$color-white;
   padding-inline: 20px;
-  &-option{
-    
-  }
   
  }
  &__btn{
@@ -445,4 +442,115 @@ select {
 }
 option{
   background:#220044;
+}
+@media (max-width: 768px) {
+    .blog,
+  .text,
+  .light,
+  .roast,
+  .sound,
+  .form-events {
+    padding-block: 40px; 
+  }
+    .blog__tasse-container,
+  .text__img,
+  .light__img {
+    min-height: auto;
+    width: 100%;
+  }
+  .blog {
+    &__tasseo {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-x: hidden;
+      padding: 0%;
+    }
+    &__title {
+      font-size: $fs-h2;
+      padding-inline: 1em;
+    }
+    &__untertitle {
+      font-size: $fs-middle;
+    }
+    &__drink {
+      width: 80%;
+    }
+    &__img{
+      display: none;
+    }
+  }
+  .text {
+    &__title {
+      font-size: $fs-h3;
+      padding: 10px;
+    }
+    &__untertitle {
+      font-size: $fs-body;
+    }
+    &__img {
+      display: none;
+    }
+  }
+  .light {
+    &__title {
+      font-size: $fs-h3;
+    }
+    &__untertitle {
+      font-size: $fs-body;
+    }
+    &__content{
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      text-align: center;
+      align-items: center;
+    }
+    &__bild {
+      display: none;
+    }
+    &__pic {
+      display: none;
+    }
+  &__darkness{
+    display: none;
+  }
+}
+  .roast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__title {
+      font-size: $fs-h3;
+    }
+    &__untertitle {
+      font-size: $fs-body;
+    }
+    &__pic {
+      display: none;
+    }
+    &__group-img {
+      display: none;
+    }
+  }
+  .sound {
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__title {
+      font-size: $fs-h3;
+    }
+    &__untertitle {
+      font-size: $fs-body;
+    }
+    &__content {
+      grid-template-columns: 1fr;
+    }
+  }
+  .form-events {
+    &__input,
+    &__select {
+      min-width: 300px;
+    }
+  }
 }

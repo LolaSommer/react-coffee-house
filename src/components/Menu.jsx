@@ -25,6 +25,7 @@ return (
                   <source srcSet={item.menu.image} type="image/webp" />
                   <img
                     className="menu__img"
+                    loading="lazy"
                     src={item.menu.image}
                     alt={`${item.menu.title} coffee`}
                   />
@@ -87,6 +88,7 @@ return (
       <picture>
         <source srcSet={menu.image} type="image/webp" />
         <img
+        loading="lazy"
           className="menu__deserts-img"
           src={menu.image}
           alt={menu.alt}

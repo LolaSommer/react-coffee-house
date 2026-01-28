@@ -41,8 +41,12 @@ function Footer() {
     className="footer__icon"
     target="_blank"
     rel="noopener noreferrer"
+    aria-label={soc.label}
   >
-    <svg className="footer__img">
+    <svg className="footer__img"
+    aria-hidden="true"
+    focusable="false"
+    >
       <use href={soc.icon} />
     </svg>
   </a>

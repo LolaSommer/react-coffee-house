@@ -18,8 +18,9 @@ function Events({onPromoClick,onOpenEvents}) {
       <source srcSet={action.image} type="image/webp"/>
       <img
         className="events__action-img"
+        loading="lazy"
         src={action.cardData.image}
-        alt={`${action.cardData.title}`}
+        alt={`${action.cardData.alt}`}
       />
     </picture>
 
@@ -60,14 +61,19 @@ function Events({onPromoClick,onOpenEvents}) {
       <source srcSet={event.image} type="image/webp" />
       <img
         className="events__img"
+        loading="lazy"
         src={event.image}
         alt={`${event.title}`}
       />
     </picture>
+    <p id={`event-hint-${event.id}`} className="visually-hidden">
+  Opens the Events page
+   </p>
     <button
       type="button"
       className="events__btn"
       onClick={onOpenEvents}
+       aria-describedby={`event-hint-${event.id}`}
       >
       Secure My Spot in the Circle
     </button>

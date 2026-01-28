@@ -8,7 +8,9 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
                 <div className='cart__item-pic'>
                    <picture>
           <source srcSet={item.image} type="image/webp" />
-          <img className="cart__item-img" src={item.image} />
+          <img className="cart__item-img"
+          loading="lazy"
+           src={item.image} />
         </picture>
                 </div>
                 <div className='cart__item-info'>
@@ -42,7 +44,7 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
   );
 } 
 
-function Cart({userData,isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
+function Cart({userData,handleOrderSuccess,isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
   setIsDeliveryChecked,onOpenDeliveryModal}) {
 function handleCheckout() {
   if (!isAuth) {
@@ -55,7 +57,7 @@ function handleCheckout() {
     return;
   }
 
-  openModal('success');
+handleOrderSuccess();
 }
   const canUseDelivery = isDeliveryChecked && total >= 25;
   const cartRef = useRef(null);
@@ -76,8 +78,13 @@ function handleCheckout() {
     return !cart.some(cartItem => cartItem.id === extra.id);
 });
   if(cart.length ===0){
-    return  <div className="modal-open cart__modal" aria-hidden="true"> 
-        <div className="cart__modal-window" ref={cartRef} role="dialog" aria-modal="true" aria-labelledby="cart__modal-title"> 
+    return  <div className="modal-open cart__modal" 
+     role="dialog"
+  aria-modal="true"
+    aria-labelledby="cart__modal-title"
+  > 
+ 
+        <div className="cart__modal-window" ref={cartRef} > 
           <div className="cart__modal-top">
             <button className="cart__modal-close" aria-label="close" onClick={onClose}>
                    <svg className="cart__modal-icon"><use href="#icon-close"></use></svg>
@@ -85,7 +92,7 @@ function handleCheckout() {
     <div className="cart__modal-empty">
             <picture>
           <source srcSet={emptycart} type="image/webp" />
-          <img className="cart__modal-imgEmpty" src={emptycart} alt="Empty coffee cup waiting for your choice" />
+          <img className="cart__modal-imgEmpty" loading="lazy" src={emptycart} alt="Empty coffee cup waiting for your choice" />
         </picture>
            <p className="cart__modal-sad">Your cup is still empty</p> 
            <p className="cart__modal-hungry">Choose what resonates with you</p>
@@ -95,7 +102,7 @@ function handleCheckout() {
            </div>
   }
   else{ 
-  return   <div className="modal-open cart__modal" aria-hidden="true"> 
+  return   <div className="modal-open cart__modal" > 
         <div className="cart__modal-window" ref={cartRef} role="dialog" aria-modal="true" aria-labelledby="cart__modal-title"> 
           <div className="cart__modal-top">
             <button className="cart__modal-close" aria-label="close" onClick={onClose}>
@@ -138,6 +145,7 @@ function handleCheckout() {
             <source srcSet={extra.image} type="image/webp" />
             <img
               className="cart__modal-img"
+              loading="lazy"
               src={extra.image}
               alt={extra.alt}
             />
@@ -155,12 +163,18 @@ function handleCheckout() {
 )}
 
           <div className='cart__modal-deliverygroup'>
-          <input className='cart__modal-input' type='checkbox' id='delivery' value='yes' name='delivery' 
+          <input className='cart__modal-input'
+           type='checkbox'
+           id='delivery' value='yes' name='delivery' 
           disabled={total<25}
           checked={isDeliveryChecked}
           onChange={(e) => setIsDeliveryChecked(e.target.checked)}
+          aria-describedby="delivery-hint"
           ></input>
          <label className='cart__modal-label' htmlFor='delivery'> Delivery — free from $25</label>
+         <p id="delivery-hint" className="visually-hidden">
+    Delivery is available for orders from $25
+        </p>
           </div>
           {isDeliveryChecked && userData?.address && ( 
            <div className="cart__delivery-summary">

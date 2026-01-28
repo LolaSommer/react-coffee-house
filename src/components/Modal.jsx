@@ -92,14 +92,14 @@ useEffect(() => {
 const currentItem = selectedItem || item;
 
   if(!currentItem) return null;
-  return <div className='modal modal--open modal-info'>
+  return <div className='modal modal--open modal-info' role="dialog" aria-modal="true" aria-labelledby="modal__title" >
     <div className='modal__overlay' onClick={onClose}></div>
    
-      <div className='modal__window' role="dialog" aria-modal="true" aria-labelledby="modal__title">
+      <div className='modal__window'>
      <div className='modal__img'>
           <picture>
           <source srcSet={currentItem.image} type="image/webp" />
-          <img className="modal__coffe-pic"    src={currentItem.image} alt="Clear glass cup with pure black coffee" />
+          <img className="modal__coffe-pic"  loading="lazy"  src={currentItem.image} alt="Clear glass cup with pure black coffee" />
         </picture>
         <div className='modal__description-group'>
         <h2 className='modal__coffee-title'>{currentItem.title}</h2>
@@ -134,7 +134,7 @@ const currentItem = selectedItem || item;
       <div className="modal__name">{country.name}</div>
 
       <picture className='modal__pic-block'>
-        <img className="modal__pic" src={country.image} alt={country.name} />
+        <img className="modal__pic" loading="lazy" src={country.image} alt={country.name} />
       </picture>
 
       <p className="modal__country">{country.country}</p>
@@ -160,7 +160,7 @@ setSelectedStrength(null);
   }}>
            <picture>
             <source srcSet={nomilk} type="image/webp" />
-          <img className="modal__bean-pic" src={nomilk} alt="Coffee without milk or syrup" />
+          <img className="modal__bean-pic" loading="lazy" src={nomilk} alt="Coffee without milk or syrup" />
           </picture>
           <p className='modal__bean-type'>Pure ritual</p>
           </div>)}
@@ -183,6 +183,7 @@ setSelectedStrength(null);
 
       <img
         className="modal__milk-pic"
+        loading="lazy"
         src={isActive ? milk.imageFull : milk.imageEmpty}
         alt={milk.title}
       />
@@ -205,7 +206,7 @@ setSelectedStrength(null);
       onClick={() => setSelectedStrength(strong.id)}>
                  <picture>
                   <source srcSet={strong.image} type="image/webp" />
-                <img className="modal__strong-pic" src={strong.image} alt="Decaffeinated coffee with a gentle profile" />
+                <img className="modal__strong-pic" loading="lazy" src={strong.image} alt="Decaffeinated coffee with a gentle profile" />
                 </picture>
                 <p className='modal__strong-type'>{strong.description}</p>
                 </div>
@@ -233,21 +234,21 @@ setSelectedStrength(null);
         <div className='modal__desert'>
            <picture className='modal__dessert-media'>
             <source srcSet={time} type="image/webp" />
-          <img className="modal__dessert-pic" src={time} alt="Medium roast coffee with a balanced flavor" />
+          <img className="modal__dessert-pic" loading="lazy" src={time} alt="Medium roast coffee with a balanced flavor" />
           </picture>
           <p className='modal__dessert-time'> Best for: {currentItem.time.join(', ')}</p>
           </div>
            <div className='modal__desert'>
           <picture className='modal__dessert-media'>
             <source srcSet={black} type="image/webp" />
-          <img className="modal__dessert-pic" src={black} alt="Medium roast coffee with a balanced flavor" />
+          <img className="modal__dessert-pic" loading="lazy" src={black} alt="Medium roast coffee with a balanced flavor" />
           </picture>
           <p className='modal__dessert-cup'>Ideal with: {currentItem.cup.join(', ')}</p>
           </div>
            <div className='modal__desert'>
           <picture className='modal__dessert-media'>
             <source srcSet={milk} type="image/webp" />
-          <img className="modal__dessert-pic" src={milk} alt="Medium roast coffee with a balanced flavor" />
+          <img className="modal__dessert-pic" loading="lazy" src={milk} alt="Medium roast coffee with a balanced flavor" />
           </picture>
           <p className='modal__dessert-glass'>Milk: {currentItem.glass.join(', ')}</p>
         </div>

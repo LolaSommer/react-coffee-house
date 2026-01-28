@@ -11,9 +11,9 @@ import gsap from "gsap";
 import { ritualSchema } from '../validation/ritualSchema';
 import { useForm } from '../hooks/useForm';
 import { EventsBlogAnimation } from '../animations/EventsBlogAnimation';
-import {useRef} from 'react';
+import {useRef,useEffect} from 'react';
 import './EventsBlog.scss';
-export default function EventsBlog({handleEvent,openModal}) {
+export default function EventsBlog({handleEvent,openModal,resetKey}) {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const bagRef = useRef(null);
@@ -65,7 +65,14 @@ const {
   handleChange,
   validateForm,
   isValid,
+  setValues
 }=ritualForm;
+function resetForm() {
+  setValues(initalValues);
+}
+useEffect(() => {
+  resetForm();
+}, [resetKey]);
 
 function handleSubmit() {
   const isOk = validateForm();
@@ -92,6 +99,7 @@ function handleSubmit() {
                 <picture>
                   <source srcSet={drink} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="blog__drink"
                     src={drink}
                     alt=''
@@ -101,6 +109,7 @@ function handleSubmit() {
     <picture>
                   <source srcSet={smoke} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="blog__smoke smoke-1"
                     src={smoke}
                     alt=''
@@ -109,6 +118,7 @@ function handleSubmit() {
                  <picture>
                   <source srcSet={smoke} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="blog__smoke smoke-2"
                     src={smoke}
                     alt=''
@@ -117,6 +127,7 @@ function handleSubmit() {
                  <picture>
                   <source srcSet={smoke} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="blog__smoke smoke-3"
                     src={smoke}
                     alt=''
@@ -134,6 +145,7 @@ function handleSubmit() {
                   <picture>
                   <source srcSet={buch} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="text__bild"
                     src={buch}
                     alt=''
@@ -147,6 +159,7 @@ function handleSubmit() {
                   <picture>
                   <source srcSet={lampe} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="light__bild"
                     src={lampe}
                     alt=''
@@ -167,6 +180,7 @@ function handleSubmit() {
                   <picture>
                   <source srcSet={handy} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="light__pic"
                     src={handy}
                     alt=''
@@ -183,6 +197,7 @@ function handleSubmit() {
            <picture>
                   <source srcSet={papier} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="roast__pic"
                     src={papier}
                     alt=''
@@ -193,6 +208,7 @@ function handleSubmit() {
             <picture key={index}>
               <source srcSet={bean.src} type='image/webp'/>
               <img className={`roast__${bean.type}`}
+              loading="lazy"
               src={bean.src}
               alt=''
               ref={el=>beanRefs.current[index]=el}/>
@@ -235,6 +251,7 @@ function handleSubmit() {
            <picture>
                   <source srcSet={meditation} type="image/webp" />
                   <img
+                  loading="lazy"
                     className="sound__pic"
                     src={meditation}
                     alt=''

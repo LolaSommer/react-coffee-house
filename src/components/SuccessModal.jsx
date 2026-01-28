@@ -1,14 +1,20 @@
 import "./succesModal.scss";
 
-function SuccessModal({onClose,onClearCart,total,isDeliveryChecked,userData,type}) {
+function SuccessModal({onClose,onClearCart,total,isDeliveryChecked,userData,type,}) {
 function handleOk() {
-  if (type === 'order') onClearCart();
+  if (type !== 'event') {
+    onClearCart();
+  }
   onClose();
 }
 
+
 return (
     <>
-   <div className="modal-open thankyou__modal" aria-hidden="true">
+   <div className="modal-open thankyou__modal"   role="dialog"
+  aria-modal="true"
+    aria-labelledby="success-title"
+  >
                  <div className="thankyou__overlay" onClick={handleOk}></div>
                  <div className="thankyou__line">
                  <button className="thankyou__close" aria-label="close" onClick={handleOk}>
@@ -17,7 +23,7 @@ return (
                  <div className="thankyou__window">
                     {type === 'order' && (
                         <>
-                <h2 className="thankyou__title">Thank you for your order ☕️</h2>
+                <h2 className="thankyou__title" id="success-title">Thank you for your order ☕️</h2>
                 <p className="thankyou__text">Your order total is <span className="thankyou__price">{total.toFixed(2)} $</span></p>
                 <p className="thankyou__text">    {isDeliveryChecked ? `Delivery to: ${userData.address.street}`: 'Pickup in café'}</p>
                 <p className="thankyou__text">You’ll receive a confirmation via SMS shortly.</p>

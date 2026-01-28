@@ -47,6 +47,9 @@
         font-size: $fs-body;
         line-height: $lh-normal;
     }
+    &__text{
+        font-style: italic;
+    }
     &__colls-left{
         display:grid;
         justify-self: center;

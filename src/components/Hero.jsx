@@ -21,7 +21,9 @@ function Hero() {
     <div className="hero__cup-glow" ref={glowRef}></div>
    <picture>
           <source srcSet={brewVibeWeb} type="image/webp" />
-          <img ref={cupRef} className="hero__img" src={brewvibe} alt="Aura Brew coffee" />
+          <img ref={cupRef} className="hero__img" src={brewvibe} 
+           loading="eager"
+          alt="Aura Brew coffee" />
         </picture>
  </div>
  </div>

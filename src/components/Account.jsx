@@ -110,7 +110,7 @@ const [isEditingProfile, setIsEditingProfile] = useState(false);
           <p className='promo__untertitle'>Your personal offers will show up here.</p>
           <picture>
             <source srcSet={promo} type="image/webp" />
-            <img className="promo__img" src={promo} alt="" />
+            <img className="promo__img" loading="lazy" src={promo} alt="" />
           </picture>
         </div>
         <div className='back'>

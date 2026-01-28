@@ -81,17 +81,33 @@ if (currentPage === 'events'){
   type="button"
   className="header__login"
   onClick={handleClick}
+    aria-label={
+    buttonText === 'Log in'
+      ? 'Open login form'
+      : buttonText === 'My account'
+      ? 'Open your account page'
+      : 'Go back to home page'
+  }
+
 >
   {buttonText}
 </button>
         </div>
         <div className="header__cart-group">
-      <button type="button" className="header__cart" onClick={onCartOpen}>
-         <svg className="header__icon-cart" aria-label="Open shopping cart">
+      <button type="button" className="header__cart" onClick={onCartOpen}
+      aria-label="Open shopping cart"
+      >
+         <svg className="header__icon-cart" 
+         aria-hidden="true"
+          focusable="false"
+         >
        <use href="#cart-icon"/>
       </svg>
       </button>
-      <span className="header__cart-total" aria-live="polite" aria-atomic="true">{totalItems}</span>
+      <span className="header__cart-total"   aria-live="polite"
+  aria-atomic="true"
+  aria-label={`Items in cart: ${totalItems}`}
+  >{totalItems}</span>
       </div>
       </div>
     </header>

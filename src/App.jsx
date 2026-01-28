@@ -174,9 +174,22 @@ function handleEventSubmit(data) {
   setSuccessType('event');
   modals.openModal('success');
 }
+function handleOrderSuccess() {
+  setSuccessType('order');
+  modals.openModal('success');
+}
+
+const [eventFormResetKey, setEventFormResetKey] = useState(0);
+function handleSuccessClose() {
+  if (successType === 'event') {
+    setEventFormResetKey(prev => prev + 1);
+  }
+  modals.closeModal();
+}
 
 
  return (
+  
   <>
 <Header
   onCartOpen={() => modals.openModal('cart')}
@@ -189,7 +202,7 @@ function handleEventSubmit(data) {
   activeSection={activeSection}
 
 />
-
+   <main id='main-content'>
     {currentPage === 'home' && (
       <>
         <Hero />
@@ -224,11 +237,12 @@ function handleEventSubmit(data) {
      isDeliveryChecked={isDeliveryChecked}
   setIsDeliveryChecked={setIsDeliveryChecked}
   onOpenDeliveryModal={() => openDeliveryModal('edit')}
+  handleOrderSuccess={handleOrderSuccess}
 
   />
 )}
 {modals.isOpen('success')&&<SuccessModal
- onClose={modals.closeModal}
+ onClose={handleSuccessClose}
    onClearCart={() => {
     clearCart();
     setIsDeliveryChecked(false);
@@ -293,10 +307,12 @@ onClose={modals.closeModal}
   <EventsBlog onBack={() => setCurrentPage('home')} 
   openModal={modals.openModal}
    handleEvent={handleEventSubmit}
+   resetKey={eventFormResetKey}
   />
 )}
-    
+    </main>
      <Footer onSocialClick={handleSocialClick}/>
+     
   </>
 );
 

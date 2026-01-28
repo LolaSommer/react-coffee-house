@@ -164,7 +164,8 @@ useEffect(() => {
 
   return (
     <>
-      <div className="modal-open reg__form" role="dialog" aria-labelledby="form-title">
+      <div className="modal-open reg__form"  role="dialog"
+  aria-modal="true" aria-labelledby="form-title">
         <div className="reg__overlay" onClick={onClose}></div>
         <div className="reg__wrapper">
           <div className="reg__line">
