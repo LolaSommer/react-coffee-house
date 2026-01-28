@@ -64,10 +64,15 @@ const handleSocialClick =(socialId) =>{
 }
 
 const [activeSection, setActiveSection] = useState('hero');
-useEffect(() => {
-  if (currentPage !== 'home') return;
+const sectionMap = {
+  home: ['hero', 'menu', 'about', 'events', 'contact'],
+  events: ['events-home', 'tasseography', 'dark', 'roast', 'sound'], 
+};
 
-  const ids = ['hero', 'menu', 'about', 'events', 'contact'];
+useEffect(() => {
+  const ids = sectionMap[currentPage];
+  if (!ids) return;
+
   const sections = ids
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -75,13 +80,15 @@ useEffect(() => {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveSection(entry.target.id);
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
       });
     },
     {
       root: null,
-      rootMargin: '-40% 0px -40% 0px',
-      threshold: 0,
+      rootMargin: '-25% 0px -25% 0px',
+      threshold: 0.2,
     }
   );
 
@@ -89,6 +96,12 @@ useEffect(() => {
 
   return () => observer.disconnect();
 }, [currentPage]);
+useEffect(() => {
+  if (currentPage === 'events') {
+    setActiveSection('events-home');
+  }
+}, [currentPage]);
+
 useEffect(() => {
   if (total < 25 && isDeliveryChecked) {
     setIsDeliveryChecked(false);
@@ -151,6 +164,17 @@ const openDeliveryModal = (mode = 'confirm') => {
   setDeliveryMode(mode);
   modals.openModal('delivery');
 };
+useEffect(() => {
+  if (currentPage === 'events') {
+    window.scrollTo(0, 0);
+  }
+}, [currentPage]);
+const [successType, setSuccessType] = useState(null); 
+function handleEventSubmit(data) {
+  setSuccessType('event');
+  modals.openModal('success');
+}
+
 
  return (
   <>
@@ -213,6 +237,7 @@ const openDeliveryModal = (mode = 'confirm') => {
   total={total}
    isDeliveryChecked={isDeliveryChecked}
   setIsDeliveryChecked={setIsDeliveryChecked}
+  type={successType}
  />}
      {modals.isOpen('product') && selectedItem && (
   <Modal
@@ -265,7 +290,10 @@ onClose={modals.closeModal}
     )}
     
      {currentPage === 'events' && (
-  <EventsBlog onBack={() => setCurrentPage('home')} />
+  <EventsBlog onBack={() => setCurrentPage('home')} 
+  openModal={modals.openModal}
+   handleEvent={handleEventSubmit}
+  />
 )}
     
      <Footer onSocialClick={handleSocialClick}/>

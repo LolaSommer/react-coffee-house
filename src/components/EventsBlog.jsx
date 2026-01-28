@@ -11,9 +11,9 @@ import gsap from "gsap";
 import { ritualSchema } from '../validation/ritualSchema';
 import { useForm } from '../hooks/useForm';
 import { EventsBlogAnimation } from '../animations/EventsBlogAnimation';
-import {useRef } from 'react';
+import {useRef} from 'react';
 import './EventsBlog.scss';
-export default function EventsBlog() {
+export default function EventsBlog({handleEvent,openModal}) {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const bagRef = useRef(null);
@@ -71,7 +71,7 @@ function handleSubmit() {
   const isOk = validateForm();
   if (!isOk) return;
 
-  console.log(values);
+  handleEvent(values);
 }
 
   return (
@@ -290,7 +290,7 @@ function handleSubmit() {
     </div>
     
     <div className='form-events__btn'>
-      <button type="submit" className='form-events__submit'>Order</button>
+      <button type="submit" className='form-events__submit' onClick={openModal}>Order</button>
     </div>
   </form>
 </section>
