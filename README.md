@@ -1,6 +1,6 @@
 # ☕ Aura Brew — Coffee Ritual Experience
 
-🔗 **Live demo:**  
+🔗 **Live Demo:**  
 https://lolasommer.github.io/react-coffee-house/
 
 🔗 **Repository:**  
@@ -10,14 +10,9 @@ https://github.com/LolaSommer/react-coffee-house
 
 ## 🌙 About the Project
 
-**Aura Brew** is a concept coffee house web application that combines **coffee, desserts, and a ritual-inspired atmosphere**.  
-The project explores themes of balance, mindfulness, and connection with oneself through curated coffee experiences.
+Aura Brew is a product-oriented React SPA that simulates a real coffee house experience with complex user flows, dynamic product configuration, reusable modal logic, and centralized validation.
 
-> *“Explore our coffee rituals, from grounding espresso to sacral cappuccino.  
-Your aura is thirsty.”*
-
-Aura Brew is designed as a **product-like application**, not just a visual landing page.  
-It includes real user flows, stateful logic, reusable modals, form validation, and interactive animations.
+The project focuses on frontend architecture, state management, UX-driven flows, accessibility, and performance optimization rather than static visuals. All logic and interactions are implemented manually without UI frameworks.
 
 ---
 
@@ -29,107 +24,121 @@ It includes real user flows, stateful logic, reusable modals, form validation, a
 - Cart icon with live item counter
 - Smooth navigation between sections
 
----
-
 ### Hero Section
 - Atmospheric headline
-- Animated floating coffee cup using **GSAP**
+- Animated floating coffee cup
 - Breathing motion and subtle glow to emphasize the ritual concept
-
----
 
 ### Menu
 - Two animated horizontal product ribbons:
   - Coffee
   - Desserts
-- Clicking a product opens a **reusable modal**
+- Reusable product modal system
 
-#### Coffee Modal (Advanced Configuration)
-- Large visual preview of the drink
+### Coffee Modal (Advanced Configuration)
+- Large visual preview
 - Country selection with flavor notes  
-  (e.g. Colombia — apple, caramel, berries)
-- Milk selection:
+  *(e.g. Colombia — apple, caramel, berries)*
+- Milk options:
   - Lactose-free
   - Oat
   - Almond
   - Cow milk
-  - **Pure Ritual** option (removes milk and switches to black coffee)
+- **Pure Ritual** option (switches to black coffee)
 - Strength selection:
   - Decaf
   - Light
   - Medium
   - Strong
-- Dynamic configuration and cart logic
+- Dynamic price calculation and cart integration
 
-#### Dessert Modal
+### Dessert Modal
 - Recommended time to enjoy
 - Best coffee pairing
-- Milk compatibility
-- Focused, fast UX for decision-making
-
----
+- Milk compatibility notes
+- Fast, focused decision UX
 
 ### About the Café
 - Café image and descriptive text
 - Embedded brewing process video
-- Custom play / pause controls (main and internal)
-
----
+- Custom play / pause controls
 
 ### Energy Exchange & Promotions
-- Infinite horizontal promo ribbon (same logic as menu)
-- Promotional cards with detailed modals and promo codes:
+- Infinite horizontal promo ribbon
+- Promotional cards with detailed modals:
   - 25% off first order
   - Aura Points loyalty program
   - “3 coffees — dessert as a gift”
   - Join the team
-  - Charity: clean water in Africa (10¢ per cup donated)
+  - Charity: clean water in Africa
   - Group meditation with orders
-  - “Anti-vibration Wednesday” (silent café hours with discounts)
-
----
+  - “Anti-vibration Wednesday” (silent café hours)
 
 ### Events
 - Event cards with detailed descriptions:
   - Custom coffee roasting and tasting
   - Sound meditation with singing bowls
   - Coffee grounding rituals
-  - Coffee fortune telling as art therapy (with guest tasseographer)
-- Planned feature:
-  - Dedicated Events page with richer visuals and storytelling (in progress)
+  - Coffee fortune telling as art therapy
 
 ---
 
-### Authentication & Account
-- Login modal with phone number
+## 🎞 Animations & Interactions (Completed)
+
+Animations are used selectively to enhance UX and atmosphere without overloading the interface or harming performance.
+
+### GSAP-driven animations
+- Hero section:
+  - Breathing motion and subtle floating of the coffee cup
+  - Soft glow effect
+- Events section:
+  - Light on / off transition
+- Interactive elements:
+  - Falling paper bag with coffee beans scatter
+  - Sound bowl interaction with click-triggered glowing wave effect
+- Menu:
+  - Smooth entrance animations for product cards
+
+### Non-GSAP animations
+- Steam effect above the cup:
+  - Implemented using PNG assets and CSS keyframes
+  - GSAP intentionally avoided here for simplicity and performance
+
+Animations are intentionally limited to support product logic and usability rather than visual spectacle.
+
+---
+
+## 🔐 Authentication & Account
+
+- Login via phone number
 - Verification step with 60-second countdown
 - Ability to return and change phone number
-- After login:
-  - Personal account page
-  - Profile data (name, phone, email, birthday)
-  - Newsletter subscription
-  - Order history
-  - Personal offers
-  - Saved address and payment details
-  - Edit address and card via reusable modal
-  - Logout
+
+After login:
+- Personal account page
+- Profile data (name, phone, email, birthday)
+- Newsletter subscription
+- Order history
+- Personal offers
+- Saved address and payment details
+- Reusable modals for editing address and payment info
+- Logout
 
 ---
 
-### Cart & Checkout
-- Cart with:
+## 🛒 Cart & Checkout
+
+- Cart features:
   - Product preview
   - Quantity control
-  - Remove items
+  - Item removal
   - Coffee configuration editing
 - Upsell items:
   - Barista apron
   - Coffee beans pack
-  - Birthday card  
-    → opens a textarea to enter a personal message
-- Delivery option:
-  - Available from $25
-  - Saved address preview when available
+  - Birthday card with custom message
+- Delivery option available from €25
+- Saved address preview
 - Checkout flow:
   - Authentication modal
   - Delivery modal
@@ -137,25 +146,36 @@ It includes real user flows, stateful logic, reusable modals, form validation, a
 - Order confirmation adapts based on:
   - Delivery order
   - In-café order
-
----
-
-### Payment
-- Card payment with validation
-- External payment options (Google Pay / PayPal)
-- Option to save payment details
-- Reusable validation logic
+- Payment:
+  - Card payment with validation
+  - External payment options (Google Pay / PayPal)
+  - Option to save payment details
 
 ---
 
 ## 🧠 Technical Highlights
-- Reusable modal system (open / close / reuse logic)
-- Centralized validation core
-- Custom hooks for logic separation
+
+- Reusable modal system
+- Centralized and reusable validation logic
+- Custom React hooks for logic separation
 - Data-driven architecture
 - LocalStorage persistence
 - Responsive layout (mobile supported)
-- Lighthouse score: **100 / 100**
+- Accessibility-first approach
+- Lighthouse score: **100 / 100 / 100 / 100**
+
+---
+
+## 🧠 What This Project Demonstrates
+
+- Product-oriented frontend thinking
+- Complex modal orchestration with reusable logic
+- Stateful product configuration
+- Centralized form validation
+- UX-driven cart and checkout flows
+- Accessibility and focus management
+- Performance optimization on production
+- Clean component structure and separation of concerns
 
 ---
 
@@ -173,17 +193,6 @@ src/
 
 ---
 
-## 🚧 Project Status
-
-**In progress**
-
-Planned improvements:
-- Dedicated Events page with advanced visuals
-- Extended GSAP animations
-- Additional scroll-based interactions
-
----
-
 ## 🛠 Tech Stack
 
 - React
@@ -192,14 +201,26 @@ Planned improvements:
 - GSAP
 - JavaScript (ES6+)
 
----
-
-## 📌 Notes
-
-This project focuses on **architecture, UX flows, and product thinking**, not just visuals.  
-All logic, animations, and interactions are built manually without UI frameworks.
+No UI libraries or component frameworks were used.
 
 ---
+
+## 🚧 Project Status
+
+Frontend architecture is stabilized and feature-complete.
+
+Planned:
+- Minor UI refinements
+- Code quality improvements based on review feedback
+
+Next step:
+- Backend exploration to extend product logic (authentication, orders, data persistence)
+
+---
+
+This project was built as my first React application after approximately **1.5 months of working with React** and **6 months of frontend experience overall**.
+
+
 
 
 
