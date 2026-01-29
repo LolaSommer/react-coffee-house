@@ -17,7 +17,7 @@ return (
   >
                  <div className="thankyou__overlay" onClick={handleOk}></div>
                  <div className="thankyou__line">
-                 <button className="thankyou__close" aria-label="close" onClick={handleOk}>
+                 <button className="thankyou__close" type='button' aria-label="close" onClick={handleOk}>
                       <svg className="thankyou__icon"><use href="#icon-close"></use></svg>
                       </button>
                  <div className="thankyou__window">
@@ -36,7 +36,7 @@ return (
                 </>
                )}
                 <div className="thankyou__button">
-                <button className="thankyou__btn" onClick={handleOk}>OK</button>
+                <button className="thankyou__btn" type='button' onClick={handleOk}>OK</button>
                 </div>
                 </div>
                 </div>

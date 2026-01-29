@@ -40,7 +40,6 @@ function App() {
 
   const [currentPage, setCurrentPage] = useState('home');
 const [selectedProductId, setSelectedProductId] = useState(null);
-const [deliveryData, setDeliveryData] = useState(null);
 const [userData, setUserData] = useState(() => {
   const saved = localStorage.getItem('userData');
   return saved
@@ -62,7 +61,6 @@ const handleSocialClick =(socialId) =>{
   setSelectedSocial(soc);
   modals.openModal('social');
 }
-
 const [activeSection, setActiveSection] = useState('hero');
 const sectionMap = {
   home: ['hero', 'menu', 'about', 'events', 'contact'],
@@ -72,6 +70,7 @@ const sectionMap = {
 useEffect(() => {
   const ids = sectionMap[currentPage];
   if (!ids) return;
+  setActiveSection(ids[0]);
 
   const sections = ids
     .map(id => document.getElementById(id))
@@ -79,27 +78,32 @@ useEffect(() => {
 
   const observer = new IntersectionObserver(
     (entries) => {
+      let maxRatio = 0;
+      let mostVisibleId = null;
+
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          mostVisibleId = entry.target.id;
         }
       });
+
+      if (mostVisibleId) {
+        setActiveSection(mostVisibleId);
+      }
     },
     {
       root: null,
-      rootMargin: '-25% 0px -25% 0px',
-      threshold: 0.2,
+      rootMargin: '-20% 0px -20% 0px', 
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
     }
   );
 
   sections.forEach((el) => observer.observe(el));
 
-  return () => observer.disconnect();
-}, [currentPage]);
-useEffect(() => {
-  if (currentPage === 'events') {
-    setActiveSection('events-home');
-  }
+  return () => {
+    observer.disconnect();
+  };
 }, [currentPage]);
 
 useEffect(() => {
@@ -107,11 +111,6 @@ useEffect(() => {
     setIsDeliveryChecked(false);
   }
 }, [total, isDeliveryChecked]);
-
-
-<div style={{ position: 'fixed', bottom: 10, left: 10, zIndex: 9999 }}>
-  active: {activeSection}
-</div>
 
 useEffect(() => {
   localStorage.setItem(
@@ -191,6 +190,9 @@ function handleSuccessClose() {
  return (
   
   <>
+  <div style={{ position: 'fixed', bottom: 10, left: 10, zIndex: 9999 }}>
+  active: {activeSection}
+</div>
 <Header
   onCartOpen={() => modals.openModal('cart')}
   totalItems={totalItems}
@@ -238,7 +240,7 @@ function handleSuccessClose() {
   setIsDeliveryChecked={setIsDeliveryChecked}
   onOpenDeliveryModal={() => openDeliveryModal('edit')}
   handleOrderSuccess={handleOrderSuccess}
-
+  onUpdateCartItem={updateCartItem} 
   />
 )}
 {modals.isOpen('success')&&<SuccessModal
@@ -297,7 +299,6 @@ onClose={modals.closeModal}
     setCurrentPage('home');
   }}
   userData={userData}
-  deliveryData={deliveryData}
   setUserData={setUserData}
  onOpenDeliveryModal={() => openDeliveryModal('edit')}
       />

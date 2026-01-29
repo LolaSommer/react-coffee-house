@@ -8,7 +8,7 @@ return (
    <div className="social__modal" role="dialog" aria-modal="true">
                  <div className="social__overlay"onClick={onClose}></div>
                  <div className="social__line">
-                 <button className="social__close" aria-label="close" onClick={onClose}>
+                 <button className="social__close" type='button' aria-label="close" onClick={onClose}>
                       <svg className="social__icon"><use href="#icon-close"></use></svg>
                       </button>
                  <div className="social__window">

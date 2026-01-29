@@ -114,6 +114,8 @@
           display: grid;
           place-items: center;
             position:relative;
+            background: inherit;
+            color:$color-white;
         }
     }
     &__bean{
@@ -133,6 +135,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         place-items: center;
+       
         &-pic{
             max-width: 150px;
 
@@ -141,6 +144,7 @@
             position: relative;
             border-radius:1.875rem;
             background: $color-bg-light;
+             color: $color-white;
               transform-origin: center;
             &::after{
                 content:'';

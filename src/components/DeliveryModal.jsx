@@ -169,7 +169,7 @@ useEffect(() => {
         <div className="reg__overlay" onClick={onClose}></div>
         <div className="reg__wrapper">
           <div className="reg__line">
-            <button className="reg__close" aria-label="close" onClick={onClose}>
+            <button className="reg__close" aria-label="close" type='button' onClick={onClose}>
               <svg className="reg__icon"><use href="#icon-close"></use></svg>
             </button>
           </div>

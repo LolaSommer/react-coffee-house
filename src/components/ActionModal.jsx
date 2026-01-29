@@ -25,7 +25,7 @@ return (
     <div className='action__overlay' onClick={onClose}></div>
     <div className='action__window' role='dialog' aria-modal="true">
       <div className="action__line">
-        <button className="action__close" aria-label="close" onClick={onClose}>
+        <button className="action__close" type='button' aria-label="close" onClick={onClose}>
         <svg className="action__icon"><use href="#icon-close"></use></svg>
     </button>
     </div>

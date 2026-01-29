@@ -2,7 +2,7 @@ import './cart.scss';
 import emptycart from '../assets/emptycart.webp';
 import { extras } from '../data/extras';
 import {useRef, useEffect} from 'react';
-function CartItem({item,onPlus, onMinus, onRemove,onChange}){
+function CartItem({item,onPlus, onMinus, onRemove,onEdit,onUpdateMessage}){
   return( <div className='cart__item'>
               <div className='cart__item-wrapper'>
                 <div className='cart__item-pic'>
@@ -10,7 +10,9 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
           <source srcSet={item.image} type="image/webp" />
           <img className="cart__item-img"
           loading="lazy"
-           src={item.image} />
+           src={item.image} 
+           alt={item.title}
+           />
         </picture>
                 </div>
                 <div className='cart__item-info'>
@@ -22,29 +24,44 @@ function CartItem({item,onPlus, onMinus, onRemove,onChange}){
               <div className='cart__item-counter'>
                 <div className='cart__item-price'>{item.price} $</div>
                 <div className='cart__item-radiogroup'>
-                    {item.type === 'coffee' && (<button onClick={() => onChange(item)}
-  className="cart__item-change">change</button>)}
-    <button className="cart__item-left" onClick={onMinus}>-</button>
+                    {item.type === 'coffee' && (<button onClick={() =>onEdit(item)}
+  className="cart__item-change" type='button'>change</button>)}
+    <button className="cart__item-left" type='button' onClick={onMinus}>-</button>
       <div className="cart__item-count">{item.quantity}</div>
-      <button className="cart__item-right" onClick={onPlus}>+</button>
-      <div className="cart__item-remove" data-remove="coffee" onClick={onRemove}>
+      <button className="cart__item-right" type='button' onClick={onPlus}>+</button>
+      <button className="cart__item-remove" type='button' data-remove="coffee" onClick={onRemove}>
   <svg className="icon-trash">
     <use href="#icon-trash"></use>
   </svg>
-      </div>
+      </button>
                 </div>
               </div>
                  {item.type === 'card' && (
   <div className="cart__item-message">
     <h3 className='message__title'>✍️Inscribe your intention</h3>
-    <textarea className='message__area' rows='2'cols='40' maxLength='150' placeholder='Happy Birthday! Thinking of you and wishing you warmth today.'></textarea>
+   <textarea
+  className="message__area"
+  rows="2"
+  cols="40"
+  maxLength="150"
+  placeholder="Happy Birthday! Thinking of you and wishing you warmth today."
+  value={item.message || ''}
+onChange={(e) =>
+  onUpdateMessage({
+    ...item,
+    message: e.target.value,
+  })
+}
+
+
+/>
   </div>
 )}
             </div>
   );
 } 
 
-function Cart({userData,handleOrderSuccess,isAuth,openModal,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
+function Cart({userData,handleOrderSuccess,isAuth,openModal,onUpdateCartItem,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
   setIsDeliveryChecked,onOpenDeliveryModal}) {
 function handleCheckout() {
   if (!isAuth) {
@@ -86,7 +103,7 @@ handleOrderSuccess();
  
         <div className="cart__modal-window" ref={cartRef} > 
           <div className="cart__modal-top">
-            <button className="cart__modal-close" aria-label="close" onClick={onClose}>
+            <button className="cart__modal-close" aria-label="close" type='button' onClick={onClose}>
                    <svg className="cart__modal-icon"><use href="#icon-close"></use></svg>
                   </button>  
     <div className="cart__modal-empty">
@@ -105,7 +122,7 @@ handleOrderSuccess();
   return   <div className="modal-open cart__modal" > 
         <div className="cart__modal-window" ref={cartRef} role="dialog" aria-modal="true" aria-labelledby="cart__modal-title"> 
           <div className="cart__modal-top">
-            <button className="cart__modal-close" aria-label="close" onClick={onClose}>
+            <button className="cart__modal-close" type='button' aria-label="close" onClick={onClose}>
                    <svg className="cart__modal-icon"><use href="#icon-close"></use></svg>
                   </button>  
             <div className="cart__modal-header">
@@ -116,7 +133,8 @@ handleOrderSuccess();
           onPlus={() => onPlus(item.cartKey)}
           onMinus={() => onMinus(item.cartKey)}
           onRemove={() => onRemove(item.cartKey)}
-            onChange={onChange}
+            onEdit={onChange}  
+           onUpdateMessage={onUpdateCartItem}
            />))}
           </div>
           {filteredExtras.length > 0 && (
@@ -124,9 +142,10 @@ handleOrderSuccess();
     <div className="cart__modal-extrastitle">Deepen the ritual:</div>
     <div className="cart__modal-extras">
       {filteredExtras.map((extra) => (
-        <div
+        <button
           key={extra.id}
           className="cart__modal-extra"
+          type='button'
           onClick={() => {
             const extraItem = {
               cartKey: extra.id,
@@ -156,7 +175,7 @@ handleOrderSuccess();
               {extra.price}<sup>$</sup>
             </div>
           </div>
-        </div>
+        </button>
       ))}
     </div>
   </div>
@@ -198,7 +217,7 @@ handleOrderSuccess();
         <div className="cart__modal-total">{total.toFixed(2)}$</div>
         </div>
         <div className="cart__modal-order">
-       <button className="cart__modal-checkout" onClick={handleCheckout}>Checkout</button>
+       <button className="cart__modal-checkout" type='summit'  onClick={handleCheckout}>Checkout</button>
         </div>
         </div>
          

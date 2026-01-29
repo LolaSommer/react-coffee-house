@@ -124,7 +124,7 @@ const currentItem = selectedItem || item;
    <h2 className='modal__title'>Tune Your Brew</h2>
          <div className="modal__block">
   {countries.map((country) => (
-    <div
+    <button
       key={country.id}
       className={`modal__chois ${
         selectedCountry === country.id ? 'modal__chois--active' : ''
@@ -144,7 +144,7 @@ const currentItem = selectedItem || item;
       <p className="modal__time">
         <span>Best for: </span>{country.time}
       </p>
-    </div>
+    </button>
   ))}
 </div>
              <div className='modal__milk'> 
@@ -169,7 +169,7 @@ setSelectedStrength(null);
   const isActive = selectedMilk === milk.id;
 
   return (
-    <div
+    <button
       key={milk.id}
       className={`modal__milk-group ${
         isActive ? 'modal__milk-group--active' : ''
@@ -189,7 +189,7 @@ setSelectedStrength(null);
       />
 
       <p className="modal__milk-type">{milk.description}</p>
-    </div>
+    </button>
   );
 })}
 
@@ -198,7 +198,8 @@ setSelectedStrength(null);
       <h2 className='modal__strong-title'>Play your card</h2>
       <div className='modal__strong'>
          {strongOptions.map((strong) => (
-    <div
+    <button
+    type='button'
       key={strong.id}
       className={`modal__strong-group ${
         selectedStrength === strong.id ? 'modal__strong-group--active' : ''
@@ -209,7 +210,7 @@ setSelectedStrength(null);
                 <img className="modal__strong-pic" loading="lazy" src={strong.image} alt="Decaffeinated coffee with a gentle profile" />
                 </picture>
                 <p className='modal__strong-type'>{strong.description}</p>
-                </div>
+                </button>
   ))}
       </div>
    <button

@@ -82,7 +82,7 @@ const isCodeComplete = code.every(d=> d !== '');
     <div className='auth__overlay' onClick={onClose}></div>
     <div className='auth__wrapper'>
       <div className="auth__line">
-        <button className="auth__close" aria-label="close"onClick={onClose}>
+        <button className="auth__close" type='button' aria-label="close"onClick={onClose}>
         <svg className="auth__icon"><use href="#icon-close"></use></svg>
           </button>
           </div>
@@ -148,13 +148,14 @@ const isCodeComplete = code.every(d=> d !== '');
   {canResend && (
     <button
       className='auth__resend'
+      type='button'
       onClick={handleResend}
     >
       Resend code
     </button>
   )}
 
-  <button className='auth__btn' onClick={handleVerifyClick}>
+  <button className='auth__btn'type='button' onClick={handleVerifyClick}>
     {isCodeComplete ? 'Verify' : 'Change number'}
   </button>
 
