@@ -52,8 +52,6 @@ onChange={(e) =>
     message: e.target.value,
   })
 }
-
-
 />
   </div>
 )}

@@ -2,8 +2,8 @@ import './auth.scss';
 import { useState, useRef,useEffect } from 'react';
 import {phoneSchema} from '../validation/phoneSchema';
 import { useForm } from '../hooks/useForm';
-function Auth({onClose,onAuthSuccess,initialPhone}) {
-const [step, setStep] = useState('phone');
+function Auth({onClose,onAuthSuccess,initialPhone,authStep,onNextStep}) {
+
 const [code, setCode] = useState(['', '', '', '']);
 const inputsRef = useRef([]);
 const [timer, setTimer] = useState(60);
@@ -19,7 +19,7 @@ const {
   validateForm: validatePhone,
 } = useForm(phoneInitialValues, phoneSchema);
 useEffect(() => {
-  if (step !== 'code') return;
+  if (authStep !== 'code') return;
   if (timer === 0) {
     setCanResend(true);
     return;
@@ -30,7 +30,7 @@ useEffect(() => {
   }, 1000);
 
   return () => clearInterval(interval);
-}, [step, timer]);
+}, [authStep, timer]);
 function handleResend() {
   setCode(['', '', '', '']);
   setTimer(60);
@@ -38,7 +38,7 @@ function handleResend() {
 }
 
 function handleClose() {
-  setStep('phone');
+  onNextStep('phone');
   onClose();
 }
 
@@ -63,7 +63,7 @@ function handleKeyDown(index, e) {
 }
 function handleVerifyClick() {
   if (!isCodeComplete) {
-    setStep('phone');
+    onNextStep('phone');
     setCode(['', '', '', '']);
   } else {
     onAuthSuccess(phoneValues.tel);
@@ -86,7 +86,7 @@ const isCodeComplete = code.every(d=> d !== '');
         <svg className="auth__icon"><use href="#icon-close"></use></svg>
           </button>
           </div>
-     {step === 'phone' &&(<div className='auth__window'>
+     {authStep === 'phone' &&(<div className='auth__window'>
       <div className='auth__group'>
       <h2 className='auth__title'>Enter your phone number</h2>
       <p className='auth__description'>We’ll use it to sign you in.</p>
@@ -104,7 +104,7 @@ const isCodeComplete = code.every(d=> d !== '');
   disabled={!isPhoneReady}
   onClick={() => {
     if (validatePhone()) {
-      setStep('code');
+      onNextStep('code');
     }
   }}>
   Continue
@@ -113,7 +113,7 @@ const isCodeComplete = code.every(d=> d !== '');
       </div>
     </div>
      )}
-       {step === 'code' &&( 
+       {authStep === 'code' &&( 
     <div className='auth__window'>
       <div className='auth__group'>
       <h2 className='auth__title'>Enter the SMS code</h2>

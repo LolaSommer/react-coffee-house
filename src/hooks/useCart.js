@@ -11,7 +11,7 @@ useEffect(() => {
 
  function clearCart(){
   setCart([]);
-  localStorage.removeItem('cart');
+ 
 
  }
   const addToCart = (cartItem) => {
