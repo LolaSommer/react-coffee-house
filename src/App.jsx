@@ -185,6 +185,35 @@ function handleSuccessClose() {
   }
   modals.closeModal();
 }
+const [pendingSection, setPendingSection] = useState(null);
+const scrollToSection = (sectionId) => {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  section.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+};
+const onNavigate = (sectionId) => {
+  if (currentPage === 'home') {
+    scrollToSection(sectionId);
+  } else {
+    setPendingSection(sectionId);
+    setCurrentPage('home');
+  }
+};
+useEffect(() => {
+  if (currentPage === 'home' && pendingSection) {
+    setTimeout(() => {
+      scrollToSection(pendingSection);
+      setPendingSection(null);
+    }, 100);
+  }
+}, [currentPage, pendingSection]);
+
+
+
 
 
  return (
@@ -312,7 +341,9 @@ onClose={modals.closeModal}
   />
 )}
     </main>
-     <Footer onSocialClick={handleSocialClick}/>
+     <Footer onSocialClick={handleSocialClick}
+     onNavigate={onNavigate}
+     />
      
   </>
 );

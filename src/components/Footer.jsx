@@ -1,6 +1,6 @@
 import './footer.scss';
 import {social} from '../data/social';
-function Footer() {
+function Footer({onNavigate}) {
   return  <footer className="footer" id='contact'>
           <div className="container__footer">
             <div className="footer__container">
@@ -9,27 +9,24 @@ function Footer() {
              </div>
             <div className="footer__nav-item">
           <ul>
-            <li><a className="footer__nav-link footer__strong" data-scroll="hero">Home</a></li>
-            <li><a className="footer__nav-link" data-scroll="menu">Order Now</a></li>
+            <li><a className="footer__nav-link footer__strong" onClick={()=>onNavigate('hero')} >Home</a></li>
           </ul>
           </div>
            <div className="footer__nav-item">
           <ul>
-            <li><a className="footer__nav-link footer__strong" data-scroll="events">Exchange of Energy</a></li>
-            <li><a className="footer__nav-link" data-scroll="events">Aura Events</a></li>
+            <li><a className="footer__nav-link footer__strong" onClick={()=>onNavigate('events')}>Exchange of Energy</a></li>
           </ul>
            </div>
             <div className="footer__nav-item">
           <ul>
-            <li><a className="footer__nav-link footer__strong" data-scroll="menu">Discover our blend</a></li>
-            <li><a className="footer__nav-link" data-scroll="menu">Sacral sweets</a></li>
+            <li><a className="footer__nav-link footer__strong" onClick={()=>onNavigate('menu')}>Discover our blend</a></li>
           </ul>
             </div>
              </div>
           <div className="footer__contacts">
             <div className="footer__coll">
           <p className="footer__tel">
-          <a className="footer__link" href="tel:15551234567" aria-label="Call PizzaShop">
+          <a className="footer__link" href="tel:15551234567" aria-label="Call AuraBrew">
          +1 (555) 123 4567
          </a>
          </p>
