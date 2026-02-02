@@ -1,21 +1,20 @@
-function createOrder({ userId, items, deliveryType }) {
-  // 1. здесь позже будут проверки (наличие, доставка, скидки)
-  // пока считаем, что всё прошло
+console.log('ORDER SERVICE FILE LOADED');
+export function createOrder({ userId, items, deliveryType }) {
+    console.log('SERVICE ITEMS:', items);
 
-  const orderId = Date.now(); // временный ID
-  const status = 'created';
+  if (!items || items.length === 0) {
+    return null;
+  }
 
-  const order = {
+  const orderId = Date.now();
+
+  return {
     id: orderId,
     userId,
     items,
     deliveryType,
-    status,
+    status: 'created',
   };
-
-  return order;
 }
 
-module.exports = {
-  createOrder,
-};
+

@@ -1,16 +1,24 @@
-const { createOrder } = require('../services/order.service');
+import { createOrder } from '../services/order.service.js';
 
-function createOrderController(req, res) {
+export function createOrderController(req, res) {
+  console.log('ORDER CONTROLLER HIT');
   const { userId, items, deliveryType } = req.body;
+
   const order = createOrder({
     userId,
     items,
     deliveryType,
   });
 
-  res.status(201).json(order);
+  if (!order) {
+    return res.status(400).json({
+      message: 'Order is empty',
+    });
+  }
+
+  return res.status(201).json({
+    status: 'ok',
+    order,
+  });
 }
 
-module.exports = {
-  createOrderController,
-};
