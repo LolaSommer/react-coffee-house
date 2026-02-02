@@ -1,7 +1,8 @@
 import { createOrder } from '../services/order.service.js';
+console.log('ORDER CONTROLLER FILE:', import.meta.url);
 
 export function createOrderController(req, res) {
-  console.log('ORDER CONTROLLER HIT');
+  
   const { userId, items, deliveryType } = req.body;
 
   const order = createOrder({
