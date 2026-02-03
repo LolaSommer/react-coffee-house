@@ -61,7 +61,7 @@ onChange={(e) =>
 
 function Cart({userData,handleOrderSuccess,isAuth,openModal,onUpdateCartItem,cart,onClose,onPlus, onMinus, onRemove,total,totalItems,onChange,onAddToCart,isDeliveryChecked,
   setIsDeliveryChecked,onOpenDeliveryModal}) {
-function handleCheckout() {
+async function handleCheckout() {
   if (!isAuth) {
     openModal('auth');
     return;
@@ -72,8 +72,36 @@ function handleCheckout() {
     return;
   }
 
-handleOrderSuccess();
+  const orderData = {
+    userId: userData.phone,
+    items: cart,
+    deliveryType: isDeliveryChecked ? 'delivery' : 'pickup',
+  };
+
+  try {
+    const response = await fetch('http://localhost:3001/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(orderData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      if (data.error === 'ORDER_EMPTY') {
+        console.log('Order is empty');
+        return;
+      }
+      throw new Error('Server error');
+    }
+    handleOrderSuccess();
+  } catch (error) {
+    console.error('Order failed:', error);
+  }
 }
+
   const canUseDelivery = isDeliveryChecked && total >= 25;
   const cartRef = useRef(null);
   useEffect(() => {

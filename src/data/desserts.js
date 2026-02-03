@@ -8,6 +8,7 @@ export const desserts={
   ckookis:{
     id:'ckookis',
     modal:{
+    id:'ckookis',
     title:'Spark of Creation',
     ingredients:['wheat flour', 'butter', 'sugar', 'dark chocolate', 'eggs'],
     description:'The first movement of energy. A crisp, buttery cookie with an eruption of molten dark chocolate within. A simple yet sacred act of indulgence — like the first thought before a great deed. Ignites the impulse.',
@@ -22,6 +23,7 @@ export const desserts={
     type: 'dessert'
     },
     menu:{
+    id:'ckookis',
     title:'Spark of Creation',
     weight:80,
     price:3.20,
@@ -34,6 +36,7 @@ export const desserts={
   bun:{
     id:'bun',
     modal:{
+    id:'bun',
     title:'Grounded Cloud',
     ingredients:['buckwheat flour', 'plant-based cheese', 'yeast', 'water', 'salt'],
     description:'A warm, soft bun made of buckwheat flour with stretchy vegan cheese. Earthy grain energy and the lightness of an ethical choice. Provides strength without weight, satiety without guilt. *Nourishes the body without weighing down the aura.',
@@ -48,6 +51,7 @@ export const desserts={
     type: 'dessert'
     },
     menu:{
+    id:'bun',
     title:'Grounded Cloud',
     weight:110,
     price:4.5,
@@ -62,6 +66,7 @@ export const desserts={
   maffin:{
     id:'maffin',
     modal:{
+    id:'maffin',
     title:'Kundalini Burst',
     ingredients:['wheat flour', 'butter', 'dark chocolate', 'caramel', 'sugar', 'eggs'],
     description:' A dense, moist chocolate muffin hiding golden pockets of salted caramel. Unexpected bursts of sweetness awaken dormant energy. The perfect companion for a morning espresso. *An alarm clock for slumbering power',
@@ -76,6 +81,7 @@ export const desserts={
     type: 'dessert'
      },
      menu:{
+    id:'maffin',
     title:'Kundalini Burst',
     weight:120,
     price:4.20,
@@ -87,6 +93,7 @@ export const desserts={
   cake:{
      id:'cake',
      modal:{
+       id:'cake',
     title:'Dark Matter',
     ingredients:['wheat flour', 'cocoa', 'dark chocolate', 'cream', 'butter', 'sugar', 'eggs'],
     description:'Multi-layered, intense, profound. Moist layers, velvety ganache, a hidden bitterness. Not a dessert, but an immersion into the sacred depth of cocoa beans. For moments when you need to feel the fullness of existence. Concentrates intention',
@@ -101,6 +108,7 @@ export const desserts={
     type: 'dessert'
      },
      menu:{
+       id:'cake',
     title:'Dark Matter',
     weight:150,
     price:5.80,
@@ -112,6 +120,7 @@ export const desserts={
   eclair:{
      id:'eclair',
      modal:{
+       id:'eclair',
      title:'Full Moon Aura',
     ingredients:['wheat flour', 'butter', 'cream', 'berries', 'sugar', 'eggs'],
     description:' An airy choux "body" filled with cream the color of sunset and sea foam (pink + turquoise — your brand colors). Fresh berries like stars in the night sky. A dessert for inspiration and connecting to the flow of fantasy. Opens the creative channel',
@@ -126,6 +135,7 @@ export const desserts={
     type: 'dessert'
      },
      menu:{
+       id:'eclair',
     title:'Full Moon Aura',
     weight:120,
     price:5.00,
@@ -137,6 +147,7 @@ export const desserts={
   cheescake:{
      id:'cheescake',
      modal:{
+      id:'cheescake',
     title:'Balance of Elements',
     ingredients:['cream cheese', 'wheat flour', 'butter', 'sugar', 'eggs'],
     description:'The ethereal lightness of creamy filling meets the solid, wise foundation of a crumbly crust. The perfect equilibrium of airy and dense, yang and yin. A dessert for harmonizing inner contradictions. *Brings peace and fulfillment.',
@@ -151,6 +162,7 @@ export const desserts={
     type: 'dessert'
      },
      menu:{
+      id:'cheescake',
     title:'Balance of Elements',
     weight:140,
     price:5.50,
