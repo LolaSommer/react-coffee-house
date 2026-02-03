@@ -215,7 +215,7 @@ handleOrderSuccess();
         <div className="cart__modal-total">{total.toFixed(2)}$</div>
         </div>
         <div className="cart__modal-order">
-       <button className="cart__modal-checkout" type='summit'  onClick={handleCheckout}>Checkout</button>
+       <button className="cart__modal-checkout" type='submit'  onClick={handleCheckout}>Checkout</button>
         </div>
         </div>
          

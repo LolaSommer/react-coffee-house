@@ -38,7 +38,6 @@ function handleResend() {
 }
 
 function handleClose() {
-  onNextStep('phone');
   onClose();
 }
 
@@ -75,7 +74,6 @@ const isPhoneReady =
   phoneValues.tel.length <= 15;
 
 const isCodeComplete = code.every(d=> d !== '');
-
   return (
     <div className='auth'  role="dialog"
   aria-modal="true">

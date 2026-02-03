@@ -2,9 +2,10 @@ console.log('ORDER SERVICE FILE LOADED');
 export function createOrder({ userId, items, deliveryType }) {
     console.log('SERVICE ITEMS:', items);
 
-  if (!items || items.length === 0) {
-    return null;
-  }
+ if (!items || items.length === 0) {
+  throw new Error('ORDER_EMPTY');
+}
+
 
   const orderId = Date.now();
 

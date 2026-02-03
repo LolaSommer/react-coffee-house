@@ -9,17 +9,17 @@ function Footer({onNavigate}) {
              </div>
             <div className="footer__nav-item">
           <ul>
-            <li><a className="footer__nav-link footer__strong" onClick={()=>onNavigate('hero')} >Home</a></li>
+            <li><a href="#hero" className="footer__nav-link footer__strong" onClick={()=>onNavigate('hero')} >Home</a></li>
           </ul>
           </div>
            <div className="footer__nav-item">
           <ul>
-            <li><a className="footer__nav-link footer__strong" onClick={()=>onNavigate('events')}>Exchange of Energy</a></li>
+            <li><a href="#events" className="footer__nav-link footer__strong" onClick={()=>onNavigate('events')}>Exchange of Energy</a></li>
           </ul>
            </div>
             <div className="footer__nav-item">
           <ul>
-            <li><a className="footer__nav-link footer__strong" onClick={()=>onNavigate('menu')}>Discover our blend</a></li>
+            <li><a href="#menu" className="footer__nav-link footer__strong" onClick={()=>onNavigate('menu')}>Discover our blend</a></li>
           </ul>
             </div>
              </div>

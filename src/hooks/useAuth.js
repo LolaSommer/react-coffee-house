@@ -3,20 +3,23 @@ import { useState } from 'react';
 export function useAuth() {
   const [isAuth, setIsAuth] = useState(false);
   const [authStep, setAuthStep] = useState('phone');
-  const goToCodeStep = () => {
-    setAuthStep('code');
+
+  const goToStep = (step) => {
+    setAuthStep(step);
   };
 
   const logout = () => {
     setIsAuth(false);
+    setAuthStep('phone');
   };
 
   return {
     isAuth,
     authStep,
-    goToCodeStep,
+    goToStep,
     setIsAuth,
     logout,
   };
 }
+
 

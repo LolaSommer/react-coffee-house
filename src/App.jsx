@@ -219,15 +219,15 @@ useEffect(() => {
  return (
   
   <>
-  <div style={{ position: 'fixed', bottom: 10, left: 10, zIndex: 9999 }}>
-  active: {activeSection}
-</div>
 <Header
   onCartOpen={() => modals.openModal('cart')}
   totalItems={totalItems}
   onOpenAccount={() => setCurrentPage('account')}
   onGoHome={() => setCurrentPage('home')}
-  onAuthClick={() => modals.openModal('auth')}
+ onAuthClick={() => {
+  modals.openModal('auth');
+}}
+
   isAuth={auth.isAuth}
   currentPage={currentPage}
   activeSection={activeSection}
@@ -302,7 +302,7 @@ useEffect(() => {
     onClose={modals.closeModal}
      onAuthSuccess={handleAuthSuccess}
   initialPhone={userData.phone}
-    onNextStep={auth.goToCodeStep}
+      onNextStep={auth.goToStep}
   />
 )}
 {modals.isOpen('delivery') && (
