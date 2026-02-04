@@ -1,6 +1,4 @@
 import { createOrder } from '../services/order.service.js';
-console.log('ORDER CONTROLLER FILE:', import.meta.url);
-
 export function createOrderController(req, res) {
   
   const { userId, items, deliveryType } = req.body;
@@ -18,6 +16,16 @@ try {
       error: 'ORDER_EMPTY',
     });
   }
+ if(error.message ==='USER_REQUIRED'){
+  return res.status(400).json({
+    error:'USER_REQUIRED',
+  })
+ }
+ if (error.message === 'INVALID_DELIVERY_TYPE') {
+  return res.status(400).json({
+    error: 'INVALID_DELIVERY_TYPE',
+  });
+}
 
   return res.status(500).json({
     error: 'INTERNAL_ERROR',
