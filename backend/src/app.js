@@ -5,10 +5,13 @@ import routerAuth from './routes/auth.routes.js';
 import cors from 'cors';
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5177',
+  origin: true,
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+
+
 app.use(express.json());
 
 app.use(healthRoutes);

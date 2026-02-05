@@ -60,15 +60,41 @@ function handleKeyDown(index, e) {
     inputsRef.current[index - 1].focus();
   }
 }
-function handleVerifyClick() {
+async function handleVerifyClick() {
   if (!isCodeComplete) {
     onNextStep('phone');
     setCode(['', '', '', '']);
-  } else {
-    onAuthSuccess(phoneValues.tel);
-    onClose();
+    return;
   }
+
+try {
+  const response = await fetch('http://localhost:3001/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      phone: phoneValues.tel,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error('AUTH_FAILED');
+  }
+
+  const data = await response.json();
+
+  localStorage.setItem('token', data.token);
+
+  onAuthSuccess(phoneValues.tel);
+  onClose();
+} catch (error) {
+  console.error(error);
 }
+
+
+}
+
 const isPhoneReady =
   phoneValues.tel.length >= 10 &&
   phoneValues.tel.length <= 15;

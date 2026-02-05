@@ -126,10 +126,11 @@ useEffect(() => {
 const handleAuthSuccess = (phone) => {
   setUserData(prev => ({
     ...prev,
-    phone,
+    phone: typeof phone === 'string' ? phone : '',
   }));
   auth.setIsAuth(true);
 };
+
 
 function handleChange(item){
  setSelectedItem(item);
