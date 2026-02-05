@@ -1,7 +1,9 @@
 import { createOrder } from '../services/order.service.js';
 export function createOrderController(req, res) {
   
-  const { userId, items, deliveryType } = req.body;
+ const { items, deliveryType } = req.body;
+const userId = req.user.id;
+
 
 try {
   const order = createOrder({ userId, items, deliveryType });
