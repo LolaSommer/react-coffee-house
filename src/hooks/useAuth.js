@@ -1,5 +1,5 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { getAuthToken,clearAuth } from '../utils/auth'
 export function useAuth() {
   const [isAuth, setIsAuth] = useState(false);
   const [authStep, setAuthStep] = useState('phone');
@@ -9,9 +9,17 @@ export function useAuth() {
   };
 
   const logout = () => {
-    setIsAuth(false);
-    setAuthStep('phone');
-  };
+  clearAuth();
+  setIsAuth(false);
+  setAuthStep('phone');
+};
+  useEffect(() => {
+  const token = getAuthToken();
+
+  if (token) {
+    setIsAuth(true);
+  }
+}, []);
 
   return {
     isAuth,

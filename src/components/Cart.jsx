@@ -2,6 +2,7 @@ import './cart.scss';
 import emptycart from '../assets/emptycart.webp';
 import { extras } from '../data/extras';
 import {useRef, useEffect} from 'react';
+import { getAuthToken } from '../utils/auth';
 function CartItem({item,onPlus, onMinus, onRemove,onEdit,onUpdateMessage}){
   return( <div className='cart__item'>
               <div className='cart__item-wrapper'>
@@ -73,16 +74,18 @@ async function handleCheckout() {
   }
 
   const orderData = {
-    userId: userData.phone,
     items: cart,
     deliveryType: isDeliveryChecked ? 'delivery' : 'pickup',
   };
 
   try {
+    const token = getAuthToken();
+
     const response = await fetch('http://localhost:3001/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify(orderData),
     });
@@ -96,6 +99,7 @@ async function handleCheckout() {
       }
       throw new Error('Server error');
     }
+
     handleOrderSuccess();
   } catch (error) {
     console.error('Order failed:', error);
